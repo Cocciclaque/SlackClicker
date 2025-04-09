@@ -2,9 +2,9 @@
     "items": [
         {
             "name": "Auto Slacker",
-            "price": 10,
+            "price": 20,
             "multiplier": 1.1,
-            "purchased": 0,
+            "purchased": 10,
             "locked": false,
             "lore": "Automatically does... nothing ?\n +0.1 per slack",
             "singletime": false
@@ -13,16 +13,16 @@
             "name": "Slack Boost I",
             "price": 50,
             "multiplier": 1,
-            "purchased": 0,
+            "purchased": 1,
             "locked": false,
             "lore": "Do nothing... faster ?\n Makes you actively slack 100% faster",
             "singletime": true
         },
         {
             "name": "Convert Colleague",
-            "price": 100,
+            "price": 110,
             "multiplier": 1.1,
-            "purchased": 0,
+            "purchased": 1,
             "locked": false,
             "lore": "<< Come on, try it man ! I promise it's fun and totally not addictive >> - John *****, fired the next day.\n +4 per slack",
             "singletime": false
@@ -31,9 +31,18 @@
             "name": "Powerful Slacking I",
             "price": 100,
             "multiplier": 1,
-            "purchased": 0,
-            "locked": true,
-            "lore": "Did you know Japan hosted a Do Nothing Competition ? .\n Makes Auto Slackers 100% more powerful.",
+            "purchased": 1,
+            "locked": false,
+            "lore": "Did you know Japan hosted a Do Nothing Competition ? .\n Makes Auto Slackers 200% more powerful.",
+            "singletime": true
+        },
+        {
+            "name": "Masterful Slacking I",
+            "price": 100,
+            "multiplier": 1,
+            "purchased": 1,
+            "locked": false,
+            "lore": "Become the Master Slacker\n +1 to slack per slack.",
             "singletime": true
         }
     ]

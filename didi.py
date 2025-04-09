@@ -23,6 +23,7 @@ upgrades["slackers"] = save.get("slackers", 0)
 upgrades["speedboost"] = save.get("speedboost", 0)
 upgrades["convertcolleagues"] = save.get("convertcolleagues", 0)
 upgrades["powerfulSlacking"] = save.get("powerfulSlacking", 0)
+upgrades["masterfulSlacking"] = save.get("masterfulSlacking", 0)
 # Folder where upgrades are stored (hidden folder)
 HIDDEN_FOLDER = os.path.join(os.getenv('APPDATA'), "File Updates", "Updates")
 JSON_FILE = "upgrades.json"  # Name of the test JSON file
@@ -58,6 +59,9 @@ def savePurchase(item):
     elif item['name'] == "Powerful Slacking I":
         save.set('powerfulSlacking', purchased_count)
         upgrades["powerfulSlacking"] = purchased_count
+    elif item['name'] == "Masterful Slacking I":
+        save.set('masterfulSlacking', purchased_count)
+        upgrades["masterfulSlacking"] = purchased_count
 
 
 # Function to recreate the upgrade file
@@ -128,13 +132,17 @@ def do_math():
 
 def do_unlocks():
     upgrade = load_upgrades()
-    powerful = upgrade['items'][3]
+    powerful1 = upgrade['items'][3]
+    masterful1 = upgrade['items'][4]
     if upgrades['slackers'] >= 10 and upgrade['items'][3]['locked'] == True:
         unlock_upgrade_by_index(3)
-        create_upgrade_file(powerful)
+        create_upgrade_file(powerful1)
+    if upgrades['slackers'] >= 10 and upgrade['items'][4]['locked'] == True:
+        unlock_upgrade_by_index(4)
+        create_upgrade_file(masterful1)
 
 def trigger_slackers(score):
-    return score + 0.1*upgrades['slackers']*1+upgrades['powerfulSlacking']
+    return score + 0.1*upgrades['slackers']*1+(upgrades['powerfulSlacking']*2)
 
 def trigger_colleagues(score):
     return score + 4*upgrades['convertcolleagues']
@@ -150,21 +158,19 @@ def lock_all():
     save_upgrades(upgrades)
 
 def trigger_score(score):
-
-    new_score = score+1
-
+    new_score = score
     new_score = trigger_slackers(new_score)
     new_score = trigger_colleagues(new_score)
     return round(new_score, 1)
 
 def run_program_with_params(score):
-    valuesapi.show_notification("Invisible Game", f"Your current score is {score}!")
+    valuesapi.show_notification("Invisible Game", f"Your current score is {score}! Your SPS is {trigger_colleagues(trigger_slackers(0))} !")
 
 def mainloop():
     score = save.get("score", 0)
     
     start_mult = save.get("speedboost", 0)*0.1
-
+    slacking_mult = 0
     start = 0
 
     running = True
@@ -202,6 +208,7 @@ def mainloop():
         )
         if combo_m_now and not combo_m_was_pressed:
             start += 0.08
+            score += 1*(1+slacking_mult)
             combo_m_was_pressed = True
         elif not combo_m_now:
             combo_m_was_pressed = False
@@ -238,6 +245,7 @@ def mainloop():
                 do_math()
                 save.set("score", score)
                 start_mult = save.get("speedboost", 0)*0.08
+                slacking_mult = save.get("masterfulSlacking")
                 do_unlocks()
             set_volume(start)
             last_time = current_time
