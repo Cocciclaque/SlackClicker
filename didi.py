@@ -145,10 +145,10 @@ def do_unlocks():
     powerful1 = upgrade['items'][3]
     masterful1 = upgrade['items'][4]
     slackonomics = upgrade['items'][5]
-    if upgrades['slackers'] >= 10 and powerful1['locked'] == True:
+    if upgrades['slackers'] >= config.get('required_slackers') and powerful1['locked'] == True:
         unlock_upgrade_by_index(3)
         create_upgrade_file(powerful1)
-    if upgrades['slackers'] >= 10 and masterful1['locked'] == True:
+    if upgrades['slackers'] >= config.get('required_slackers') and masterful1['locked'] == True:
         unlock_upgrade_by_index(4)
         create_upgrade_file(masterful1)
     if upgrades['powerfulSlacking'] >= 1 and upgrades['masterfulSlacking'] >= 1 and slackonomics['locked'] == True:
@@ -156,13 +156,13 @@ def do_unlocks():
         create_upgrade_file(slackonomics)
 
 def trigger_slackers(score):
-    return score + 0.1*upgrades['slackers']*1+(upgrades['powerfulSlacking']*2)
+    return score + config.get('slacker_power')*upgrades['slackers']*1+(upgrades['powerfulSlacking']*config.get('powerfulSlacking_modifier'))
 
 def trigger_colleagues(score):
-    return score + 4*upgrades['convertcolleagues']
+    return score + config.get('colleague_power')*upgrades['convertcolleagues']
 
 def trigger_slackverses(score):
-    return score + 10*upgrades['slackverses']
+    return score + config.get('slackverse_power')*upgrades['slackverses']
 
 def unlock_upgrade_by_index(index):
     upgrades = load_upgrades()
@@ -190,7 +190,7 @@ def run_program_with_params(score, mult):
 def mainloop():
     score = save.get("score", 0)
     
-    start_mult = save.get("speedboost", 0)*0.1
+    start_mult = save.get("speedboost", 0)*config.get('speedboost_modifier')
     slacking_mult = 0
     start = 0
     general_mult = 0
@@ -198,7 +198,7 @@ def mainloop():
     running = True
 
     last_time = time.time()
-    delay = 0.25  # Delay for the volume logic
+    delay = config.get('timer_base_delay')  # Delay for the volume logic
 
     combo_z_was_pressed = False
     combo_m_was_pressed = False
@@ -229,8 +229,8 @@ def mainloop():
             keyboard.is_pressed('m')
         )
         if combo_m_now and not combo_m_was_pressed:
-            start += 0.08
-            score += 1*(1+slacking_mult)
+            start += config.get('base_manual_tick_value')
+            score += config.get('base_slack_power')*(1+slacking_mult)
             combo_m_was_pressed = True
         elif not combo_m_now:
             combo_m_was_pressed = False
@@ -259,16 +259,16 @@ def mainloop():
 
         # --- Volume + score logic ---
         if elapsed_time >= delay:
-            start += 0.1+start_mult
+            start += config.get('base_auto_tick_value')+start_mult
             if start >= 1:
                 set_volume(0)
                 start = 0
                 score = trigger_score(score, general_mult)
                 do_math()
                 save.set("score", score)
-                start_mult = save.get("speedboost", 0)*0.08
+                start_mult = save.get("speedboost", 0)*config.get('base_manual_tick_value')
                 slacking_mult = save.get("masterfulSlacking")
-                general_mult = 1+(save.get("slackonomics", 0)*0.5)
+                general_mult = 1+(save.get("slackonomics", 0)*config.get("slackonomics_modifier"))
                 do_unlocks()
             set_volume(start)
             last_time = current_time

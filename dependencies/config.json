@@ -1,3 +1,14 @@
 {
+    "slacker_power": 0.1,
+    "colleague_power": 4.0,
+    "slackverse_power": 10.0,
+    "powerfulSlacking_modifier": 2.0,
+    "speedboost_modifier": 0.1,
+    "timer_base_delay": 0.25,
+    "base_manual_tick_value": 0.08,
+    "base_auto_tick_value": 0.1,
+    "base_slack_power": 1.0,
+    "slackonomics_modifier": 0.5,
+    "required_slackers": 10,
     "score": 10
 }
