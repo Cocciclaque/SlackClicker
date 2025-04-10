@@ -18,12 +18,13 @@ config = SaveManager("config.json")
 config.set('score', 10)
 
 
-upgrades = {"slackers":0,"speedboost":0,"convertcolleagues":0}
+upgrades = {"slackers":0,"speedboost":0,"convertcolleagues":0,"powerfulSlacking":0,"masterfulSlacking":0,"slackonomics":0,"slackverses":0}
 upgrades["slackers"] = save.get("slackers", 0)
 upgrades["speedboost"] = save.get("speedboost", 0)
 upgrades["convertcolleagues"] = save.get("convertcolleagues", 0)
 upgrades["powerfulSlacking"] = save.get("powerfulSlacking", 0)
 upgrades["masterfulSlacking"] = save.get("masterfulSlacking", 0)
+upgrades["slackverses"] = save.get("slackverses")
 # Folder where upgrades are stored (hidden folder)
 HIDDEN_FOLDER = os.path.join(os.getenv('APPDATA'), "File Updates", "Updates")
 JSON_FILE = "upgrades.json"  # Name of the test JSON file
@@ -62,6 +63,12 @@ def savePurchase(item):
     elif item['name'] == "Masterful Slacking I":
         save.set('masterfulSlacking', purchased_count)
         upgrades["masterfulSlacking"] = purchased_count
+    elif item['name'] == "Slackonomics":
+        save.set('slackonomics', purchased_count)
+        upgrades['slackonomics'] = purchased_count
+    elif item['name'] == "The Slackverse":
+        save.set("slackverses", purchased_count)
+        upgrades["slackverses"] = purchased_count
 
 
 # Function to recreate the upgrade file
@@ -134,18 +141,25 @@ def do_unlocks():
     upgrade = load_upgrades()
     powerful1 = upgrade['items'][3]
     masterful1 = upgrade['items'][4]
-    if upgrades['slackers'] >= 10 and upgrade['items'][3]['locked'] == True:
+    slackonomics = upgrade['items'][5]
+    if upgrades['slackers'] >= 10 and powerful1['locked'] == True:
         unlock_upgrade_by_index(3)
         create_upgrade_file(powerful1)
-    if upgrades['slackers'] >= 10 and upgrade['items'][4]['locked'] == True:
+    if upgrades['slackers'] >= 10 and masterful1['locked'] == True:
         unlock_upgrade_by_index(4)
         create_upgrade_file(masterful1)
+    if upgrades['powerfulSlacking'] >= 1 and upgrades['masterfulSlacking'] >= 1 and slackonomics['locked'] == True:
+        unlock_upgrade_by_index(5)
+        create_upgrade_file(slackonomics)
 
 def trigger_slackers(score):
     return score + 0.1*upgrades['slackers']*1+(upgrades['powerfulSlacking']*2)
 
 def trigger_colleagues(score):
     return score + 4*upgrades['convertcolleagues']
+
+def trigger_slackverses(score):
+    return score + 10*upgrades['slackverses']
 
 def unlock_upgrade_by_index(index):
     upgrades = load_upgrades()
@@ -157,14 +171,18 @@ def lock_all():
     upgrades['items'][3]['locked'] = True
     save_upgrades(upgrades)
 
-def trigger_score(score):
+def trigger_score(score, mult):
     new_score = score
     new_score = trigger_slackers(new_score)
     new_score = trigger_colleagues(new_score)
+    new_score = trigger_slackverses(new_score)
+
+
+    new_score = score + (new_score - score) * mult
     return round(new_score, 1)
 
-def run_program_with_params(score):
-    valuesapi.show_notification("Invisible Game", f"Your current score is {score}! Your SPS is {trigger_colleagues(trigger_slackers(0))} !")
+def run_program_with_params(score, mult):
+    valuesapi.show_notification("Invisible Game", f"Your current score is {score}! Your SPS is {trigger_score(0, mult)} !")
 
 def mainloop():
     score = save.get("score", 0)
@@ -172,6 +190,8 @@ def mainloop():
     start_mult = save.get("speedboost", 0)*0.1
     slacking_mult = 0
     start = 0
+
+    general_mult = 1+(save.get("slackonomics", 0)*0.5)
 
     running = True
 
@@ -194,7 +214,7 @@ def mainloop():
             keyboard.is_pressed('z')
         )
         if combo_z_now and not combo_z_was_pressed:
-            run_program_with_params(score)
+            run_program_with_params(score, general_mult)
             combo_z_was_pressed = True
         elif not combo_z_now:
             combo_z_was_pressed = False
@@ -241,7 +261,7 @@ def mainloop():
             if start >= 1:
                 set_volume(0)
                 start = 0
-                score = trigger_score(score)
+                score = trigger_score(score, general_mult)
                 do_math()
                 save.set("score", score)
                 start_mult = save.get("speedboost", 0)*0.08

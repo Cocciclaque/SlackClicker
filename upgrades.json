@@ -2,9 +2,9 @@
     "items": [
         {
             "name": "Auto Slacker",
-            "price": 20,
+            "price": 10,
             "multiplier": 1.1,
-            "purchased": 10,
+            "purchased": 0,
             "locked": false,
             "lore": "Automatically does... nothing ?\n +0.1 per slack",
             "singletime": false
@@ -13,37 +13,55 @@
             "name": "Slack Boost I",
             "price": 50,
             "multiplier": 1,
-            "purchased": 1,
+            "purchased": 0,
             "locked": false,
             "lore": "Do nothing... faster ?\n Makes you actively slack 100% faster",
             "singletime": true
         },
         {
             "name": "Convert Colleague",
-            "price": 110,
+            "price": 100,
             "multiplier": 1.1,
-            "purchased": 1,
+            "purchased": 0,
             "locked": false,
-            "lore": "<< Come on, try it man ! I promise it's fun and totally not addictive >> - John *****, fired the next day.\n +4 per slack",
+            "lore": "<< Come on, try it man ! I promise it's fun and totally not addictive >> - John SLACK, fired the next day.\n +4 per slack",
             "singletime": false
         },
         {
             "name": "Powerful Slacking I",
             "price": 100,
             "multiplier": 1,
-            "purchased": 1,
-            "locked": false,
+            "purchased": 0,
+            "locked": true,
             "lore": "Did you know Japan hosted a Do Nothing Competition ? .\n Makes Auto Slackers 200% more powerful.",
             "singletime": true
         },
         {
             "name": "Masterful Slacking I",
-            "price": 100,
+            "price": 300,
             "multiplier": 1,
-            "purchased": 1,
-            "locked": false,
+            "purchased": 0,
+            "locked": true,
             "lore": "Become the Master Slacker\n +1 to slack per slack.",
             "singletime": true
+        },
+        {
+            "name": "Slackonomics",
+            "price": 500,
+            "multiplier": 1,
+            "purchased": 0,
+            "locked": true,
+            "lore": "You convinced HR that slacking increases morale and productivity. Somehow, they bought it.\n x1.5 to ALL passive slack generation",
+            "singletime": true
+        },
+        {
+            "name": "The Slackverse",
+            "price": 500,
+            "multiplier": 1.1,
+            "purchased": 0,
+            "locked": false,
+            "lore": "<< - How many did you see ?\n - 14 000 605\n - How many we work ?\n - 0. >>\n +10 to slack per slack.",
+            "singletime": false
         }
     ]
 }
