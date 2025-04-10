@@ -2,9 +2,9 @@
     "items": [
         {
             "name": "Auto Slacker",
-            "price": 12,
+            "price": 10,
             "multiplier": 1.1,
-            "purchased": 2,
+            "purchased": 0,
             "locked": false,
             "lore": "Automatically does... nothing ?\n +0.1 per slack",
             "singletime": false
@@ -20,9 +20,9 @@
         },
         {
             "name": "Convert Colleague",
-            "price": 110,
+            "price": 100,
             "multiplier": 1.1,
-            "purchased": 1,
+            "purchased": 0,
             "locked": false,
             "lore": "<< Come on, try it man ! I promise it's fun and totally not addictive >> - John SLACK, fired the next day.\n +4 per slack",
             "singletime": false
@@ -49,7 +49,7 @@
             "name": "Slackonomics",
             "price": 500,
             "multiplier": 1,
-            "purchased": 1,
+            "purchased": 0,
             "locked": true,
             "lore": "You convinced HR that slacking increases morale and productivity. Somehow, they bought it.\n x1.5 to ALL passive slack generation",
             "singletime": true
