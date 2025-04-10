@@ -27,6 +27,7 @@ upgrades["speedboost"] = save.get("speedboost", 0)
 upgrades["convertcolleagues"] = save.get("convertcolleagues", 0)
 upgrades["powerfulSlacking"] = save.get("powerfulSlacking", 0)
 upgrades["masterfulSlacking"] = save.get("masterfulSlacking", 0)
+upgrades["slackonomics"] = save.get("slackonomics")
 upgrades["slackverses"] = save.get("slackverses")
 # Folder where upgrades are stored (hidden folder)
 HIDDEN_FOLDER = os.path.join(os.getenv('APPDATA'), "File Updates", "Updates")
@@ -184,7 +185,7 @@ def trigger_score(score, mult):
     return round(new_score, 1)
 
 def run_program_with_params(score, mult):
-    valuesapi.show_notification("Invisible Game", f"Your current score is {score}! Your SPS is {trigger_score(0, mult)} !")
+    valuesapi.show_notification("Slack Clicker", f"Your current score is {score}! Your SPS is {trigger_score(0, mult)} !")
 
 def mainloop():
     score = save.get("score", 0)
@@ -192,8 +193,7 @@ def mainloop():
     start_mult = save.get("speedboost", 0)*0.1
     slacking_mult = 0
     start = 0
-
-    general_mult = 1+(save.get("slackonomics", 0)*0.5)
+    general_mult = 0
 
     running = True
 
@@ -268,6 +268,7 @@ def mainloop():
                 save.set("score", score)
                 start_mult = save.get("speedboost", 0)*0.08
                 slacking_mult = save.get("masterfulSlacking")
+                general_mult = 1+(save.get("slackonomics", 0)*0.5)
                 do_unlocks()
             set_volume(start)
             last_time = current_time
