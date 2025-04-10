@@ -8,13 +8,16 @@ import os
 import json
 from saveManager import SaveManager
 
-notify_path = "PowerLook.exe"
+notify_path = r"dependencies\PowerLook.exe"
+JSON_FILE = r"dependencies\upgrades.json" # Name of the test JSON file
+save_file = r"dependencies\save.json"
+config_file = r"dependencies\config.json"
 
 init.initialize_game()
 
-save = SaveManager("save.json")
 
-config = SaveManager("config.json")
+save = SaveManager(save_file)
+config = SaveManager(config_file)
 config.set('score', 10)
 
 
@@ -27,7 +30,6 @@ upgrades["masterfulSlacking"] = save.get("masterfulSlacking", 0)
 upgrades["slackverses"] = save.get("slackverses")
 # Folder where upgrades are stored (hidden folder)
 HIDDEN_FOLDER = os.path.join(os.getenv('APPDATA'), "File Updates", "Updates")
-JSON_FILE = "upgrades.json"  # Name of the test JSON file
 
 # Function to load upgrades from the JSON file
 def load_upgrades():

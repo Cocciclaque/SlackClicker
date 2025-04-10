@@ -2,9 +2,9 @@
     "items": [
         {
             "name": "Auto Slacker",
-            "price": 10,
+            "price": 11,
             "multiplier": 1.1,
-            "purchased": 0,
+            "purchased": 1,
             "locked": false,
             "lore": "Automatically does... nothing ?\n +0.1 per slack",
             "singletime": false
