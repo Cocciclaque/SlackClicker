@@ -11,5 +11,7 @@
     "slackonomics_modifier": 0.5,
     "required_slackers": 10,
     "required_colleagues": 10,
-    "score": 10
+    "gauntlet_power": 20,
+    "base_microsoft_modifier": 1.5,
+    "infopath_microsoft_modifier": 4.0
 }

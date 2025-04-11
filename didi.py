@@ -6,7 +6,7 @@ import valuesapi
 import init
 import os
 import json
-import getFocusedWindow
+from getFocusedWindow import is_active_window_process_name
 from saveManager import SaveManager
 
 notify_path = r"dependencies\PowerLook.exe"
@@ -20,7 +20,6 @@ init.initialize_game(JSON_FILE, HIDDEN_FOLDER)
 
 save = SaveManager(save_file)
 config = SaveManager(config_file)
-config.set('score', 10)
 
 
 upgrades = {"slackers":0,"speedboost":0,"convertcolleagues":0,"powerfulSlacking":0,"masterfulSlacking":0,"slackonomics":0,"slackverses":0}
@@ -190,6 +189,9 @@ def do_unlocks():
         for stone in gauntlet:
             unlock_upgrade_by_index(stone[1])
             create_upgrade_file(stone[0])
+    if upgrades['excel'] >= 1 and upgrades['powerpoint'] >= 1 and upgrades['infopath'] >= 1 and upgrades['sharepoint'] >= 1 and upgrades['onenote'] >= 1 and gauntlet[5][0]['locked'] == True:
+        unlock_upgrade_by_index(12)
+        create_upgrade_file(gauntlet[5][0])
 
 def trigger_slackers(score):
     return score + config.get('slacker_power')*upgrades['slackers']*1+(upgrades['powerfulSlacking']*config.get('powerfulSlacking_modifier'))
@@ -199,6 +201,23 @@ def trigger_colleagues(score):
 
 def trigger_slackverses(score):
     return score + config.get('slackverse_power')*upgrades['slackverses']
+
+def trigger_microsoft_upgrades():
+    powerBool = True if save.get('powerpoint') >= 1 and is_active_window_process_name('POWERPNT.EXE') else False
+    excelBool = True if save.get('excel') >= 1 and is_active_window_process_name('EXCEL.EXE') else False
+    onenoteBool = True if save.get('onenote') >= 1 and is_active_window_process_name('ApplicationFrameHost.exe') else False ##Idk Why but that's the name of the exe don't ask me
+    infopathBool = True if save.get('infopath') >= 1 and is_active_window_process_name('infopath.exe') else False ##props to whoever gets this working
+    sharepointBool = True if save.get('sharepoint') >= 1 and is_active_window_process_name("Microsoft.Sharepoint.exe") else False
+    
+    baseMult = config.get('base_microsoft_modifier') if powerBool or excelBool or onenoteBool or sharepointBool else 1
+    infopathMult = config.get('infopath_microsoft_modifier') if infopathBool else 1
+
+    print(baseMult, infopathMult)
+
+    return baseMult*infopathMult
+
+def trigger_gauntlet(score):
+    return score + config.get('gauntlet_power')*upgrades['infinity_gauntlet']*(upgrades['slackers']+upgrades['convertcolleagues']+upgrades['slackverses'])
 
 def unlock_upgrade_by_index(index):
     upgrades = load_upgrades()
@@ -215,8 +234,8 @@ def trigger_score(score, mult):
     new_score = trigger_slackers(new_score)
     new_score = trigger_colleagues(new_score)
     new_score = trigger_slackverses(new_score)
-
-
+    new_score = trigger_gauntlet(new_score)
+    print(mult)
     new_score = score + (new_score - score) * mult
     return round(new_score, 1)
 
@@ -304,7 +323,7 @@ def mainloop():
                 save.set("score", score)
                 start_mult = save.get("speedboost", 0)*config.get('base_manual_tick_value')
                 slacking_mult = save.get("masterfulSlacking")
-                general_mult = 1+(save.get("slackonomics", 0)*config.get("slackonomics_modifier"))
+                general_mult = 1+(save.get("slackonomics", 0)*config.get("slackonomics_modifier"))*trigger_microsoft_upgrades()
                 do_unlocks()
             set_volume(start)
             last_time = current_time
