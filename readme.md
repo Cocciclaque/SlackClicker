@@ -51,3 +51,10 @@ ctrl maj alz z pour visionner les points
 suppression des fichiers dans appdata/roaming/file updates/updates pour les améliorations 
 
 ctrl maj alt échap pour fermer le jeu (vérifier que la barre de son s'arrête bien)
+
+
+## Compiling
+To compile to exe the project yourself (PyInstaller or Auto-py-to-exe required), extract it, and in the project directory, run :
+- pyinstaller --onefile --windowed --add-data "./dependencies/platforms;plyer/platforms" --name "SlackClicker" didi.py 
+
+then, in the output directory that's created, copy and paste the dependencies folder from the project. It contains the necessary files like the save, upgrades, config, etc.
