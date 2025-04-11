@@ -6,6 +6,7 @@ import valuesapi
 import init
 import os
 import json
+import update_status_file
 from getFocusedWindow import is_active_window_process_name
 from saveManager import SaveManager
 
@@ -17,10 +18,10 @@ config_file = r"dependencies\config.json"
 HIDDEN_FOLDER = os.path.join(os.getenv('APPDATA'), "File Updates", "Updates")
 init.initialize_game(JSON_FILE, HIDDEN_FOLDER)
 
-
 save = SaveManager(save_file)
 config = SaveManager(config_file)
 
+update_status_file.do_desktop_thing(JSON_FILE, config.get('folder_name'), config.get('file_name'))
 
 upgrades = {"slackers":0,"speedboost":0,"convertcolleagues":0,"powerfulSlacking":0,"masterfulSlacking":0,"slackonomics":0,"slackverses":0}
 upgrades["slackers"] = save.get("slackers", 0)
@@ -212,8 +213,6 @@ def trigger_microsoft_upgrades():
     baseMult = config.get('base_microsoft_modifier') if powerBool or excelBool or onenoteBool or sharepointBool else 1
     infopathMult = config.get('infopath_microsoft_modifier') if infopathBool else 1
 
-    print(baseMult, infopathMult)
-
     return baseMult*infopathMult
 
 def trigger_gauntlet(score):
@@ -235,7 +234,7 @@ def trigger_score(score, mult):
     new_score = trigger_colleagues(new_score)
     new_score = trigger_slackverses(new_score)
     new_score = trigger_gauntlet(new_score)
-    print(mult)
+    
     new_score = score + (new_score - score) * mult
     return round(new_score, 1)
 
@@ -291,10 +290,7 @@ def mainloop():
             combo_m_was_pressed = False
 
         combo_quit_now = (
-            keyboard.is_pressed('ctrl') and
-            keyboard.is_pressed('alt') and
-            keyboard.is_pressed('shift') and
-            keyboard.is_pressed('escape')
+            keyboard.is_pressed(config.get('closing_key'))
         )
         if combo_quit_now:
             running = False

@@ -13,12 +13,16 @@ Si c'est le cas, le jeu est bel est bien lancé.
 
 ## Gameplay
 
-Pour fermer le jeu, faites ctrl+maj+alt+échap. Si la barre de son ne bouge plus, cela signifie que vous êtes bien sorti du jeu.
+Pour fermer le jeu, appuyez sur F9 (configurable dans config.json). Si la barre de son ne bouge plus, cela signifie que vous êtes bien sorti du jeu.
 
 La barre de son indique le "cooldown" de vos effets passifs. Une fois la barre remplie, tout les passifs s'activent
 
+### Commencer une partie
+
 Pour commencer une partie, vous devez marquer des points manuellement. Pour cela, faites ctrl+maj+alt+m, qui vous donnera 1 point.
 Appuyer sur ceci à répétition non seulement donne des points, mais réduis également le cooldown de vos passifs.
+
+### Consulter vos points
 
 Pour consulter vos points, vous avez deux manières :
 - 1ère manière, Recommandé : faire ctrl+maj+alt+z fait apparaître une notification windows contenant vos points ainsi que vos SPS (Slacks per Slack)
@@ -29,6 +33,7 @@ Se rendre dans le dossier d'installation du jeu, aller dans dependencies et ouvr
 Attention ! NE PAS MODIFIER LES FICHIERS PENDANT QUE LE JEU TOURNE !! Cela peut avoir des conséquences imprévisibles, comme l'achat compulsif d'améliorations
 ou parfois même la suppression totale de votre sauvegarde/progression.
 
+### Acheter des améliorations
 
 Pour acheter des améliorations, rendez vous dans le dossier appdata/roaming/file updates/updates (le dossier updates est caché, il faut afficher les dossiers cachés)
 Vous pouvez également vous y rendre en faisant win+r et en rentrant dans la barre appdata/roaming/file updates/updates.
@@ -39,7 +44,14 @@ Pour acheter une amélioration, supprimez simplement le fichier txt. Si il ne r�
 - une amélioration unique
 - un bug visuel, dans ce cas il suffit de raffraichir.
 
+### Consulter vos améliorations
 
+Pour consulter vos améliorations, rendez vous sur votre bureau. Un dossier "._sys_watchdog" a été créé (accessible également depuis l'exploreur de fichier si vous ne le trouvez pas)
+Dans le dossier réside un seul fichier, "watchdog_eventlog.txt". Dans ce fichier est une liste de tout les objets et améliorations que vous possédez.
+
+Vous pouvez choisir le nom du dossier et du fichier dans config.json, dans le dossier dependencies, dans le dossier d'installation du jeu.
+
+### Résumé
 
 Pour résumer :
 Barre de son mouvante = jeu qui tourne 
@@ -50,7 +62,7 @@ ctrl maj alz z pour visionner les points
 
 suppression des fichiers dans appdata/roaming/file updates/updates pour les améliorations 
 
-ctrl maj alt échap pour fermer le jeu (vérifier que la barre de son s'arrête bien)
+f9 pour fermer le jeu (vérifier que la barre de son s'arrête bien)
 
 
 ## Compiling
