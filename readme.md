@@ -54,7 +54,7 @@ ctrl maj alt échap pour fermer le jeu (vérifier que la barre de son s'arrête 
 
 
 ## Compiling
-Pour compiler le projet vous même (PyInstaller ou Auto-py-to-exe requis), lancez depuis le projet :
+To compile to exe the project yourself (PyInstaller or Auto-py-to-exe required), extract it, and in the project directory, run :
 - pyinstaller --onefile --windowed --add-data "./dependencies/platforms;plyer/platforms" --name "SlackClicker" didi.py 
 
-puis coller le dossier dependencies dans le nouveau dossier output créé. Le dossier dependencies devrait se trouver au même niveau que "SlackClicker.exe".
+then, in the output directory that's created, copy and paste the dependencies folder from the project. It contains the necessary files like the save, upgrades, config, etc.
