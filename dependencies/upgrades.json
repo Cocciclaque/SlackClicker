@@ -62,6 +62,60 @@
             "locked": false,
             "lore": "<< - How many did you see ?\n - 14 000 605\n - How many we work ?\n - 0. >>\n +10 to slack per slack.",
             "singletime": false
+        },
+        {
+            "name": "Microslack Powerpoint",
+            "price": 1000,
+            "multiplier": 1.1,
+            "purchased": 0,
+            "locked": true,
+            "lore": "Preparing a slide so I can slack in meetings, too.\n 1.5x to production power while using Microsoft Powerpoint.",
+            "singletime": true
+        },
+        {
+            "name": "Microslack Excel",
+            "price": 1000,
+            "multiplier": 1.1,
+            "purchased": 0,
+            "locked": true,
+            "lore": "Slacking in word looks awfully like Dave from accounting's screen.\n 1.5x to production power while using Microsoft Excel.",
+            "singletime": true
+        },
+        {
+            "name": "Microslack OneNote",
+            "price": 1000,
+            "multiplier": 1.1,
+            "purchased": 0,
+            "locked": true,
+            "lore": "Wait, why bring the obscure microsoft apps only ?\n 1.5x to production power while using Microsoft OneNote.",
+            "singletime": true
+        },
+        {
+            "name": "Microslack InfoPath",
+            "price": 1000,
+            "multiplier": 1.1,
+            "purchased": 0,
+            "locked": true,
+            "lore": "Game's dev here : I don't really expect you to use this one.\n I don't even have it installed and have no idea what it is.\n\n 4x to production power if you manage to get it working.",
+            "singletime": true
+        },
+        {
+            "name": "Microslack SharePoint",
+            "price": 1000,
+            "multiplier": 1.1,
+            "purchased": 0,
+            "locked": true,
+            "lore": "Okay let's be real I have no idea what that is.\n This one actually doesn't give anything but you need it to unlock stuff.\n",
+            "singletime": true
+        },
+        {
+            "name": "Microslack Infinity Gauntlet",
+            "price": 5000,
+            "multiplier": 1.1,
+            "purchased": 0,
+            "locked": true,
+            "lore": "Using the Microslack upgrades and putting the referenced programs icons in the good order, it produces a funny word.\n I will do anything except work.\n Gives +20 to slack per slack per Auto Slacker, Converted Colleague, or Slackverse.",
+            "singletime": false
         }
     ]
 }

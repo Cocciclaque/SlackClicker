@@ -10,5 +10,6 @@
     "base_slack_power": 1.0,
     "slackonomics_modifier": 0.5,
     "required_slackers": 10,
+    "required_colleagues": 10,
     "score": 10
 }
