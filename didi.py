@@ -23,7 +23,7 @@ config = SaveManager(config_file)
 
 update_status_file.do_desktop_thing(JSON_FILE, config.get('folder_name'), config.get('file_name'))
 
-upgrades = {"slackers":0,"speedboost":0,"convertcolleagues":0,"powerfulSlacking":0,"masterfulSlacking":0,"slackonomics":0,"slackverses":0}
+upgrades = {}
 upgrades["slackers"] = save.get("slackers", 0)
 upgrades["speedboost"] = save.get("speedboost", 0)
 upgrades["convertcolleagues"] = save.get("convertcolleagues", 0)
@@ -37,6 +37,7 @@ upgrades["onenote"] = save.get("onenote")
 upgrades["infopath"] = save.get("infopath")
 upgrades["sharepoint"] = save.get("sharepoint")
 upgrades["infinity_gauntlet"] = save.get("infinity_gauntlet")
+upgrades["paradoxes"] = save.get('paradoxes')
 # Folder where upgrades are stored (hidden folder)
 HIDDEN_FOLDER = os.path.join(os.getenv('APPDATA'), "File Updates", "Updates")
 
@@ -98,6 +99,9 @@ def savePurchase(item):
     elif item['name'] == "Microslack Infinity Gauntlet":
         save.set("infinity_gauntlet", purchased_count)
         upgrades["infinity_gauntlet"] = purchased_count
+    elif item['name'] == "Slacking Paradox":
+        save.set("paradoxes", purchased_count)
+        upgrades["paradoxes"] = purchased_count
 
 
 # Function to recreate the upgrade file
@@ -131,7 +135,8 @@ def handle_upgrade_purchase(item, score):
         item['price'] = int(item['price'] * item['multiplier'])
 
         # If it's not a singletime upgrade, recreate the file
-        if item.get('singletime', False) is False:
+        if item.get('singletime', False) is False and (item['name'] == "Microslack Infinity Gauntlet" and item['purchased'] >= config.get('max_gauntlet_amount')) == False:
+            print(item['name'] == "Microsoft Infinity Gauntlet")
             create_upgrade_file(item)
         print(f"Purchased {item['name']}!")
         save.set("score", score)
@@ -166,6 +171,13 @@ def monitor_upgrades(score):
 def do_math():
     pass
 
+def do_locks():
+    upgrade = load_upgrades()
+    gauntlet = upgrade['items'][12]
+    if gauntlet['purchased'] >= config.get('max_gauntlet_amount'):
+        lock_upgrade_by_index(12)
+
+
 def do_unlocks():
     upgrade = load_upgrades()
     powerful1 = upgrade['items'][3]
@@ -177,6 +189,7 @@ def do_unlocks():
     gauntlet.append((upgrade['items'][10], 10))
     gauntlet.append((upgrade['items'][11], 11))
     gauntlet.append((upgrade['items'][12], 12))
+    paradox = upgrade['items'][13]
     if upgrades['slackers'] >= config.get('required_slackers') and powerful1['locked'] == True:
         unlock_upgrade_by_index(3)
         create_upgrade_file(powerful1)
@@ -190,10 +203,13 @@ def do_unlocks():
         for stone in gauntlet:
             unlock_upgrade_by_index(stone[1])
             create_upgrade_file(stone[0])
-    if upgrades['excel'] >= 1 and upgrades['powerpoint'] >= 1 and upgrades['infopath'] >= 1 and upgrades['sharepoint'] >= 1 and upgrades['onenote'] >= 1 and gauntlet[5][0]['locked'] == True:
+    if upgrades['excel'] >= 1 and upgrades['powerpoint'] >= 1 and upgrades['infopath'] >= 1 and upgrades['sharepoint'] >= 1 and upgrades['onenote'] >= 1 and gauntlet[5][0]['locked'] == True and gauntlet[5][0]['purchased'] < config.get('max_gauntlet_amount'):
         unlock_upgrade_by_index(12)
         create_upgrade_file(gauntlet[5][0])
-
+    if upgrades['slackverses'] >= config.get('required_slackverses') and paradox['locked'] == True:
+        unlock_upgrade_by_index(13)
+        create_upgrade_file(paradox)
+    
 def trigger_slackers(score):
     return score + config.get('slacker_power')*upgrades['slackers']*1+(upgrades['powerfulSlacking']*config.get('powerfulSlacking_modifier'))
 
@@ -218,9 +234,17 @@ def trigger_microsoft_upgrades():
 def trigger_gauntlet(score):
     return score + config.get('gauntlet_power')*upgrades['infinity_gauntlet']*(upgrades['slackers']+upgrades['convertcolleagues']+upgrades['slackverses'])
 
+def trigger_paradox(score):
+    return score + config.get('paradox_power')*upgrades['paradoxes']
+
 def unlock_upgrade_by_index(index):
     upgrades = load_upgrades()
     upgrades['items'][index]['locked'] = False
+    save_upgrades(upgrades)
+
+def lock_upgrade_by_index(index):
+    upgrades = load_upgrades()
+    upgrades['items'][index]['locked'] = True
     save_upgrades(upgrades)
 
 def lock_all():
@@ -234,7 +258,8 @@ def trigger_score(score, mult):
     new_score = trigger_colleagues(new_score)
     new_score = trigger_slackverses(new_score)
     new_score = trigger_gauntlet(new_score)
-    
+    new_score = trigger_paradox(new_score)
+
     new_score = score + (new_score - score) * mult
     return round(new_score, 1)
 
@@ -320,10 +345,11 @@ def mainloop():
                 start_mult = save.get("speedboost", 0)*config.get('base_manual_tick_value')
                 slacking_mult = save.get("masterfulSlacking")
                 general_mult = 1+(save.get("slackonomics", 0)*config.get("slackonomics_modifier"))*trigger_microsoft_upgrades()
-                do_unlocks()
             set_volume(start)
             last_time = current_time
 
+        do_unlocks()
+        do_locks()
         # Check and handle upgrades if any file is deleted
         score = monitor_upgrades(score)
 

@@ -116,6 +116,15 @@
             "locked": true,
             "lore": "Using the Microslack upgrades and putting the referenced programs icons in the good order, it produces a funny word.\n I will do anything except work.\n Gives +20 to slack per slack per Auto Slacker, Converted Colleague, or Slackverse.",
             "singletime": false
+        },
+        {
+            "name": "Slacking Paradox",
+            "price": 2500,
+            "multiplier": 1.1,
+            "purchased": 0,
+            "locked": true,
+            "lore": "If you stop slacking you'll slack slacking, but that would make you NOT stop slacking, and if you- \n 75 to slack per slack.",
+            "singletime": false
         }
     ]
 }

@@ -1,5 +1,5 @@
 {
-    "score": 0.0,
+    "score": 0,
     "slackers": 0,
     "speedboost": 0,
     "convertcolleagues": 0,
@@ -12,5 +12,6 @@
     "onenote": 0,
     "infopath": 0,
     "sharepoint": 0,
-    "infinity_gauntlet": 0
+    "infinity_gauntlet": 0,
+    "paradoxes": 0
 }
