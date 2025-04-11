@@ -2,9 +2,9 @@
     "items": [
         {
             "name": "Auto Slacker",
-            "price": 10,
+            "price": 20,
             "multiplier": 1.1,
-            "purchased": 0,
+            "purchased": 10,
             "locked": false,
             "lore": "Automatically does... nothing ?\n +0.1 per slack",
             "singletime": false
@@ -13,16 +13,16 @@
             "name": "Slack Boost I",
             "price": 50,
             "multiplier": 1,
-            "purchased": 0,
+            "purchased": 1,
             "locked": false,
             "lore": "Do nothing... faster ?\n Makes you actively slack 100% faster",
             "singletime": true
         },
         {
             "name": "Convert Colleague",
-            "price": 100,
+            "price": 256,
             "multiplier": 1.1,
-            "purchased": 0,
+            "purchased": 10,
             "locked": false,
             "lore": "<< Come on, try it man ! I promise it's fun and totally not addictive >> - John SLACK, fired the next day.\n +4 per slack",
             "singletime": false
@@ -31,8 +31,8 @@
             "name": "Powerful Slacking I",
             "price": 100,
             "multiplier": 1,
-            "purchased": 0,
-            "locked": true,
+            "purchased": 1,
+            "locked": false,
             "lore": "Did you know Japan hosted a Do Nothing Competition ? .\n Makes Auto Slackers 200% more powerful.",
             "singletime": true
         },
@@ -40,8 +40,8 @@
             "name": "Masterful Slacking I",
             "price": 300,
             "multiplier": 1,
-            "purchased": 0,
-            "locked": true,
+            "purchased": 1,
+            "locked": false,
             "lore": "Become the Master Slacker\n +1 to slack per slack.",
             "singletime": true
         },
@@ -49,18 +49,72 @@
             "name": "Slackonomics",
             "price": 500,
             "multiplier": 1,
-            "purchased": 0,
-            "locked": true,
+            "purchased": 1,
+            "locked": false,
             "lore": "You convinced HR that slacking increases morale and productivity. Somehow, they bought it.\n x1.5 to ALL passive slack generation",
             "singletime": true
         },
         {
             "name": "The Slackverse",
-            "price": 500,
+            "price": 550,
             "multiplier": 1.1,
-            "purchased": 0,
+            "purchased": 1,
             "locked": false,
             "lore": "<< - How many did you see ?\n - 14 000 605\n - How many we work ?\n - 0. >>\n +10 to slack per slack.",
+            "singletime": false
+        },
+        {
+            "name": "Microslack Powerpoint",
+            "price": 1100,
+            "multiplier": 1.1,
+            "purchased": 1,
+            "locked": false,
+            "lore": "Preparing a slide so I can slack in meetings, too.\n 1.5x to production power while using Microsoft Powerpoint.",
+            "singletime": true
+        },
+        {
+            "name": "Microslack Excel",
+            "price": 1100,
+            "multiplier": 1.1,
+            "purchased": 1,
+            "locked": false,
+            "lore": "Slacking in word looks awfully like Dave from accounting's screen.\n 1.5x to production power while using Microsoft Excel.",
+            "singletime": true
+        },
+        {
+            "name": "Microslack OneNote",
+            "price": 1100,
+            "multiplier": 1.1,
+            "purchased": 1,
+            "locked": false,
+            "lore": "Wait, why bring the obscure microsoft apps only ?\n 1.5x to production power while using Microsoft OneNote.",
+            "singletime": true
+        },
+        {
+            "name": "Microslack InfoPath",
+            "price": 1100,
+            "multiplier": 1.1,
+            "purchased": 1,
+            "locked": false,
+            "lore": "Game's dev here : I don't really expect you to use this one.\n I don't even have it installed and have no idea what it is.\n\n 4x to production power if you manage to get it working.",
+            "singletime": true
+        },
+        {
+            "name": "Microslack SharePoint",
+            "price": 1100,
+            "multiplier": 1.1,
+            "purchased": 1,
+            "locked": false,
+            "lore": "Okay let's be real I have no idea what that is.\n This one actually doesn't give anything but you need it to unlock stuff.\n",
+            "singletime": true
+        },
+        {
+            "name": "Microslack Infinity Gauntlet",
+            "price": 6655,
+            "multiplier": 1.1,
+            "purchased": 3,
+            "locked": false,
+            "lore": "Using the Microslack upgrades and putting the referenced programs icons in the good order, it produces a funny word.\n I will do anything except work.\n Gives +20 to slack per slack per Auto Slacker, Converted Colleague, or Slackverse.",
             "singletime": false
         }
     ]

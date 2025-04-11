@@ -3,11 +3,10 @@ import os
 import subprocess
 
 # Path where you want to create the hidden folder (in a hidden location)
-HIDDEN_FOLDER = os.path.join(os.getenv('APPDATA'), "File Updates", "Updates")
-JSON_FILE = "upgrades.json"  # Name of the test JSON file
+
 
 # Make sure the hidden folder exists
-def create_hidden_folder():
+def create_hidden_folder(HIDDEN_FOLDER):
     try:
         # Check if folder already exists
         print(f"Target folder path: {HIDDEN_FOLDER}")  # Debug print
@@ -25,7 +24,7 @@ def create_hidden_folder():
         print(f"Error while creating hidden folder: {e}")
 
 # Read the JSON file containing upgrade data
-def load_upgrades_from_json():
+def load_upgrades_from_json(JSON_FILE):
     try:
         with open(JSON_FILE, 'r') as file:
             return json.load(file)
@@ -34,7 +33,7 @@ def load_upgrades_from_json():
         return {"items": []}
 
 # Save the updated JSON file (after purchase)
-def save_upgrades_to_json(upgrades):
+def save_upgrades_to_json(upgrades, JSON_FILE):
     try:
         with open(JSON_FILE, 'w') as file:
             json.dump(upgrades, file, indent=4)
@@ -43,7 +42,7 @@ def save_upgrades_to_json(upgrades):
         print(f"Error saving JSON file: {e}")
 
 # Function to create files based on JSON data
-def create_upgrade_files(upgrades):
+def create_upgrade_files(upgrades, HIDDEN_FOLDER):
     try:
         for item in upgrades.get("items", []):
             file_name = f"{item['name']} {item['purchased']+1} - {item['price']}.txt"
@@ -62,11 +61,11 @@ def create_upgrade_files(upgrades):
         print(f"Error creating upgrade files: {e}")
 
 # Initialize the game: create folder, load json, create upgrade files
-def initialize_game():
+def initialize_game(JSON_FILE, HIDDEN_FOLDER):
     try:
-        create_hidden_folder()  # Ensure hidden folder is created
-        upgrades = load_upgrades_from_json()  # Load upgrade data from JSON
-        create_upgrade_files(upgrades)  # Create the upgrade files based on the data
+        create_hidden_folder(HIDDEN_FOLDER)  # Ensure hidden folder is created
+        upgrades = load_upgrades_from_json(JSON_FILE)  # Load upgrade data from JSON
+        create_upgrade_files(upgrades, HIDDEN_FOLDER)  # Create the upgrade files based on the data
     except Exception as e:
         print(f"Error initializing game: {e}")
 

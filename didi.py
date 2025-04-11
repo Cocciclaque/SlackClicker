@@ -6,6 +6,7 @@ import valuesapi
 import init
 import os
 import json
+from getFocusedWindow import is_active_window_process_name
 from saveManager import SaveManager
 
 notify_path = r"dependencies\PowerLook.exe"
@@ -13,12 +14,12 @@ JSON_FILE = r"dependencies\upgrades.json" # Name of the test JSON file
 save_file = r"dependencies\save.json"
 config_file = r"dependencies\config.json"
 
-init.initialize_game()
+HIDDEN_FOLDER = os.path.join(os.getenv('APPDATA'), "File Updates", "Updates")
+init.initialize_game(JSON_FILE, HIDDEN_FOLDER)
 
 
 save = SaveManager(save_file)
 config = SaveManager(config_file)
-config.set('score', 10)
 
 
 upgrades = {"slackers":0,"speedboost":0,"convertcolleagues":0,"powerfulSlacking":0,"masterfulSlacking":0,"slackonomics":0,"slackverses":0}
@@ -29,6 +30,12 @@ upgrades["powerfulSlacking"] = save.get("powerfulSlacking", 0)
 upgrades["masterfulSlacking"] = save.get("masterfulSlacking", 0)
 upgrades["slackonomics"] = save.get("slackonomics")
 upgrades["slackverses"] = save.get("slackverses")
+upgrades["powerpoint"] = save.get("powerpoint")
+upgrades["excel"] = save.get("excel")
+upgrades["onenote"] = save.get("onenote")
+upgrades["infopath"] = save.get("infopath")
+upgrades["sharepoint"] = save.get("sharepoint")
+upgrades["infinity_gauntlet"] = save.get("infinity_gauntlet")
 # Folder where upgrades are stored (hidden folder)
 HIDDEN_FOLDER = os.path.join(os.getenv('APPDATA'), "File Updates", "Updates")
 
@@ -72,6 +79,24 @@ def savePurchase(item):
     elif item['name'] == "The Slackverse":
         save.set("slackverses", purchased_count)
         upgrades["slackverses"] = purchased_count
+    elif item['name'] == "Microslack Powerpoint":
+        save.set("powerpoint", purchased_count)
+        upgrades["powerpoint"] = purchased_count
+    elif item['name'] == "Microslack Excel":
+        save.set("excel", purchased_count)
+        upgrades["excel"] = purchased_count
+    elif item['name'] == "Microslack OneNote":
+        save.set("onenote", purchased_count)
+        upgrades["onenote"] = purchased_count
+    elif item['name'] == "Microslack InfoPath":
+        save.set("infopath", purchased_count)
+        upgrades["infopath"] = purchased_count
+    elif item['name'] == "Microslack SharePoint":
+        save.set("sharepoint", purchased_count)
+        upgrades["sharepoint"] = purchased_count
+    elif item['name'] == "Microslack Infinity Gauntlet":
+        save.set("infinity_gauntlet", purchased_count)
+        upgrades["infinity_gauntlet"] = purchased_count
 
 
 # Function to recreate the upgrade file
@@ -145,6 +170,12 @@ def do_unlocks():
     powerful1 = upgrade['items'][3]
     masterful1 = upgrade['items'][4]
     slackonomics = upgrade['items'][5]
+    gauntlet = [(upgrade['items'][7], 7)]
+    gauntlet.append((upgrade['items'][8], 8))
+    gauntlet.append((upgrade['items'][9], 9))
+    gauntlet.append((upgrade['items'][10], 10))
+    gauntlet.append((upgrade['items'][11], 11))
+    gauntlet.append((upgrade['items'][12], 12))
     if upgrades['slackers'] >= config.get('required_slackers') and powerful1['locked'] == True:
         unlock_upgrade_by_index(3)
         create_upgrade_file(powerful1)
@@ -154,6 +185,13 @@ def do_unlocks():
     if upgrades['powerfulSlacking'] >= 1 and upgrades['masterfulSlacking'] >= 1 and slackonomics['locked'] == True:
         unlock_upgrade_by_index(5)
         create_upgrade_file(slackonomics)
+    if upgrades['convertcolleagues'] >= config.get('required_colleagues') and gauntlet[0][0]['locked'] == True:
+        for stone in gauntlet:
+            unlock_upgrade_by_index(stone[1])
+            create_upgrade_file(stone[0])
+    if upgrades['excel'] >= 1 and upgrades['powerpoint'] >= 1 and upgrades['infopath'] >= 1 and upgrades['sharepoint'] >= 1 and upgrades['onenote'] >= 1 and gauntlet[5][0]['locked'] == True:
+        unlock_upgrade_by_index(12)
+        create_upgrade_file(gauntlet[5][0])
 
 def trigger_slackers(score):
     return score + config.get('slacker_power')*upgrades['slackers']*1+(upgrades['powerfulSlacking']*config.get('powerfulSlacking_modifier'))
@@ -163,6 +201,23 @@ def trigger_colleagues(score):
 
 def trigger_slackverses(score):
     return score + config.get('slackverse_power')*upgrades['slackverses']
+
+def trigger_microsoft_upgrades():
+    powerBool = True if save.get('powerpoint') >= 1 and is_active_window_process_name('POWERPNT.EXE') else False
+    excelBool = True if save.get('excel') >= 1 and is_active_window_process_name('EXCEL.EXE') else False
+    onenoteBool = True if save.get('onenote') >= 1 and is_active_window_process_name('ApplicationFrameHost.exe') else False ##Idk Why but that's the name of the exe don't ask me
+    infopathBool = True if save.get('infopath') >= 1 and is_active_window_process_name('infopath.exe') else False ##props to whoever gets this working
+    sharepointBool = True if save.get('sharepoint') >= 1 and is_active_window_process_name("Microsoft.Sharepoint.exe") else False
+    
+    baseMult = config.get('base_microsoft_modifier') if powerBool or excelBool or onenoteBool or sharepointBool else 1
+    infopathMult = config.get('infopath_microsoft_modifier') if infopathBool else 1
+
+    print(baseMult, infopathMult)
+
+    return baseMult*infopathMult
+
+def trigger_gauntlet(score):
+    return score + config.get('gauntlet_power')*upgrades['infinity_gauntlet']*(upgrades['slackers']+upgrades['convertcolleagues']+upgrades['slackverses'])
 
 def unlock_upgrade_by_index(index):
     upgrades = load_upgrades()
@@ -179,8 +234,8 @@ def trigger_score(score, mult):
     new_score = trigger_slackers(new_score)
     new_score = trigger_colleagues(new_score)
     new_score = trigger_slackverses(new_score)
-
-
+    new_score = trigger_gauntlet(new_score)
+    print(mult)
     new_score = score + (new_score - score) * mult
     return round(new_score, 1)
 
@@ -268,7 +323,7 @@ def mainloop():
                 save.set("score", score)
                 start_mult = save.get("speedboost", 0)*config.get('base_manual_tick_value')
                 slacking_mult = save.get("masterfulSlacking")
-                general_mult = 1+(save.get("slackonomics", 0)*config.get("slackonomics_modifier"))
+                general_mult = 1+(save.get("slackonomics", 0)*config.get("slackonomics_modifier"))*trigger_microsoft_upgrades()
                 do_unlocks()
             set_volume(start)
             last_time = current_time
