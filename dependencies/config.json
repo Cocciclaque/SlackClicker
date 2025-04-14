@@ -20,11 +20,15 @@
     "required_paradox_compound":20,
     "required_gauntlets":5,
     "required_score_consultant": 50000,
+    "required_score_john": 50000,
     "gauntlet_power": 2.5,
     "max_gauntlet_amount": 5,
     "base_microsoft_modifier": 1.5,
     "infopath_microsoft_modifier": 4.0,
     "compound_disinterest_modifier": 0.25,
     "consultant_power": 60,
-    "consultant_efficiency_modifier":0.01
+    "consultant_efficiency_modifier":0.01,
+    "john_cooldown":300,
+    "john_duration":30,
+    "john_multiplier":0.5
 }

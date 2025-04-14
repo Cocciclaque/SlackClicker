@@ -41,6 +41,7 @@ upgrades["infinity_gauntlet"] = save.get("infinity_gauntlet")
 upgrades["paradoxes"] = save.get('paradoxes')
 upgrades['compound_disinterest'] = save.get('compound_disinterest')
 upgrades['consultant'] = save.get('consultant')
+upgrades['john'] = save.get('john')
 # Folder where upgrades are stored (hidden folder)
 HIDDEN_FOLDER = os.path.join(os.getenv('APPDATA'), "File Updates", "Updates")
 
@@ -114,7 +115,9 @@ def savePurchase(item):
     elif item['name'] == "Slacker Consultant":
         save.set("consultant", purchased_count)
         upgrades["consultant", purchased_count]
-
+    elif item['name'] == "John Slack":
+        save.set("john", purchased_count)
+        upgrades["john", purchased_count]
 
 # Function to recreate the upgrade file
 def create_upgrade_file(item):
@@ -198,6 +201,7 @@ def do_unlocks():
     paradox = upgrade['items'][13]
     compound = upgrade['items'][14]
     consultant = upgrade['items'][16] ##15 is coffee break
+    john = upgrade['items'][17]
     if upgrades['slackers'] >= config.get('required_slackers') and powerful1['locked'] == True:
         unlock_upgrade_by_index(3)
         create_upgrade_file(powerful1)
@@ -223,6 +227,9 @@ def do_unlocks():
     if save.get('score') >= config.get('required_score_consultant') and consultant['locked'] == True:
         unlock_upgrade_by_index(16)
         create_upgrade_file(consultant)
+    if save.get('score') >= config.get('required_score_john') and john['locked'] == True:
+        unlock_upgrade_by_index(17)
+        create_upgrade_file(john)
     
 def trigger_slackers(score):
     return score + (config.get('slacker_power')+(0.1*upgrades['coffee']))*upgrades['slackers']*1+(upgrades['powerfulSlacking']*config.get('powerfulSlacking_modifier'))*consultant_mult()
@@ -286,6 +293,10 @@ def trigger_score(score, mult):
 def getCompoundMult():
     return trigger_slackers(1)*config.get('compound_disinterest_modifier')
 
+def getJohnMult(timer):
+    print(timer)
+    return 1+config.get('john_multiplier') if timer < time.time() else 1 
+
 def run_program_with_params(score, mult):
     valuesapi.show_notification("Slack Clicker", f"Your current score is {score}! Your SPS is {trigger_score(0, mult)} !")
 
@@ -296,6 +307,9 @@ def mainloop():
     slacking_mult = 0
     start = 0
     general_mult = 0
+
+    john_timer = 0
+    john_effect = 0
 
     running = True
 
@@ -356,6 +370,10 @@ def mainloop():
         elif not combo_s_now:
             combo_s_was_pressed = False
 
+        john_key = keyboard.is_pressed('scroll_lock')
+        if john_key and time.time() >= john_timer and upgrades['john'] >= 1:
+            john_timer = config.get('john_cooldown') + time.time()
+            john_effect = config.get('john_duration') + time.time()
         # --- Volume + score logic ---
         if elapsed_time >= delay:
             start += config.get('base_auto_tick_value')+start_mult
@@ -367,10 +385,9 @@ def mainloop():
                 save.set("score", score)
                 start_mult = save.get("speedboost", 0)*config.get('base_manual_tick_value')
                 slacking_mult = save.get("masterfulSlacking")
-                general_mult = 1+(save.get("slackonomics", 0)*config.get("slackonomics_modifier"))*trigger_microsoft_upgrades()*getCompoundMult()
+                general_mult = 1+(save.get("slackonomics", 0)*config.get("slackonomics_modifier"))*trigger_microsoft_upgrades()*getCompoundMult()*getJohnMult(john_effect)
             set_volume(start)
             last_time = current_time
-
         do_unlocks()
         do_locks()
         # Check and handle upgrades if any file is deleted

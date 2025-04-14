@@ -152,7 +152,16 @@
             "locked": true,
             "lore": "Wait, there's Consultant written twice !\n +60 slack per slack. Each Consultant increases the efficiency of all other previous slackers by 1%.",
             "singletime": false
-          }
+        },
+        {
+            "name": "John Slack",
+            "price": 10000,
+            "multiplier": 1,
+            "purchased": 0,
+            "locked": true,
+            "lore": "Oh my god it's John Slack from Fortnite.\n Pressing scroll lock boosts slacking by 50% for 30 seconds (5 minutes cooldown)",
+            "singletime": true
+        }
           
 
     ]
