@@ -25,6 +25,7 @@ update_status_file.do_desktop_thing(JSON_FILE, config.get('folder_name'), config
 
 upgrades = {}
 upgrades["slackers"] = save.get("slackers", 0)
+upgrades["coffee"] = save.get("coffee", 0)
 upgrades["speedboost"] = save.get("speedboost", 0)
 upgrades["convertcolleagues"] = save.get("convertcolleagues", 0)
 upgrades["powerfulSlacking"] = save.get("powerfulSlacking", 0)
@@ -38,6 +39,7 @@ upgrades["infopath"] = save.get("infopath")
 upgrades["sharepoint"] = save.get("sharepoint")
 upgrades["infinity_gauntlet"] = save.get("infinity_gauntlet")
 upgrades["paradoxes"] = save.get('paradoxes')
+upgrades['compound_disinterest'] = save.get('compound_disinterest')
 # Folder where upgrades are stored (hidden folder)
 HIDDEN_FOLDER = os.path.join(os.getenv('APPDATA'), "File Updates", "Updates")
 
@@ -63,6 +65,9 @@ def savePurchase(item):
     if item['name'] == "Auto Slacker":
         save.set("slackers", purchased_count)
         upgrades["slackers"] = purchased_count
+    if item['name'] == "Coffee Break":
+        save.set("coffee", purchased_count)
+        upgrades["coffee"] = purchased_count
     elif item['name'] == "Slack Boost I":
         save.set("speedboost", purchased_count)
         upgrades["speedboost"] = purchased_count
@@ -102,6 +107,9 @@ def savePurchase(item):
     elif item['name'] == "Slacking Paradox":
         save.set("paradoxes", purchased_count)
         upgrades["paradoxes"] = purchased_count
+    elif item['name'] == "Compound Disinterest":
+        save.set("compound_disinterest", purchased_count)
+        upgrades["compound_disinterest", purchased_count]
 
 
 # Function to recreate the upgrade file
@@ -123,50 +131,44 @@ def create_upgrade_file(item):
         print(f"Error creating the upgrade file: {e}")
 
 # Function to handle the upgrade purchase (by deleting the file)
-def handle_upgrade_purchase(item, score):
-    if score >= item['price']:
-        # Deduct the price from score
-        score -= item['price']
-
-        # Increase the purchased count
-        item['purchased'] += 1
-
-        # Update the price with the multiplier
-        item['price'] = int(item['price'] * item['multiplier'])
-
-        # If it's not a singletime upgrade, recreate the file
-        if item.get('singletime', False) is False and (item['name'] == "Microslack Infinity Gauntlet" and item['purchased'] >= config.get('max_gauntlet_amount')) == False:
-            print(item['name'] == "Microsoft Infinity Gauntlet")
+def handle_upgrade_purchase(item, score, times=1):
+    for i in range(times):
+        if score >= item['price']:
+            score -= item['price']
+            item['purchased'] += 1
+            item['price'] = int(item['price'] * item['multiplier'])
+            if item.get('singletime', False) is False and (item['name'] == "Microslack Infinity Gauntlet" and item['purchased'] >= config.get('max_gauntlet_amount')) == False and i == times-1:
+                create_upgrade_file(item)
+            save.set("score", score)
+            savePurchase(item)
+            print(f"Purchased {item['name']} (#{item['purchased']})!")
+        else:
+            print(f"Not enough score to purchase {item['name']}.")
             create_upgrade_file(item)
-        print(f"Purchased {item['name']}!")
-        save.set("score", score)
-        savePurchase(item)
-    else:
-        create_upgrade_file(item)
-        print(f"Not enough score to purchase {item['name']}.")
-    
-    return score  # Return the updated score
+            break
+    return score
+
 
 # Monitor the upgrades folder for file deletions
 def monitor_upgrades(score):
     upgrades = load_upgrades()
+    shift_pressed = keyboard.is_pressed('shift')
 
     for item in upgrades.get("items", []):
         file_name = f"{item['name']} {item['purchased']+1} - {item['price']}.txt"
         file_path = os.path.join(HIDDEN_FOLDER, file_name)
 
-        # If the file does not exist and it's not a singletime upgrade, trigger the purchase
-        if not os.path.exists(file_path) and item.get('locked', False) is False:
-            # If the file is deleted, try to buy the upgrade
-
+        if not os.path.exists(file_path) and not item.get('locked', False):
             if item.get('singletime', True) is True and item['purchased'] > 0:
-                pass
-            else:
-                print(f"File for {item['name']} deleted, attempting to purchase again...")
-                score = handle_upgrade_purchase(item, score)
-                
+                continue
+            print(f"File for {item['name']} deleted, attempting to purchase...")
+            purchase_amount = 5 if shift_pressed else 1
+            score = handle_upgrade_purchase(item, score, times=purchase_amount)
+            update_status_file.do_desktop_thing(JSON_FILE, config.get('folder_name'), config.get('file_name'))
+
     save_upgrades(upgrades)
-    return score  # Return the updated score
+    return score
+
 
 def do_math():
     pass
@@ -190,6 +192,7 @@ def do_unlocks():
     gauntlet.append((upgrade['items'][11], 11))
     gauntlet.append((upgrade['items'][12], 12))
     paradox = upgrade['items'][13]
+    compound = upgrade['items'][14]
     if upgrades['slackers'] >= config.get('required_slackers') and powerful1['locked'] == True:
         unlock_upgrade_by_index(3)
         create_upgrade_file(powerful1)
@@ -209,9 +212,12 @@ def do_unlocks():
     if upgrades['slackverses'] >= config.get('required_slackverses') and paradox['locked'] == True:
         unlock_upgrade_by_index(13)
         create_upgrade_file(paradox)
+    if upgrades['paradoxes'] >= config.get('required_paradox_compound') and upgrades['infinity_gauntlet'] >= config.get('required_gauntlets') and compound['locked'] == True:
+        unlock_upgrade_by_index(14)
+        create_upgrade_file(compound)
     
 def trigger_slackers(score):
-    return score + config.get('slacker_power')*upgrades['slackers']*1+(upgrades['powerfulSlacking']*config.get('powerfulSlacking_modifier'))
+    return score + (config.get('slacker_power')+(0.1*upgrades['coffee']))*upgrades['slackers']*1+(upgrades['powerfulSlacking']*config.get('powerfulSlacking_modifier'))
 
 def trigger_colleagues(score):
     return score + config.get('colleague_power')*upgrades['convertcolleagues']
@@ -262,6 +268,9 @@ def trigger_score(score, mult):
 
     new_score = score + (new_score - score) * mult
     return round(new_score, 1)
+
+def getCompoundMult():
+    return trigger_slackers(1)*config.get('compound_disinterest_modifier')
 
 def run_program_with_params(score, mult):
     valuesapi.show_notification("Slack Clicker", f"Your current score is {score}! Your SPS is {trigger_score(0, mult)} !")
@@ -344,7 +353,7 @@ def mainloop():
                 save.set("score", score)
                 start_mult = save.get("speedboost", 0)*config.get('base_manual_tick_value')
                 slacking_mult = save.get("masterfulSlacking")
-                general_mult = 1+(save.get("slackonomics", 0)*config.get("slackonomics_modifier"))*trigger_microsoft_upgrades()
+                general_mult = 1+(save.get("slackonomics", 0)*config.get("slackonomics_modifier"))*trigger_microsoft_upgrades()*getCompoundMult()
             set_volume(start)
             last_time = current_time
 

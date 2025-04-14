@@ -44,6 +44,8 @@ Pour acheter une amélioration, supprimez simplement le fichier txt. Si il ne r�
 - une amélioration unique
 - un bug visuel, dans ce cas il suffit de raffraichir.
 
+Appuyez sur maj (shift) pour en acheter 5 d'un coup.
+
 ### Consulter vos améliorations
 
 Pour consulter vos améliorations, rendez vous sur votre bureau. Un dossier "._sys_watchdog" a été créé (accessible également depuis l'exploreur de fichier si vous ne le trouvez pas)

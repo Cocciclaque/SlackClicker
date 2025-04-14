@@ -6,7 +6,7 @@
             "multiplier": 1.1,
             "purchased": 0,
             "locked": false,
-            "lore": "Automatically does... nothing ?\n +0.5 slack per slack",
+            "lore": "Automatically does... nothing ?\n +0.1 slack per slack",
             "singletime": false
         },
         {
@@ -111,7 +111,7 @@
         {
             "name": "Microslack Infinity Gauntlet",
             "price": 7500,
-            "multiplier": 1.1,
+            "multiplier": 1.5,
             "purchased": 0,
             "locked": true,
             "lore": "Using the Microslack upgrades and putting the referenced programs icons in the good order, it produces a funny word.\n I will do anything except work.\n Gives +30 to slack per slack per Auto Slacker, Converted Colleague, or Slackverse.",
@@ -125,6 +125,25 @@
             "locked": true,
             "lore": "If you stop slacking you'll slack slacking, but that would make you NOT stop slacking, and if you- \n 200 to slack per slack.",
             "singletime": false
+        },
+        {
+            "name": "Compound Disinterest",
+            "price": 500000,
+            "multiplier": 1.1,
+            "purchased": 0,
+            "locked": true,
+            "lore": "If you stop slacking you'll slack slacking, but that would make you NOT stop slacking, and if you- \n Multiplies all slacking by 25% of the power of Auto Slackers",
+            "singletime": true
+        },
+        {
+            "name": "Coffee Break",
+            "price": 20,
+            "multiplier": 2.0,
+            "purchased": 0,
+            "locked": false,
+            "lore": "At least it's not a smoke break, right ?\n Each Auto Slacker slacks for 0.1 more.",
+            "singletime": false
         }
+
     ]
 }
