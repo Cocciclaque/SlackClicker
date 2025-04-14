@@ -44,6 +44,8 @@ Pour acheter une amélioration, supprimez simplement le fichier txt. Si il ne r�
 - une amélioration unique
 - un bug visuel, dans ce cas il suffit de raffraichir.
 
+Il est grandement conseillé d'ouvrir les fichiers en question car ils peuvent contenir des indications à propos de leur utilisation. 
+
 Appuyez sur maj (shift) pour en acheter 5 d'un coup.
 
 ### Consulter vos améliorations
