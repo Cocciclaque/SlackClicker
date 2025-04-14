@@ -36,5 +36,3 @@ def do_desktop_thing(JSON_FILE, folder_name, file_name):
     # Write to file
     with open(status_file, "w", encoding="utf-8") as f:
         f.write("\n".join(log_lines))
-
-    print(f"Upgrade status written to {status_file}")

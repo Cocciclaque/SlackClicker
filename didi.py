@@ -111,13 +111,13 @@ def savePurchase(item):
         upgrades["paradoxes"] = purchased_count
     elif item['name'] == "Compound Disinterest":
         save.set("compound_disinterest", purchased_count)
-        upgrades["compound_disinterest", purchased_count]
+        upgrades["compound_disinterest"] = purchased_count
     elif item['name'] == "Slacker Consultant":
         save.set("consultant", purchased_count)
-        upgrades["consultant", purchased_count]
+        upgrades["consultant"] = purchased_count
     elif item['name'] == "John Slack":
         save.set("john", purchased_count)
-        upgrades["john", purchased_count]
+        upgrades["john"] = purchased_count
 
 # Function to recreate the upgrade file
 def create_upgrade_file(item):
@@ -171,7 +171,7 @@ def monitor_upgrades(score):
             print(f"File for {item['name']} deleted, attempting to purchase...")
             purchase_amount = 5 if shift_pressed else 1
             score = handle_upgrade_purchase(item, score, times=purchase_amount)
-            update_status_file.do_desktop_thing(JSON_FILE, config.get('folder_name'), config.get('file_name'))
+            
 
     save_upgrades(upgrades)
     return score
@@ -319,6 +319,7 @@ def mainloop():
     combo_z_was_pressed = False
     combo_m_was_pressed = False
     combo_s_was_pressed = False
+    combo_scrolllock_was_pressed = False
 
     while running:
         current_time = time.time()
@@ -371,9 +372,17 @@ def mainloop():
             combo_s_was_pressed = False
 
         john_key = keyboard.is_pressed('scroll_lock')
-        if john_key and time.time() >= john_timer and upgrades['john'] >= 1:
-            john_timer = config.get('john_cooldown') + time.time()
-            john_effect = config.get('john_duration') + time.time()
+        if john_key and not combo_scrolllock_was_pressed:
+            combo_scrolllock_was_pressed = True
+            if john_key and time.time() >= john_timer and upgrades['john'] >= 1:
+                john_timer = config.get('john_cooldown') + time.time()
+                john_effect = config.get('john_duration') + time.time()
+            elif john_key and time.time() < john_timer and upgrades['john'] >= 1:
+                valuesapi.show_notification("Slack Clicker", f"This ability is on cooldown ({round(john_timer-time.time(), 0)} seconds remaining...) ! Not like you're in a rush, anyways...")
+            elif john_key and upgrades['john'] == 0:
+                valuesapi.show_notification("Slack Clicker", f"You have not bought this ability yet ! Do more nothing !")
+        elif not john_key:
+            combo_scrolllock_was_pressed = False
         # --- Volume + score logic ---
         if elapsed_time >= delay:
             start += config.get('base_auto_tick_value')+start_mult
@@ -392,6 +401,7 @@ def mainloop():
         do_locks()
         # Check and handle upgrades if any file is deleted
         score = monitor_upgrades(score)
+        update_status_file.do_desktop_thing(JSON_FILE, config.get('folder_name'), config.get('file_name'))
 
         time.sleep(0.01)  # Small delay to save CPU
 
