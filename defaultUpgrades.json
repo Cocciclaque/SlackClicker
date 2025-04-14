@@ -143,7 +143,17 @@
             "locked": false,
             "lore": "At least it's not a smoke break, right ?\n Each Auto Slacker slacks for 0.1 more.",
             "singletime": false
-        }
+        },
+        {
+            "name": "Slacker Consultant",
+            "price": 75000,
+            "multiplier": 1.2,
+            "purchased": 0,
+            "locked": true,
+            "lore": "Wait, there's Consultant written twice !\n +60 slack per slack. Each Consultant increases the efficiency of all other previous slackers by 1%.",
+            "singletime": false
+          }
+          
 
     ]
 }

@@ -40,6 +40,7 @@ upgrades["sharepoint"] = save.get("sharepoint")
 upgrades["infinity_gauntlet"] = save.get("infinity_gauntlet")
 upgrades["paradoxes"] = save.get('paradoxes')
 upgrades['compound_disinterest'] = save.get('compound_disinterest')
+upgrades['consultant'] = save.get('consultant')
 # Folder where upgrades are stored (hidden folder)
 HIDDEN_FOLDER = os.path.join(os.getenv('APPDATA'), "File Updates", "Updates")
 
@@ -110,6 +111,9 @@ def savePurchase(item):
     elif item['name'] == "Compound Disinterest":
         save.set("compound_disinterest", purchased_count)
         upgrades["compound_disinterest", purchased_count]
+    elif item['name'] == "Slacker Consultant":
+        save.set("consultant", purchased_count)
+        upgrades["consultant", purchased_count]
 
 
 # Function to recreate the upgrade file
@@ -193,6 +197,7 @@ def do_unlocks():
     gauntlet.append((upgrade['items'][12], 12))
     paradox = upgrade['items'][13]
     compound = upgrade['items'][14]
+    consultant = upgrade['items'][16] ##15 is coffee break
     if upgrades['slackers'] >= config.get('required_slackers') and powerful1['locked'] == True:
         unlock_upgrade_by_index(3)
         create_upgrade_file(powerful1)
@@ -215,15 +220,18 @@ def do_unlocks():
     if upgrades['paradoxes'] >= config.get('required_paradox_compound') and upgrades['infinity_gauntlet'] >= config.get('required_gauntlets') and compound['locked'] == True:
         unlock_upgrade_by_index(14)
         create_upgrade_file(compound)
+    if save.get('score') >= config.get('required_score_consultant') and consultant['locked'] == True:
+        unlock_upgrade_by_index(16)
+        create_upgrade_file(consultant)
     
 def trigger_slackers(score):
-    return score + (config.get('slacker_power')+(0.1*upgrades['coffee']))*upgrades['slackers']*1+(upgrades['powerfulSlacking']*config.get('powerfulSlacking_modifier'))
+    return score + (config.get('slacker_power')+(0.1*upgrades['coffee']))*upgrades['slackers']*1+(upgrades['powerfulSlacking']*config.get('powerfulSlacking_modifier'))*consultant_mult()
 
 def trigger_colleagues(score):
-    return score + config.get('colleague_power')*upgrades['convertcolleagues']
+    return score + config.get('colleague_power')*upgrades['convertcolleagues']*consultant_mult()
 
 def trigger_slackverses(score):
-    return score + config.get('slackverse_power')*upgrades['slackverses']
+    return score + config.get('slackverse_power')*upgrades['slackverses']*consultant_mult()
 
 def trigger_microsoft_upgrades():
     powerBool = True if save.get('powerpoint') >= 1 and is_active_window_process_name('POWERPNT.EXE') else False
@@ -238,10 +246,16 @@ def trigger_microsoft_upgrades():
     return baseMult*infopathMult
 
 def trigger_gauntlet(score):
-    return score + config.get('gauntlet_power')*upgrades['infinity_gauntlet']*(upgrades['slackers']+upgrades['convertcolleagues']+upgrades['slackverses'])
+    return score + config.get('gauntlet_power')*upgrades['infinity_gauntlet']*(upgrades['slackers']+upgrades['convertcolleagues']+upgrades['slackverses'])*consultant_mult()
 
 def trigger_paradox(score):
-    return score + config.get('paradox_power')*upgrades['paradoxes']
+    return score + config.get('paradox_power')*upgrades['paradoxes']*consultant_mult()
+
+def trigger_consultants(score):
+    return score + config.get('consultant_power')*upgrades['consultant']
+
+def consultant_mult():
+    return 1+(config.get('consultant_efficiency_modifier')*upgrades['consultant'])
 
 def unlock_upgrade_by_index(index):
     upgrades = load_upgrades()
@@ -265,7 +279,7 @@ def trigger_score(score, mult):
     new_score = trigger_slackverses(new_score)
     new_score = trigger_gauntlet(new_score)
     new_score = trigger_paradox(new_score)
-
+    new_score = trigger_consultants(new_score)
     new_score = score + (new_score - score) * mult
     return round(new_score, 1)
 
