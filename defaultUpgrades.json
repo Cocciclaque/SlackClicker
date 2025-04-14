@@ -6,7 +6,7 @@
             "multiplier": 1.1,
             "purchased": 0,
             "locked": false,
-            "lore": "Automatically does... nothing ?\n +0.1 per slack",
+            "lore": "Automatically does... nothing ?\n +0.5 slack per slack",
             "singletime": false
         },
         {
@@ -24,12 +24,12 @@
             "multiplier": 1.1,
             "purchased": 0,
             "locked": false,
-            "lore": "<< Come on, try it man ! I promise it's fun and totally not addictive >> - John SLACK, fired the next day.\n +4 per slack",
+            "lore": "<< Come on, try it man ! I promise it's fun and totally not addictive >> - John SLACK, fired the next day.\n +3 slack per slack",
             "singletime": false
         },
         {
             "name": "Powerful Slacking I",
-            "price": 100,
+            "price": 400,
             "multiplier": 1,
             "purchased": 0,
             "locked": true,
@@ -38,7 +38,7 @@
         },
         {
             "name": "Masterful Slacking I",
-            "price": 300,
+            "price": 700,
             "multiplier": 1,
             "purchased": 0,
             "locked": true,
@@ -47,7 +47,7 @@
         },
         {
             "name": "Slackonomics",
-            "price": 500,
+            "price": 1000,
             "multiplier": 1,
             "purchased": 0,
             "locked": true,
@@ -56,16 +56,16 @@
         },
         {
             "name": "The Slackverse",
-            "price": 500,
+            "price": 1000,
             "multiplier": 1.1,
             "purchased": 0,
             "locked": false,
-            "lore": "<< - How many did you see ?\n - 14 000 605\n - How many we work ?\n - 0. >>\n +10 to slack per slack.",
+            "lore": "<< - How many did you see ?\n - 14 000 605\n - How many we work ?\n - 0. >>\n +40 to slack per slack.",
             "singletime": false
         },
         {
             "name": "Microslack Powerpoint",
-            "price": 1000,
+            "price": 1500,
             "multiplier": 1.1,
             "purchased": 0,
             "locked": true,
@@ -74,7 +74,7 @@
         },
         {
             "name": "Microslack Excel",
-            "price": 1000,
+            "price": 1500,
             "multiplier": 1.1,
             "purchased": 0,
             "locked": true,
@@ -83,7 +83,7 @@
         },
         {
             "name": "Microslack OneNote",
-            "price": 1000,
+            "price": 1500,
             "multiplier": 1.1,
             "purchased": 0,
             "locked": true,
@@ -92,7 +92,7 @@
         },
         {
             "name": "Microslack InfoPath",
-            "price": 1000,
+            "price": 1500,
             "multiplier": 1.1,
             "purchased": 0,
             "locked": true,
@@ -101,7 +101,7 @@
         },
         {
             "name": "Microslack SharePoint",
-            "price": 1000,
+            "price": 1500,
             "multiplier": 1.1,
             "purchased": 0,
             "locked": true,
@@ -110,20 +110,20 @@
         },
         {
             "name": "Microslack Infinity Gauntlet",
-            "price": 5000,
+            "price": 7500,
             "multiplier": 1.1,
             "purchased": 0,
             "locked": true,
-            "lore": "Using the Microslack upgrades and putting the referenced programs icons in the good order, it produces a funny word.\n I will do anything except work.\n Gives +20 to slack per slack per Auto Slacker, Converted Colleague, or Slackverse.",
+            "lore": "Using the Microslack upgrades and putting the referenced programs icons in the good order, it produces a funny word.\n I will do anything except work.\n Gives +30 to slack per slack per Auto Slacker, Converted Colleague, or Slackverse.",
             "singletime": false
         },
         {
             "name": "Slacking Paradox",
-            "price": 2500,
+            "price": 12000,
             "multiplier": 1.1,
             "purchased": 0,
             "locked": true,
-            "lore": "If you stop slacking you'll slack slacking, but that would make you NOT stop slacking, and if you- \n 75 to slack per slack.",
+            "lore": "If you stop slacking you'll slack slacking, but that would make you NOT stop slacking, and if you- \n 200 to slack per slack.",
             "singletime": false
         }
     ]
