@@ -30,5 +30,7 @@
     "consultant_efficiency_modifier":0.01,
     "john_cooldown":300,
     "john_duration":30,
-    "john_multiplier":0.5
+    "john_multiplier":0.5,
+    "alias_key_slack": "f7",
+    "alias_key_show": "f5"
 }

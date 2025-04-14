@@ -333,7 +333,8 @@ def mainloop():
             keyboard.is_pressed('alt') and
             keyboard.is_pressed('shift') and
             keyboard.is_pressed('z')
-        )
+        ) or keyboard.is_pressed(config.get('alias_key_show'))
+
         if combo_z_now and not combo_z_was_pressed:
             run_program_with_params(score, general_mult)
             combo_z_was_pressed = True
@@ -346,7 +347,7 @@ def mainloop():
             keyboard.is_pressed('alt') and
             keyboard.is_pressed('shift') and
             keyboard.is_pressed('m')
-        )
+        ) or keyboard.is_pressed(config.get('alias_key_slack'))
         if combo_m_now and not combo_m_was_pressed:
             start += config.get('base_manual_tick_value')
             score += config.get('base_slack_power')*(1+slacking_mult)
