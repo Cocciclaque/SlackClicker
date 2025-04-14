@@ -247,7 +247,9 @@ def trigger_microsoft_upgrades():
     infopathBool = True if save.get('infopath') >= 1 and is_active_window_process_name('infopath.exe') else False ##props to whoever gets this working
     sharepointBool = True if save.get('sharepoint') >= 1 and is_active_window_process_name("Microsoft.Sharepoint.exe") else False
     
-    baseMult = config.get('base_microsoft_modifier') if powerBool or excelBool or onenoteBool or sharepointBool else 1
+    vscodeBool = True if save.get('powerpoint') >= 1 and is_active_window_process_name('code.exe') else False
+
+    baseMult = config.get('base_microsoft_modifier') if powerBool or excelBool or onenoteBool or sharepointBool or vscodeBool else 1
     infopathMult = config.get('infopath_microsoft_modifier') if infopathBool else 1
 
     return baseMult*infopathMult
