@@ -67,64 +67,64 @@ def save_upgrades(upgrades):
 
 def savePurchase(item):
     purchased_count = item['purchased']
-    if item['name'] == "Auto Slacker":
+    if item['name'] == "01 - Auto Slacker":
         save.set("slackers", purchased_count)
         upgrades["slackers"] = purchased_count
-    if item['name'] == "Coffee Break":
+    if item['name'] == "02 - Coffee Break":
         save.set("coffee", purchased_count)
         upgrades["coffee"] = purchased_count
-    elif item['name'] == "Slack Boost I":
+    elif item['name'] == "03 - Slack Boost I":
         save.set("speedboost", purchased_count)
         upgrades["speedboost"] = purchased_count
-    elif item['name'] == "Convert Colleague":
+    elif item['name'] == "04 - Convert Colleague":
         save.set("convertcolleagues", purchased_count)
         upgrades["convertcolleagues"] = purchased_count
-    elif item['name'] == "Powerful Slacking I":
+    elif item['name'] == "05 - Powerful Slacking I":
         save.set('powerfulSlacking', purchased_count)
         upgrades["powerfulSlacking"] = purchased_count
-    elif item['name'] == "Masterful Slacking I":
+    elif item['name'] == "06 - Masterful Slacking I":
         save.set('masterfulSlacking', purchased_count)
         upgrades["masterfulSlacking"] = purchased_count
-    elif item['name'] == "Slackonomics":
+    elif item['name'] == "07 - Slackonomics":
         save.set('slackonomics', purchased_count)
         upgrades['slackonomics'] = purchased_count
-    elif item['name'] == "The Slackverse":
+    elif item['name'] == "08 - The Slackverse":
         save.set("slackverses", purchased_count)
         upgrades["slackverses"] = purchased_count
-    elif item['name'] == "Microslack Powerpoint":
+    elif item['name'] == "09 - Microslack Powerpoint":
         save.set("powerpoint", purchased_count)
         upgrades["powerpoint"] = purchased_count
-    elif item['name'] == "Microslack Excel":
+    elif item['name'] == "10 - Microslack Excel":
         save.set("excel", purchased_count)
         upgrades["excel"] = purchased_count
-    elif item['name'] == "Microslack OneNote":
+    elif item['name'] == "11 - Microslack OneNote":
         save.set("onenote", purchased_count)
         upgrades["onenote"] = purchased_count
-    elif item['name'] == "Microslack InfoPath":
+    elif item['name'] == "12 - Microslack InfoPath":
         save.set("infopath", purchased_count)
         upgrades["infopath"] = purchased_count
-    elif item['name'] == "Microslack SharePoint":
+    elif item['name'] == "13 - Microslack SharePoint":
         save.set("sharepoint", purchased_count)
         upgrades["sharepoint"] = purchased_count
-    elif item['name'] == "Microslack Infinity Gauntlet":
+    elif item['name'] == "14 - Microslack Infinity Gauntlet":
         save.set("infinity_gauntlet", purchased_count)
         upgrades["infinity_gauntlet"] = purchased_count
-    elif item['name'] == "Slacking Paradox":
+    elif item['name'] == "15 - Slacking Paradox":
         save.set("paradoxes", purchased_count)
         upgrades["paradoxes"] = purchased_count
-    elif item['name'] == "Compound Disinterest":
+    elif item['name'] == "16 - Compound Disinterest":
         save.set("compound_disinterest", purchased_count)
         upgrades["compound_disinterest"] = purchased_count
-    elif item['name'] == "Slacker Consultant":
+    elif item['name'] == "17 - Slacker Consultant":
         save.set("consultant", purchased_count)
         upgrades["consultant"] = purchased_count
-    elif item['name'] == "John Slack":
+    elif item['name'] == "18 - John Slack":
         save.set("john", purchased_count)
         upgrades["john"] = purchased_count
-    elif item['name'] == "I wouldn't touch that if I were you":
+    elif item['name'] == "19 - I wouldn't touch that if I were you":
         save.set("avoid", purchased_count)
         upgrades["avoid"] = purchased_count
-    elif item['name'] == "MAKE IT STOP":
+    elif item['name'] == "20 - MAKE IT STOP":
         save.set("stop", purchased_count)
         upgrades["stop"] = purchased_count
 
