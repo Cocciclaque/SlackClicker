@@ -373,7 +373,7 @@ def getCompoundMult():
     return 1+((trigger_slackers(0)*config.get('compound_disinterest_modifier'))*save.get('compound_disinterest'))
 
 def getJohnMult(timer):
-    return 1+config.get('john_multiplier') if timer < time.time() else 1 
+    return 1+config.get('john_multiplier') if timer > time.time() else 1 
 
 def run_program_with_params(score, mult):
     valuesapi.show_notification("Slack Clicker", f"Your current score is {score}! Your SPS is {trigger_score(0, mult)} !")
@@ -390,8 +390,8 @@ def mainloop():
     start = 0
     general_mult = 0
 
-    john_timer = 0
-    john_effect = 0
+    john_timer = time.time()
+    john_effect = time.time()
 
     running = True
 
@@ -477,14 +477,15 @@ def mainloop():
                 start_mult = save.get("speedboost", 0)*config.get('base_manual_tick_value')
                 slacking_mult = save.get("masterfulSlacking")
                 general_mult = 1+(save.get("slackonomics", 0)*config.get("slackonomics_modifier"))*trigger_microsoft_upgrades()*getCompoundMult()*getJohnMult(john_effect)
+                config.load()
             last_time = current_time
             if save.get("avoid") == 1:
                 if save.get('stop') == 1:
-                    pass
+                    if config.get('do_soundbar') == 1:
+                        set_volume(start)
                 elif save.get('stop') == 0:
                     set_volume(start)
-                elif save.get('stop') == 1 and config.get('do_soundbar') == 1:
-                    set_volume(start)
+                
         changeWindowName.set_window_name(constructSoundBar(start, score, general_mult))
         do_unlocks()
         do_locks()

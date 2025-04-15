@@ -109,7 +109,7 @@
             "singletime": true
         },
         {
-            "name": "14 - icroslack Infinity Gauntlet",
+            "name": "14 - Microslack Infinity Gauntlet",
             "price": 7500,
             "multiplier": 1.5,
             "purchased": 0,
@@ -186,7 +186,8 @@
         "price": 1e12,
         "multiplier": 1.15,
         "locked": true,
-        "purchased": 0
+        "purchased": 0,
+        "singletime":false
         },
         {
         "name": "22 - The Break Hole",
@@ -194,7 +195,8 @@
         "price": 5e13,
         "multiplier": 1.25,
         "locked": true,
-        "purchased": 0
+        "purchased": 0,
+        "singletime":false
         },
         {
         "name": "23 - Procrastinstein's Lab",
@@ -202,7 +204,8 @@
         "price": 3e14,
         "multiplier": 1.35,
         "locked": true,
-        "purchased": 0
+        "purchased": 0,
+        "singletime":false
         },
         {
         "name": "24 - Astro-not Program",
@@ -210,7 +213,8 @@
         "price": 2e15,
         "multiplier": 1.45,
         "locked": true,
-        "purchased": 0
+        "purchased": 0,
+        "singletime":false
         },
         {
         "name": "25 - Dark Matter of Inaction",
@@ -218,7 +222,8 @@
         "price": 1e16,
         "multiplier": 1.55,
         "locked": true,
-        "purchased": 0
+        "purchased": 0,
+        "singletime":false
         },
         {
         "name": "26 - The Final Countdown Timer",
@@ -226,7 +231,8 @@
         "price": 5e17,
         "multiplier": 1.65,
         "locked": true,
-        "purchased": 0
+        "purchased": 0,
+        "singletime":false
         }
         
           
