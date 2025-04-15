@@ -150,7 +150,7 @@ def create_upgrade_file(item):
 def handle_upgrade_purchase(item, score, times=1):
     for i in range(times):
         if score >= item['price']:
-            score -= item['price']
+            score = round(score-item['price'],1)
             item['purchased'] += 1
             item['price'] = int(item['price'] * item['multiplier'])
             if item.get('singletime', False) is False and (item['name'] == "Microslack Infinity Gauntlet" and item['purchased'] >= config.get('max_gauntlet_amount')) == False and i == times-1:
@@ -318,9 +318,9 @@ def getJohnMult(timer):
 def run_program_with_params(score, mult):
     valuesapi.show_notification("Slack Clicker", f"Your current score is {score}! Your SPS is {trigger_score(0, mult)} !")
 
-def constructSoundBar(start, score):
+def constructSoundBar(start, score, general_mult):
     bar = "["+"-"*int(round(start*10))+" "*int(round((1-start)*10))+"]"
-    return bar + "  -  " + str(score)
+    return bar + "  -  " + str(score) + " Slack  -  " + str(trigger_score(0, general_mult)) + " SPS"
 
 def mainloop():
     score = save.get("score", 0)
@@ -425,7 +425,7 @@ def mainloop():
                     set_volume(start)
                 elif save.get('stop') == 1 and config.get('do_soundbar') == 1:
                     set_volume(start)
-        changeWindowName.set_window_name(constructSoundBar(start, score))
+        changeWindowName.set_window_name(constructSoundBar(start, score, general_mult))
         do_unlocks()
         do_locks()
         # Check and handle upgrades if any file is deleted
