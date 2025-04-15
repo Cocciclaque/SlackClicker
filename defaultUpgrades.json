@@ -1,7 +1,7 @@
 {
     "items": [
         {
-            "name": "Auto Slacker",
+            "name": "01 - Auto Slacker",
             "price": 10,
             "multiplier": 1.1,
             "purchased": 0,
@@ -10,7 +10,7 @@
             "singletime": false
         },
         {
-            "name": "Slack Boost I",
+            "name": "03 - Slack Boost I",
             "price": 50,
             "multiplier": 1,
             "purchased": 0,
@@ -19,7 +19,7 @@
             "singletime": true
         },
         {
-            "name": "Convert Colleague",
+            "name": "04 - Convert Colleague",
             "price": 100,
             "multiplier": 1.1,
             "purchased": 0,
@@ -28,7 +28,7 @@
             "singletime": false
         },
         {
-            "name": "Powerful Slacking I",
+            "name": "05 - Powerful Slacking I",
             "price": 400,
             "multiplier": 1,
             "purchased": 0,
@@ -37,7 +37,7 @@
             "singletime": true
         },
         {
-            "name": "Masterful Slacking I",
+            "name": "06 - Masterful Slacking I",
             "price": 700,
             "multiplier": 1,
             "purchased": 0,
@@ -46,7 +46,7 @@
             "singletime": true
         },
         {
-            "name": "Slackonomics",
+            "name": "07 - Slackonomics",
             "price": 1000,
             "multiplier": 1,
             "purchased": 0,
@@ -55,7 +55,7 @@
             "singletime": true
         },
         {
-            "name": "The Slackverse",
+            "name": "08 - The Slackverse",
             "price": 1000,
             "multiplier": 1.1,
             "purchased": 0,
@@ -64,7 +64,7 @@
             "singletime": false
         },
         {
-            "name": "Microslack Powerpoint",
+            "name": "09 - Microslack Powerpoint",
             "price": 1500,
             "multiplier": 1.1,
             "purchased": 0,
@@ -73,7 +73,7 @@
             "singletime": true
         },
         {
-            "name": "Microslack Excel",
+            "name": "10 - Microslack Excel",
             "price": 1500,
             "multiplier": 1.1,
             "purchased": 0,
@@ -82,7 +82,7 @@
             "singletime": true
         },
         {
-            "name": "Microslack OneNote",
+            "name": "11 - Microslack OneNote",
             "price": 1500,
             "multiplier": 1.1,
             "purchased": 0,
@@ -91,7 +91,7 @@
             "singletime": true
         },
         {
-            "name": "Microslack InfoPath",
+            "name": "12 - Microslack InfoPath",
             "price": 1500,
             "multiplier": 1.1,
             "purchased": 0,
@@ -100,7 +100,7 @@
             "singletime": true
         },
         {
-            "name": "Microslack SharePoint",
+            "name": "13 - Microslack SharePoint",
             "price": 1500,
             "multiplier": 1.1,
             "purchased": 0,
@@ -109,7 +109,7 @@
             "singletime": true
         },
         {
-            "name": "Microslack Infinity Gauntlet",
+            "name": "14 - icroslack Infinity Gauntlet",
             "price": 7500,
             "multiplier": 1.5,
             "purchased": 0,
@@ -118,7 +118,7 @@
             "singletime": false
         },
         {
-            "name": "Slacking Paradox",
+            "name": "15 - Slacking Paradox",
             "price": 12000,
             "multiplier": 1.1,
             "purchased": 0,
@@ -127,7 +127,7 @@
             "singletime": false
         },
         {
-            "name": "Compound Disinterest",
+            "name": "16 - Compound Disinterest",
             "price": 500000,
             "multiplier": 1.1,
             "purchased": 0,
@@ -136,7 +136,7 @@
             "singletime": true
         },
         {
-            "name": "Coffee Break",
+            "name": "02 - Coffee Break",
             "price": 20,
             "multiplier": 2.0,
             "purchased": 0,
@@ -145,7 +145,7 @@
             "singletime": false
         },
         {
-            "name": "Slacker Consultant",
+            "name": "17 - Slacker Consultant",
             "price": 75000,
             "multiplier": 1.2,
             "purchased": 0,
@@ -154,7 +154,7 @@
             "singletime": false
         },
         {
-            "name": "John Slack",
+            "name": "18 - John Slack",
             "price": 10000,
             "multiplier": 1,
             "purchased": 0,
@@ -163,7 +163,7 @@
             "singletime": true
         },
         {
-            "name": "I wouldn't touch that if I were you",
+            "name": "19 - I wouldn't touch that if I were you",
             "price": 69420,
             "multiplier": 1,
             "purchased": 0,
@@ -172,7 +172,7 @@
             "singletime": true
         },
         {
-            "name": "MAKE IT STOP",
+            "name": "20 - MAKE IT STOP",
             "price": 1,
             "multiplier": 1,
             "purchased": 0,
