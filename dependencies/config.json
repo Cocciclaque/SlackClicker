@@ -21,6 +21,7 @@
     "required_gauntlets":5,
     "required_score_consultant": 50000,
     "required_score_john": 50000,
+    "required_john_avoid": 1,
     "gauntlet_power": 2.5,
     "max_gauntlet_amount": 5,
     "base_microsoft_modifier": 1.5,
@@ -32,5 +33,6 @@
     "john_duration":30,
     "john_multiplier":0.5,
     "alias_key_slack": "f7",
-    "alias_key_show": "f5"
+    "alias_key_show": "f5",
+    "do_soundbar": 0
 }
