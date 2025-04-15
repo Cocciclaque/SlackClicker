@@ -3,29 +3,27 @@
 Slack Clicker est un jeu incrémental *invisible*, c'est à dire qu'il n'a aucune interface et est presque totalement obfusqué. <br>
 
 Pour jouer, simplement lancer l'exécutable SC.exe
-Ce jeu nécessite que votre système windows soit mis en sourdine. La barre de son sera manipulée donc quelconque son jouant
-oscillera beaucoup. Le son doit pouvoir monter et descendre sans risquer d'être entendu, il est donc grandement conseillé de mute votre PC.
 
-Si, une fois l'exécutable lancé, rien ne se passe, tout va bien ! Vérifiez que votre barre de son s'incrémente toute seule.
+Si, une fois l'exécutable lancé, rien ne se passe, tout va bien ! Ouvrez l'explorateur de fichier et vérifiez si le titre de la fenêtre change et contient "SPS".
 Si c'est le cas, le jeu est bel est bien lancé.
 
 </hr>
 
 ## Gameplay
 
-Pour fermer le jeu, appuyez sur F9 (configurable dans config.json). Si la barre de son ne bouge plus, cela signifie que vous êtes bien sorti du jeu.
+Pour fermer le jeu, appuyez sur F9 (configurable dans config.json). Si le nom de fenêtre est immobile, cela signifie que vous êtes bien sorti du jeu.
 
-La barre de son indique le "cooldown" de vos effets passifs. Une fois la barre remplie, tout les passifs s'activent
+La barre de chargement indique le "cooldown" de vos effets passifs. Une fois la barre remplie, tout les passifs s'activent
 
 ### Commencer une partie
 
-Pour commencer une partie, vous devez marquer des points manuellement. Pour cela, faites ctrl+maj+alt+m, qui vous donnera 1 point.
+Pour commencer une partie, vous devez marquer des points manuellement. Pour cela, faites ctrl+maj+alt+m (ou f7), qui vous donnera 1 point.
 Appuyer sur ceci à répétition non seulement donne des points, mais réduis également le cooldown de vos passifs.
 
 ### Consulter vos points
 
 Pour consulter vos points, vous avez deux manières :
-- 1ère manière, Recommandé : faire ctrl+maj+alt+z fait apparaître une notification windows contenant vos points ainsi que vos SPS (Slacks per Slack)
+- 1ère manière, Recommandé : faire ctrl+maj+alt+z  (ou f5) fait apparaître une notification windows contenant vos points ainsi que vos SPS (Slacks per Slack)
 
 - 2ème manière, plus visible : Ouvrir une application avec le titre de fenêtre de base de windows (explorateur de fichier, applications similaires, testez avec quoi ça fonctionne). Le titre sera modifié en temps réel pour contenir vos Slacks ainsi que la barre.
 
@@ -54,8 +52,8 @@ Vous pouvez choisir le nom du dossier et du fichier dans config.json, dans le do
 ### Résumé
 
 Pour résumer :
-Barre de son mouvante = jeu qui tourne 
-Barre de son immobile = jeu qui ne tourne pas 
+Barre de chargement mouvante = jeu qui tourne 
+Barre de chargement immobile = jeu qui ne tourne pas 
 
 ctrl maj alt m (ou f7) pour gagner des points manuellement 
 ctrl maj alz z (ou f5)/explorateur de fichier pour visionner les points 
