@@ -27,10 +27,7 @@ Appuyer sur ceci à répétition non seulement donne des points, mais réduis é
 Pour consulter vos points, vous avez deux manières :
 - 1ère manière, Recommandé : faire ctrl+maj+alt+z fait apparaître une notification windows contenant vos points ainsi que vos SPS (Slacks per Slack)
 
-- 2ème manière, pour les gens qui veulent jouer au jeu hors du travail ou avec plus de clarté (moins invisible) : 
-Se rendre dans le dossier d'installation du jeu, aller dans dependencies et ouvrir save.json, ainsi que upgrades.json.
-Attention ! NE PAS MODIFIER LES FICHIERS PENDANT QUE LE JEU TOURNE !! Cela peut avoir des conséquences imprévisibles, comme l'achat compulsif d'améliorations
-ou parfois même la suppression totale de votre sauvegarde/progression.
+- 2ème manière, plus visible : Ouvrir une application avec le titre de fenêtre de base de windows (explorateur de fichier, applications similaires, testez avec quoi ça fonctionne). Le titre sera modifié en temps réel pour contenir vos Slacks ainsi que la barre.
 
 ### Acheter des améliorations
 
@@ -61,7 +58,7 @@ Barre de son mouvante = jeu qui tourne
 Barre de son immobile = jeu qui ne tourne pas 
 
 ctrl maj alt m (ou f7) pour gagner des points manuellement 
-ctrl maj alz z (ou f5) pour visionner les points 
+ctrl maj alz z (ou f5)/explorateur de fichier pour visionner les points 
 
 ces deux contrôles sont paramétrables dans le fichier dependencies/config.json
 

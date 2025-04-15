@@ -180,7 +180,5 @@
             "lore": "Turns out it made the soundbar into a slack loading bar\n Made it stop (you can still activate it manually in config.json for the funnies)",
             "singletime": true
         }
-          
-
     ]
 }

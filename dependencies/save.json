@@ -1,7 +1,7 @@
 {
-    "score": 0,
+    "score": 0.0,
     "slackers": 0,
-    "coffee":0,
+    "coffee": 0,
     "speedboost": 0,
     "convertcolleagues": 0,
     "powerfulSlacking": 0,
@@ -17,5 +17,7 @@
     "paradoxes": 0,
     "compound_disinterest": 0,
     "consultant": 0,
-    "john": 0
+    "john": 0,
+    "avoid": 0,
+    "stop": 0
 }
