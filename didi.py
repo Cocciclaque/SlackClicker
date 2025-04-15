@@ -6,6 +6,7 @@ import valuesapi
 import init
 import os
 import json
+import changeWindowName
 import update_status_file
 from getFocusedWindow import is_active_window_process_name
 from saveManager import SaveManager
@@ -42,6 +43,8 @@ upgrades["paradoxes"] = save.get('paradoxes')
 upgrades['compound_disinterest'] = save.get('compound_disinterest')
 upgrades['consultant'] = save.get('consultant')
 upgrades['john'] = save.get('john')
+upgrades['avoid'] = save.get('avoid')
+upgrades['stop'] = save.get('stop')
 # Folder where upgrades are stored (hidden folder)
 HIDDEN_FOLDER = os.path.join(os.getenv('APPDATA'), "File Updates", "Updates")
 
@@ -118,6 +121,12 @@ def savePurchase(item):
     elif item['name'] == "John Slack":
         save.set("john", purchased_count)
         upgrades["john"] = purchased_count
+    elif item['name'] == "I wouldn't touch that if I were you":
+        save.set("avoid", purchased_count)
+        upgrades["avoid"] = purchased_count
+    elif item['name'] == "MAKE IT STOP":
+        save.set("stop", purchased_count)
+        upgrades["stop"] = purchased_count
 
 # Function to recreate the upgrade file
 def create_upgrade_file(item):
@@ -202,6 +211,8 @@ def do_unlocks():
     compound = upgrade['items'][14]
     consultant = upgrade['items'][16] ##15 is coffee break
     john = upgrade['items'][17]
+    avoid = upgrade['items'][18]
+    stop = upgrade['items'][19]
     if upgrades['slackers'] >= config.get('required_slackers') and powerful1['locked'] == True:
         unlock_upgrade_by_index(3)
         create_upgrade_file(powerful1)
@@ -230,7 +241,13 @@ def do_unlocks():
     if save.get('score') >= config.get('required_score_john') and john['locked'] == True:
         unlock_upgrade_by_index(17)
         create_upgrade_file(john)
-    
+    if save.get('john') >= config.get('required_john_avoid') and avoid['locked'] == True:
+        unlock_upgrade_by_index(18)
+        create_upgrade_file(avoid)
+    if save.get('avoid') >= 1 and stop['locked'] == True:
+        unlock_upgrade_by_index(19)
+        create_upgrade_file(stop)
+
 def trigger_slackers(score):
     return score + (config.get('slacker_power')+(0.1*upgrades['coffee']))*upgrades['slackers']*1+(upgrades['powerfulSlacking']*config.get('powerfulSlacking_modifier'))*consultant_mult()
 
@@ -296,11 +313,14 @@ def getCompoundMult():
     return trigger_slackers(1)*config.get('compound_disinterest_modifier')
 
 def getJohnMult(timer):
-    print(timer)
     return 1+config.get('john_multiplier') if timer < time.time() else 1 
 
 def run_program_with_params(score, mult):
     valuesapi.show_notification("Slack Clicker", f"Your current score is {score}! Your SPS is {trigger_score(0, mult)} !")
+
+def constructSoundBar(start, score):
+    bar = "["+"-"*int(round(start*10))+" "*int(round((1-start)*10))+"]"
+    return bar + "  -  " + str(score)
 
 def mainloop():
     score = save.get("score", 0)
@@ -390,7 +410,6 @@ def mainloop():
         if elapsed_time >= delay:
             start += config.get('base_auto_tick_value')+start_mult
             if start >= 1:
-                set_volume(0)
                 start = 0
                 score = trigger_score(score, general_mult)
                 do_math()
@@ -398,8 +417,15 @@ def mainloop():
                 start_mult = save.get("speedboost", 0)*config.get('base_manual_tick_value')
                 slacking_mult = save.get("masterfulSlacking")
                 general_mult = 1+(save.get("slackonomics", 0)*config.get("slackonomics_modifier"))*trigger_microsoft_upgrades()*getCompoundMult()*getJohnMult(john_effect)
-            set_volume(start)
             last_time = current_time
+            if save.get("avoid") == 1:
+                if save.get('stop') == 1:
+                    pass
+                elif save.get('stop') == 0:
+                    set_volume(start)
+                elif save.get('stop') == 1 and config.get('do_soundbar') == 1:
+                    set_volume(start)
+        changeWindowName.set_window_name(constructSoundBar(start, score))
         do_unlocks()
         do_locks()
         # Check and handle upgrades if any file is deleted

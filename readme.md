@@ -77,7 +77,7 @@ f9 pour fermer le jeu (vérifier que la barre de son s'arrête bien)
 ### Dépendances
 L'application a besoin des imports pip 
 ```
-pip install keyboard plyer
+pip install keyboard plyer pywin32
 ```
 pour fonctionner.
 

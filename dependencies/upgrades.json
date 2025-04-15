@@ -161,6 +161,24 @@
             "locked": true,
             "lore": "Oh my god it's John Slack from Fortnite.\n Pressing scroll lock boosts slacking by 50% for 30 seconds (5 minutes cooldown)",
             "singletime": true
+        },
+        {
+            "name": "I wouldn't touch that if I were you",
+            "price": 69420,
+            "multiplier": 1,
+            "purchased": 0,
+            "locked": true,
+            "lore": "The upgrade costs 69420 and says not to buy it, I would listen if I were you.\n I'm not telling.",
+            "singletime": true
+        },
+        {
+            "name": "MAKE IT STOP",
+            "price": 1,
+            "multiplier": 1,
+            "purchased": 0,
+            "locked": true,
+            "lore": "Turns out it made the soundbar into a slack loading bar\n Made it stop (you can still activate it manually in config.json for the funnies)",
+            "singletime": true
         }
           
 
