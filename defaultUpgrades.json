@@ -179,7 +179,56 @@
             "locked": true,
             "lore": "Turns out it made the soundbar into a slack loading bar\n Made it stop (you can still activate it manually in config.json for the funnies)",
             "singletime": true
+        },
+        {
+        "name": "21 - Sacrifi-cubicle",
+        "lore": "One cubicle must be sacrificed so the rest may slack harder.",
+        "price": 1e12,
+        "multiplier": 1.15,
+        "locked": true,
+        "purchased": 0
+        },
+        {
+        "name": "22 - The Break Hole",
+        "lore": "Physics collapsed under the weight of infinite coffee breaks.",
+        "price": 5e13,
+        "multiplier": 1.25,
+        "locked": true,
+        "purchased": 0
+        },
+        {
+        "name": "23 - Procrastinstein's Lab",
+        "lore": "A genius mad enough to delay everything... forever.",
+        "price": 3e14,
+        "multiplier": 1.35,
+        "locked": true,
+        "purchased": 0
+        },
+        {
+        "name": "24 - Astro-not Program",
+        "lore": "Training slackers for space, and how to not do anything in zero-G.",
+        "price": 2e15,
+        "multiplier": 1.45,
+        "locked": true,
+        "purchased": 0
+        },
+        {
+        "name": "25 - Dark Matter of Inaction",
+        "lore": "Harness the invisible energy of doing nothing at cosmic scale.",
+        "price": 1e16,
+        "multiplier": 1.55,
+        "locked": true,
+        "purchased": 0
+        },
+        {
+        "name": "26 - The Final Countdown Timer",
+        "lore": "Broadcasting to all dimensions: break time is eternal.",
+        "price": 5e17,
+        "multiplier": 1.65,
+        "locked": true,
+        "purchased": 0
         }
+        
           
 
     ]

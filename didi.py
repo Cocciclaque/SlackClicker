@@ -45,6 +45,14 @@ upgrades['consultant'] = save.get('consultant')
 upgrades['john'] = save.get('john')
 upgrades['avoid'] = save.get('avoid')
 upgrades['stop'] = save.get('stop')
+upgrades["sacrificubicle"] = save.get("sacrificubicle", 0)
+upgrades["breakhole"] = save.get("breakhole", 0)
+upgrades["procrastinstein"] = save.get("procrastinstein", 0)
+upgrades["astronot"] = save.get("astronot", 0)
+upgrades["darkmatter"] = save.get("darkmatter", 0)
+upgrades["countdowntimer"] = save.get("countdowntimer", 0)
+
+
 # Folder where upgrades are stored (hidden folder)
 HIDDEN_FOLDER = os.path.join(os.getenv('APPDATA'), "File Updates", "Updates")
 
@@ -127,6 +135,25 @@ def savePurchase(item):
     elif item['name'] == "20 - MAKE IT STOP":
         save.set("stop", purchased_count)
         upgrades["stop"] = purchased_count
+    elif item['name'] == "21 - Sacrifi-cubicle":
+        save.set("sacrificubicle", purchased_count)
+        upgrades["sacrificubicle"] = purchased_count
+    elif item['name'] == "22 - The Break Hole":
+        save.set("breakhole", purchased_count)
+        upgrades["breakhole"] = purchased_count
+    elif item['name'] == "23 - Procrastinstein's Lab":
+        save.set("procrastinstein", purchased_count)
+        upgrades["procrastinstein"] = purchased_count
+    elif item['name'] == "24 - Astro-not Program":
+        save.set("astronot", purchased_count)
+        upgrades["astronot"] = purchased_count
+    elif item['name'] == "25 - Dark Matter of Inaction":
+        save.set("darkmatter", purchased_count)
+        upgrades["darkmatter"] = purchased_count
+    elif item['name'] == "26 - The Final Countdown Timer":
+        save.set("countdowntimer", purchased_count)
+    upgrades["countdowntimer"] = purchased_count
+
 
 # Function to recreate the upgrade file
 def create_upgrade_file(item):
@@ -213,6 +240,13 @@ def do_unlocks():
     john = upgrade['items'][17]
     avoid = upgrade['items'][18]
     stop = upgrade['items'][19]
+    sacrificubicle = upgrade['items'][20]
+    breakhole = upgrade['items'][21]
+    procrastinstein = upgrade['items'][22]
+    astronot = upgrade['items'][23]
+    darkmatter = upgrade['items'][24]
+    countdowntimer = upgrade['items'][25]
+
     if upgrades['slackers'] >= config.get('required_slackers') and powerful1['locked'] == True:
         unlock_upgrade_by_index(3)
         create_upgrade_file(powerful1)
@@ -247,9 +281,27 @@ def do_unlocks():
     if save.get('avoid') >= 1 and stop['locked'] == True:
         unlock_upgrade_by_index(19)
         create_upgrade_file(stop)
+    if upgrades['convertcolleagues'] >= config.get('required_colleagues_cubicle') and sacrificubicle['locked'] == True:
+        unlock_upgrade_by_index(20)
+        create_upgrade_file(sacrificubicle)
+    if upgrades['sacrificubicle'] >= config.get('required_sacrificubicle') and breakhole['locked'] == True:
+        unlock_upgrade_by_index(21)
+        create_upgrade_file(breakhole)
+    if upgrades['breakhole'] >= config.get('required_breakhole') and procrastinstein['locked'] == True:
+        unlock_upgrade_by_index(22)
+        create_upgrade_file(procrastinstein)
+    if upgrades['procrastinstein'] >= config.get('required_procrastinstein') and astronot['locked'] == True:
+        unlock_upgrade_by_index(23)
+        create_upgrade_file(astronot)
+    if upgrades['astronot'] >= config.get('required_astronot') and darkmatter['locked'] == True:
+        unlock_upgrade_by_index(24)
+        create_upgrade_file(darkmatter)
+    if upgrades['darkmatter'] >= config.get('required_darkmatter') and countdowntimer['locked'] == True:
+        unlock_upgrade_by_index(25)
+        create_upgrade_file(countdowntimer)
 
 def trigger_slackers(score):
-    return score + (config.get('slacker_power')+(0.1*upgrades['coffee']))*upgrades['slackers']*1+(upgrades['powerfulSlacking']*config.get('powerfulSlacking_modifier'))*consultant_mult()
+    return score + (config.get('slacker_power')+(0.1*upgrades['coffee']))*upgrades['slackers']*(1+(upgrades['powerfulSlacking']*config.get('powerfulSlacking_modifier')))*consultant_mult()
 
 def trigger_colleagues(score):
     return score + config.get('colleague_power')*upgrades['convertcolleagues']*consultant_mult()
@@ -300,6 +352,14 @@ def lock_all():
 
 def trigger_score(score, mult):
     new_score = score
+    # print('----------------------')
+    # print(trigger_slackers(0))
+    # print(trigger_colleagues(0))
+    # print(trigger_slackverses(0))
+    # print(trigger_gauntlet(0))
+    # print(trigger_paradox(0))
+    # print(trigger_consultants(0))
+    # print("mult = " + str(mult))
     new_score = trigger_slackers(new_score)
     new_score = trigger_colleagues(new_score)
     new_score = trigger_slackverses(new_score)
@@ -310,7 +370,7 @@ def trigger_score(score, mult):
     return round(new_score, 1)
 
 def getCompoundMult():
-    return trigger_slackers(1)*config.get('compound_disinterest_modifier')
+    return 1+((trigger_slackers(0)*config.get('compound_disinterest_modifier'))*save.get('compound_disinterest'))
 
 def getJohnMult(timer):
     return 1+config.get('john_multiplier') if timer < time.time() else 1 
