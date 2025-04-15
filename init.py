@@ -41,18 +41,36 @@ def save_upgrades_to_json(upgrades, JSON_FILE):
     except Exception as e:
         print(f"Error saving JSON file: {e}")
 
+def shorten_number(num):
+    suffixes = [
+        "", "k", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "Oc", "No",  # Thousand to Nonillion
+        "Dc", "UDc", "DDc", "TDc", "QaDc", "QiDc", "SxDc", "SpDc", "OcDc", "NoDc",  # up to Novemdecillion
+        "Vg"  # Vigintillion (you can go further if needed)
+    ]
+
+    if num < 1000:
+        return str(num)
+
+    magnitude = 0
+    while abs(num) >= 1000 and magnitude < len(suffixes) - 1:
+        num /= 1000.0
+        magnitude += 1
+
+    return f"{num:.1f}{suffixes[magnitude]}"
+
+
 # Function to create files based on JSON data
 def create_upgrade_files(upgrades, HIDDEN_FOLDER):
     try:
         for item in upgrades.get("items", []):
-            file_name = f"{item['name']} {item['purchased']+1} - {item['price']}.txt"
+            file_name = f"{item['name']} {item['purchased']+1} - {shorten_number(item['price'])}.txt"
             file_path = os.path.join(HIDDEN_FOLDER, file_name)
 
             # Creating the file with some lore text
             if item.get('locked', False) is False and (item.get('singletime', True) is True and item['purchased'] > 0) is False:
                 with open(file_path, 'w') as file:
                     file.write(f"Name: {item['name']}\n")
-                    file.write(f"Price: {item['price']}\n")
+                    file.write(f"Price: {shorten_number(item['price'])}\n")
                     file.write(f"Lore: {item['lore']}\n")
 
                 print(f"Created upgrade file: {file_path}")

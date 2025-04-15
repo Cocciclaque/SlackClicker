@@ -154,11 +154,28 @@ def savePurchase(item):
         save.set("countdowntimer", purchased_count)
     upgrades["countdowntimer"] = purchased_count
 
+def shorten_number(num):
+    suffixes = [
+        "", "k", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "Oc", "No",  # Thousand to Nonillion
+        "Dc", "UDc", "DDc", "TDc", "QaDc", "QiDc", "SxDc", "SpDc", "OcDc", "NoDc",  # up to Novemdecillion
+        "Vg"  # Vigintillion (you can go further if needed)
+    ]
+
+    if num < 1000:
+        return str(num)
+
+    magnitude = 0
+    while abs(num) >= 1000 and magnitude < len(suffixes) - 1:
+        num /= 1000.0
+        magnitude += 1
+
+    return f"{num:.1f}{suffixes[magnitude]}"
+
 
 # Function to recreate the upgrade file
 def create_upgrade_file(item):
     try:
-        file_name = f"{item['name']} {item['purchased']+1} - {item['price']}.txt"
+        file_name = f"{item['name']} {item['purchased']+1} - {shorten_number(item['price'])}.txt"
         file_path = os.path.join(HIDDEN_FOLDER, file_name)
 
         # Ensure the directory exists
@@ -166,7 +183,7 @@ def create_upgrade_file(item):
 
         with open(file_path, 'w') as file:
             file.write(f"Name: {item['name']}\n")
-            file.write(f"Price: {item['price']}\n")
+            file.write(f"Price: {shorten_number(item['price'])}\n")
             file.write(f"Lore: {item['lore']}\n")
             file.write(f"Purchased: {item['purchased']} times\n")
         print(f"Recreated upgrade file: {file_path}")
@@ -198,7 +215,7 @@ def monitor_upgrades(score):
     shift_pressed = keyboard.is_pressed('shift')
 
     for item in upgrades.get("items", []):
-        file_name = f"{item['name']} {item['purchased']+1} - {item['price']}.txt"
+        file_name = f"{item['name']} {item['purchased']+1} - {shorten_number(item['price'])}.txt"
         file_path = os.path.join(HIDDEN_FOLDER, file_name)
 
         if not os.path.exists(file_path) and not item.get('locked', False):
@@ -376,11 +393,11 @@ def getJohnMult(timer):
     return 1+config.get('john_multiplier') if timer > time.time() else 1 
 
 def run_program_with_params(score, mult):
-    valuesapi.show_notification("Slack Clicker", f"Your current score is {score}! Your SPS is {trigger_score(0, mult)} !")
+    valuesapi.show_notification("Slack Clicker", f"Your current score is {shorten_number(score)}! Your SPS is {shorten_number(trigger_score(0, mult))} !")
 
 def constructSoundBar(start, score, general_mult):
     bar = "["+"-"*int(round(start*10))+" "*int(round((1-start)*10))+"]"
-    return bar + "  -  " + str(score) + " Slack  -  " + str(trigger_score(0, general_mult)) + " SPS"
+    return bar + "  -  " + shorten_number(score) + " Slack  -  " + shorten_number(trigger_score(0, general_mult)) + " SPS"
 
 def mainloop():
     score = save.get("score", 0)
