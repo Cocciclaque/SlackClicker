@@ -26,7 +26,6 @@ Appuyer sur ceci à répétition non seulement donne des points, mais réduis é
 
 Pour consulter vos points, vous avez deux manières :
 - 1ère manière, Recommandé : faire ctrl+maj+alt+z fait apparaître une notification windows contenant vos points ainsi que vos SPS (Slacks per Slack)
-Un Slack étant l'acte de la barre de son atteignant le maximum, mais un slack est aussi une unité de point que vous obtené. 10 points = 10 slacks.
 
 - 2ème manière, pour les gens qui veulent jouer au jeu hors du travail ou avec plus de clarté (moins invisible) : 
 Se rendre dans le dossier d'installation du jeu, aller dans dependencies et ouvrir save.json, ainsi que upgrades.json.
