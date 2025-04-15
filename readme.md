@@ -61,16 +61,29 @@ Pour résumer :
 Barre de son mouvante = jeu qui tourne 
 Barre de son immobile = jeu qui ne tourne pas 
 
-ctrl maj alt m pour gagner des points manuellement 
-ctrl maj alz z pour visionner les points 
+ctrl maj alt m (ou f7) pour gagner des points manuellement 
+ctrl maj alz z (ou f5) pour visionner les points 
+
+ces deux contrôles sont paramétrables dans le fichier dependencies/config.json
 
 suppression des fichiers dans appdata/roaming/file updates/updates pour les améliorations 
+consultation des améliorations sur le bureau/.sys_watchdog/watchdog_eventlist.txt
 
 f9 pour fermer le jeu (vérifier que la barre de son s'arrête bien)
 
 
 ## Compiling
+
+### Dépendances
+L'application a besoin des imports pip 
+```
+pip install keyboard plyer
+```
+pour fonctionner.
+
+### Compilation
+
 Pour compiler le projet vous même (PyInstaller ou Auto-py-to-exe requis), lancez depuis le projet :
 - pyinstaller --onefile --windowed --add-data "./dependencies/platforms;plyer/platforms" --name "SlackClicker" didi.py 
 
-puis coller le dossier dependencies dans le nouveau dossier output créé. Le dossier dependencies devrait se trouver au même niveau que "SlackClicker.exe".
+puis collez le dossier dependencies dans le nouveau dossier output créé. Le dossier dependencies devrait se trouver au même niveau que "SlackClicker.exe".
