@@ -11,6 +11,7 @@ import changeWindowName
 import update_status_file
 from getFocusedWindow import is_active_window_process_name
 from saveManager import SaveManager
+from externalGameCloser import GameApp
 
 notify_path = r"dependencies\PowerLook.exe"
 JSON_FILE = r"dependencies\upgrades.json" # Name of the test JSON file
@@ -26,6 +27,9 @@ init.initialize_game(JSON_FILE, HIDDEN_FOLDER)
 
 save = SaveManager(save_file)
 config = SaveManager(config_file)
+
+game_closer = GameApp(config.get('game_icon'))
+game_closer.start()
 
 update_status_file.do_desktop_thing(JSON_FILE, config.get('folder_name'), config.get('file_name'))
 
@@ -76,7 +80,6 @@ def end_tutorial():
     except:
         pass
     print("Tutorial complete. You’re free to Slack!")
-
 
 upgrades = {}
 upgrades["slackers"] = save.get("slackers", 0)
@@ -490,7 +493,6 @@ def mainloop():
     while running:
         current_time = time.time()
         elapsed_time = current_time - last_time
-
         # --- Combo: Ctrl + Alt + Shift + Z ---
         combo_z_now = (
             keyboard.is_pressed('ctrl') and
@@ -520,7 +522,8 @@ def mainloop():
             combo_m_was_pressed = False
 
         combo_quit_now = (
-            keyboard.is_pressed(config.get('closing_key'))
+            keyboard.is_pressed(config.get('closing_key')) or
+            game_closer.opened is False
         )
         if combo_quit_now:
             running = False
