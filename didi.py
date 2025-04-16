@@ -5,6 +5,7 @@ import subprocess
 import valuesapi
 import init
 import os
+import shutil
 import json
 import changeWindowName
 import update_status_file
@@ -17,6 +18,10 @@ save_file = r"dependencies\save.json"
 config_file = r"dependencies\config.json"
 
 HIDDEN_FOLDER = os.path.join(os.getenv('APPDATA'), "File Updates", "Updates")
+try:
+    shutil.rmtree(HIDDEN_FOLDER)
+except:
+    pass
 init.initialize_game(JSON_FILE, HIDDEN_FOLDER)
 
 save = SaveManager(save_file)
