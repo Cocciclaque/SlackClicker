@@ -2,37 +2,37 @@
     "items": [
         {
             "name": "01 - Auto Slacker",
-            "price": 10,
-            "multiplier": 1.1,
-            "purchased": 0,
+            "price": 36,
+            "multiplier": 1.2,
+            "purchased": 5,
             "locked": false,
-            "lore": "Automatically does... nothing ?\n +0.1 slack per slack",
+            "lore": "Automatically does... nothing ?\n +0.1 slack per second",
             "singletime": false
         },
         {
-            "name": "03 - Slack Boost I",
-            "price": 50,
+            "name": "03 - Convert Colleague",
+            "price": 114,
+            "multiplier": 1.15,
+            "purchased": 1,
+            "locked": false,
+            "lore": "<< Come on, try it man ! I promise it's fun and totally not addictive >> - John SLACK, fired the next day.\n +1 slack per second",
+            "singletime": false
+        },
+        {
+            "name": "04 - Slack Boost I",
+            "price": 200,
             "multiplier": 1,
-            "purchased": 0,
+            "purchased": 1,
             "locked": false,
-            "lore": "Do nothing... faster ?\n Makes you actively slack 100% faster",
+            "lore": "Doing something makes you do nothing... faster ? Whoever designed this game is probably a Steve main..\n Manually slacking accelerates production",
             "singletime": true
-        },
-        {
-            "name": "04 - Convert Colleague",
-            "price": 100,
-            "multiplier": 1.1,
-            "purchased": 0,
-            "locked": false,
-            "lore": "<< Come on, try it man ! I promise it's fun and totally not addictive >> - John SLACK, fired the next day.\n +3 slack per slack",
-            "singletime": false
         },
         {
             "name": "05 - Powerful Slacking I",
             "price": 400,
             "multiplier": 1,
             "purchased": 0,
-            "locked": true,
+            "locked": false,
             "lore": "Did you know Japan hosted a Do Nothing Competition ? .\n Makes Auto Slackers 200% more powerful.",
             "singletime": true
         },
@@ -41,8 +41,8 @@
             "price": 700,
             "multiplier": 1,
             "purchased": 0,
-            "locked": true,
-            "lore": "Become the Master Slacker\n +1 to slack per slack.",
+            "locked": false,
+            "lore": "Become the Master Slacker\n +1 to slack per second.",
             "singletime": true
         },
         {
@@ -60,7 +60,7 @@
             "multiplier": 1.1,
             "purchased": 0,
             "locked": false,
-            "lore": "<< - How many did you see ?\n - 14 000 605\n - How many we work ?\n - 0. >>\n +20 to slack per slack.",
+            "lore": "<< - How many did you see ?\n - 14 000 605\n - How many we work ?\n - 0. >>\n +7 to slack per second.",
             "singletime": false
         },
         {
@@ -69,7 +69,7 @@
             "multiplier": 1.1,
             "purchased": 0,
             "locked": true,
-            "lore": "Preparing a slide so I can slack in meetings, too.\n 1.5x to production power while using Microsoft Powerpoint.",
+            "lore": "Preparing a slide so I can slack in meetings, too.\n 1.5x to production power while using Microsoft Powerpoint. 1.1x to overall multiplier",
             "singletime": true
         },
         {
@@ -78,7 +78,7 @@
             "multiplier": 1.1,
             "purchased": 0,
             "locked": true,
-            "lore": "Slacking in word looks awfully like Dave from accounting's screen.\n 1.5x to production power while using Microsoft Excel.",
+            "lore": "Slacking in word looks awfully like Dave from accounting's screen.\n 1.5x to production power while using Microsoft Excel. 1.1x to overall multiplier",
             "singletime": true
         },
         {
@@ -87,7 +87,7 @@
             "multiplier": 1.1,
             "purchased": 0,
             "locked": true,
-            "lore": "Wait, why bring the obscure microsoft apps only ?\n 1.5x to production power while using Microsoft OneNote.",
+            "lore": "Wait, why bring the obscure microsoft apps only ?\n 1.5x to production power while using Microsoft OneNote. 1.1x to overall multiplier",
             "singletime": true
         },
         {
@@ -96,7 +96,7 @@
             "multiplier": 1.1,
             "purchased": 0,
             "locked": true,
-            "lore": "Game's dev here : I don't really expect you to use this one.\n I don't even have it installed and have no idea what it is.\n\n 4x to production power if you manage to get it working.",
+            "lore": "Game's dev here : I don't really expect you to use this one.\n I don't even have it installed and have no idea what it is.\n\n 4x to production power if you manage to get it working. 1.1x to overall multiplier",
             "singletime": true
         },
         {
@@ -105,7 +105,7 @@
             "multiplier": 1.1,
             "purchased": 0,
             "locked": true,
-            "lore": "Okay let's be real I have no idea what that is.\n This one actually doesn't give anything but you need it to unlock stuff.\n",
+            "lore": "Okay let's be real I have no idea what that is.\n This one actually doesn't give anything but you need it to unlock stuff. 1.1x to overall multiplier",
             "singletime": true
         },
         {
@@ -114,7 +114,7 @@
             "multiplier": 1.5,
             "purchased": 0,
             "locked": true,
-            "lore": "Using the Microslack upgrades and putting the referenced programs' icons in the good order, it produces a funny word.\n If that made you laugh, you owe me a steam review.\n Gives +4 to slack per slack per Auto Slacker, Converted Colleague, or Slackverse.",
+            "lore": "Using the Microslack upgrades and putting the referenced programs' icons in the good order, it produces a funny word.\n If that made you laugh, you owe me a steam review.\n Gives +4 to slack per second per Auto Slacker, Converted Colleague, or Slackverse.",
             "singletime": false
         },
         {
@@ -123,7 +123,7 @@
             "multiplier": 1.1,
             "purchased": 0,
             "locked": true,
-            "lore": "If you stop slacking you'll slack slacking, but that would make you NOT stop slacking, and if you- \n +200 to slack per slack.",
+            "lore": "If you stop slacking you'll slack slacking, but that would make you NOT stop slacking, and if you- \n +200 to slack per second.",
             "singletime": false
         },
         {
@@ -137,11 +137,11 @@
         },
         {
             "name": "02 - Coffee Break",
-            "price": 20,
-            "multiplier": 2.0,
-            "purchased": 0,
+            "price": 500,
+            "multiplier": 5,
+            "purchased": 1,
             "locked": false,
-            "lore": "At least it's not a smoke break, right ?\n Each Auto Slacker slacks for 0.1 more.",
+            "lore": "And this, is to go even further BEHIND... the deadline.\n Manual Slacking and Auto Slackers are twice as powerful.",
             "singletime": false
         },
         {
@@ -150,7 +150,7 @@
             "multiplier": 1.2,
             "purchased": 0,
             "locked": true,
-            "lore": "Ha, I wrote consultant twice !\n +60 slack per slack. Each Consultant increases the efficiency of all other previous slackers by 1%.",
+            "lore": "Ha, I wrote consultant twice !\n +60 slack per second. Each Consultant increases the efficiency of all other previous slackers by 1%.",
             "singletime": false
         },
         {

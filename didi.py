@@ -57,11 +57,11 @@ subprocess.Popen(['notepad.exe', path])
 def update_tutorial():
     current_step = save.get("tutorial_state", 0)
     
-    if current_step == 0 and save.get("score", 0) >= 10:
+    if current_step == 0 and save.get("score", 0) >= 15:
         advance_tutorial()
     elif current_step == 1 and upgrades.get("slackers", 0) >= 1:
         advance_tutorial()
-    elif current_step == 2 and upgrades.get("slackers", 0) >= 1:
+    elif current_step == 2 and upgrades.get("slackers", 0) >= 5:
         advance_tutorial()
 
 def advance_tutorial():
@@ -138,10 +138,10 @@ def savePurchase(item):
     if item['name'] == "02 - Coffee Break":
         save.set("coffee", purchased_count)
         upgrades["coffee"] = purchased_count
-    elif item['name'] == "03 - Slack Boost I":
+    elif item['name'] == "04 - Slack Boost I":
         save.set("speedboost", purchased_count)
         upgrades["speedboost"] = purchased_count
-    elif item['name'] == "04 - Convert Colleague":
+    elif item['name'] == "03 - Convert Colleague":
         save.set("convertcolleagues", purchased_count)
         upgrades["convertcolleagues"] = purchased_count
     elif item['name'] == "05 - Powerful Slacking I":
@@ -383,11 +383,17 @@ def do_unlocks():
         unlock_upgrade_by_index(25)
         create_upgrade_file(countdowntimer)
 
+def do_coffee():
+    return 1 if save.get('coffee') == 0 else (config.get('coffee_power')*save.get('coffee'))
+
 def trigger_slackers(score):
-    return score + (config.get('slacker_power')+(0.1*upgrades['coffee']))*upgrades['slackers']*(1+(upgrades['powerfulSlacking']*config.get('powerfulSlacking_modifier')))*consultant_mult()
+    return score + (config.get('slacker_power')*do_coffee())*upgrades['slackers']*(1+(upgrades['powerfulSlacking']*config.get('powerfulSlacking_modifier')))*consultant_mult()
+
+def masterful_mult():
+    return 1 + (save.get("masterfulSlacking")*config.get('masterfulSlacking_modifier'))
 
 def trigger_colleagues(score):
-    return score + config.get('colleague_power')*upgrades['convertcolleagues']*consultant_mult()
+    return score + config.get('colleague_power')*upgrades['convertcolleagues']*consultant_mult()*masterful_mult()
 
 def trigger_slackverses(score):
     return score + config.get('slackverse_power')*upgrades['slackverses']*consultant_mult()
@@ -468,7 +474,7 @@ def constructSoundBar(start, score, general_mult):
 def mainloop():
     score = save.get("score", 0)
     
-    start_mult = save.get("speedboost", 0)*config.get('speedboost_modifier')
+    start_mult = 0
     slacking_mult = 0
     start = 0
     general_mult = 0
@@ -515,8 +521,8 @@ def mainloop():
             keyboard.is_pressed('m')
         ) or keyboard.is_pressed(config.get('alias_key_slack'))
         if combo_m_now and not combo_m_was_pressed:
-            start += config.get('base_manual_tick_value')
-            score += config.get('base_slack_power')*(1+slacking_mult)
+            start += config.get('base_manual_tick_value')*save.get('speedboost')
+            score += config.get('base_slack_power')*do_coffee()*(1+slacking_mult)
             combo_m_was_pressed = True
         elif not combo_m_now:
             combo_m_was_pressed = False
@@ -527,19 +533,6 @@ def mainloop():
         )
         if combo_quit_now:
             running = False
-
-        # --- Combo: Ctrl + Alt + Shift + S (open Task Manager) ---
-        combo_s_now = (
-            keyboard.is_pressed('ctrl') and
-            keyboard.is_pressed('alt') and
-            keyboard.is_pressed('shift') and
-            keyboard.is_pressed('s')
-        )
-        if combo_s_now and not combo_s_was_pressed:
-            subprocess.Popen("start taskmgr", shell=True)
-            combo_s_was_pressed = True
-        elif not combo_s_now:
-            combo_s_was_pressed = False
 
         john_key = keyboard.is_pressed('scroll_lock')
         if john_key and not combo_scrolllock_was_pressed:
@@ -561,8 +554,8 @@ def mainloop():
                 score = trigger_score(score, general_mult)
                 do_math()
                 save.set("score", score)
-                start_mult = save.get("speedboost", 0)*config.get('base_manual_tick_value')
-                slacking_mult = save.get("masterfulSlacking")
+                start_mult = 0
+                slacking_mult = 0
                 general_mult = 1+(save.get("slackonomics", 0)*config.get("slackonomics_modifier"))*trigger_microsoft_upgrades()*getCompoundMult()*getJohnMult(john_effect)
                 config.load()
             update_tutorial()
