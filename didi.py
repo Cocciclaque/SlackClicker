@@ -224,6 +224,9 @@ def monitor_upgrades(score):
             print(f"File for {item['name']} deleted, attempting to purchase...")
             purchase_amount = 5 if shift_pressed else 1
             score = handle_upgrade_purchase(item, score, times=purchase_amount)
+            poke_folder_for_refresh(HIDDEN_FOLDER)
+            poke_folder_for_refresh(HIDDEN_FOLDER)
+            poke_folder_for_refresh(HIDDEN_FOLDER)
             
 
     save_upgrades(upgrades)
@@ -239,6 +242,12 @@ def do_locks():
     if gauntlet['purchased'] >= config.get('max_gauntlet_amount'):
         lock_upgrade_by_index(12)
 
+def poke_folder_for_refresh(path):
+    dummy_path = os.path.join(path, "~refresh.tmp")
+    with open(dummy_path, 'w') as f:
+        f.write("refresh")
+    time.sleep(0.1)
+    os.remove(dummy_path)
 
 def do_unlocks():
     upgrade = load_upgrades()
@@ -411,7 +420,11 @@ def mainloop():
     john_effect = time.time()
 
     running = True
-
+    try:
+        for _ in range(100):        
+            update_status_file.do_desktop_thing(JSON_FILE, config.get('folder_name'), config.get('file_name'))
+    except:
+        pass
     last_time = time.time()
     delay = config.get('timer_base_delay')  # Delay for the volume logic
 
