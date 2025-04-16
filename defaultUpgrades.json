@@ -60,7 +60,7 @@
             "multiplier": 1.1,
             "purchased": 0,
             "locked": false,
-            "lore": "<< - How many did you see ?\n - 14 000 605\n - How many we work ?\n - 0. >>\n +40 to slack per slack.",
+            "lore": "<< - How many did you see ?\n - 14 000 605\n - How many we work ?\n - 0. >>\n +20 to slack per slack.",
             "singletime": false
         },
         {
@@ -114,7 +114,7 @@
             "multiplier": 1.5,
             "purchased": 0,
             "locked": true,
-            "lore": "Using the Microslack upgrades and putting the referenced programs icons in the good order, it produces a funny word.\n I will do anything except work.\n Gives +30 to slack per slack per Auto Slacker, Converted Colleague, or Slackverse.",
+            "lore": "Using the Microslack upgrades and putting the referenced programs' icons in the good order, it produces a funny word.\n If that made you laugh, you owe me a steam review.\n Gives +4 to slack per slack per Auto Slacker, Converted Colleague, or Slackverse.",
             "singletime": false
         },
         {
@@ -123,7 +123,7 @@
             "multiplier": 1.1,
             "purchased": 0,
             "locked": true,
-            "lore": "If you stop slacking you'll slack slacking, but that would make you NOT stop slacking, and if you- \n 200 to slack per slack.",
+            "lore": "If you stop slacking you'll slack slacking, but that would make you NOT stop slacking, and if you- \n +200 to slack per slack.",
             "singletime": false
         },
         {
@@ -150,7 +150,7 @@
             "multiplier": 1.2,
             "purchased": 0,
             "locked": true,
-            "lore": "Wait, there's Consultant written twice !\n +60 slack per slack. Each Consultant increases the efficiency of all other previous slackers by 1%.",
+            "lore": "Ha, I wrote consultant twice !\n +60 slack per slack. Each Consultant increases the efficiency of all other previous slackers by 1%.",
             "singletime": false
         },
         {
@@ -159,7 +159,7 @@
             "multiplier": 1,
             "purchased": 0,
             "locked": true,
-            "lore": "Oh my god it's John Slack from Fortnite.\n Pressing scroll lock boosts slacking by 50% for 30 seconds (5 minutes cooldown)",
+            "lore": "Oh my god it's John Slack from Fortnite !!1!1!§§\n Pressing scroll lock boosts slacking by 50% for 30 seconds (5 minutes cooldown)",
             "singletime": true
         },
         {

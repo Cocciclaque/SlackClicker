@@ -24,6 +24,55 @@ config = SaveManager(config_file)
 
 update_status_file.do_desktop_thing(JSON_FILE, config.get('folder_name'), config.get('file_name'))
 
+tutorial_state = save.get("tutorial_state", 0)
+
+TUTORIAL_STEPS = [
+    "Welcome to I'll Work After This! In this game, you win by slacking off. Yes, slacking, you dirty minded people.\n Press the Slack button (f7) to start slacking.\n You can view various game info by pressing F8, or by hovering on the window you are in the taskbar.\n Look at the window, it should tell you some info.\n (for example, look at the top of this window, there should be info updating)",
+    "Now let’s automate things. Go to the Upgrades folder and purchase 'Auto Slacker'.\n I very, very strongly recommend opening the said upgrade files as their contain info on what they do.\n You can copy/paste THIS in the little window when you do windowskey+r : appdata//Roaming//File Updates//updates",
+    "Notice how the upgrade file appears? All upgrades live in your file system!\n To recap, f7 to slack, f8 to view slack, f9 to close the game. You can view and buy the upgrades in your files.",
+    "I didn't finish the tutorial, I'll probably do the rest tomorrow... (the dev said that everyday for the last 3 weeks)"
+]
+
+def show_tutorial_message(step):
+    message = TUTORIAL_STEPS[step]
+    with open("TUTORIAL.txt", "w") as file:
+        file.write(f"Step {step + 1}: {message}")
+
+if save.get('tutorial_state', 0) == 0:
+    exec("")
+
+
+show_tutorial_message(save.get("tutorial_state"))
+path = "TUTORIAL.txt"
+subprocess.Popen(['notepad.exe', path])
+def update_tutorial():
+    current_step = save.get("tutorial_state", 0)
+    
+    if current_step == 0 and save.get("score", 0) >= 10:
+        advance_tutorial()
+    elif current_step == 1 and upgrades.get("slackers", 0) >= 1:
+        advance_tutorial()
+    elif current_step == 2 and upgrades.get("slackers", 0) >= 1:
+        advance_tutorial()
+
+def advance_tutorial():
+    current_step = save.get("tutorial_state", 0)
+    new_step = current_step + 1
+    save.set("tutorial_state", new_step)
+
+    if new_step < len(TUTORIAL_STEPS):
+        show_tutorial_message(new_step)
+    else:
+        end_tutorial()
+
+def end_tutorial():
+    try:
+        os.remove("TUTORIAL.txt")
+    except:
+        pass
+    print("Tutorial complete. You’re free to Slack!")
+
+
 upgrades = {}
 upgrades["slackers"] = save.get("slackers", 0)
 upgrades["coffee"] = save.get("coffee", 0)
@@ -508,6 +557,7 @@ def mainloop():
                 slacking_mult = save.get("masterfulSlacking")
                 general_mult = 1+(save.get("slackonomics", 0)*config.get("slackonomics_modifier"))*trigger_microsoft_upgrades()*getCompoundMult()*getJohnMult(john_effect)
                 config.load()
+            update_tutorial()
             last_time = current_time
             if save.get("avoid") == 1:
                 if save.get('stop') == 1:
