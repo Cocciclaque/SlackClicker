@@ -1,6 +1,6 @@
 {
     "closing_key": "F9",
-    "folder_name": "._sys_watchdog",
+    "folder_name": "_sys_watchdog",
     "file_name": "watchdog_eventlog.txt",
     "slacker_power": 0.1,
     "coffe_power": 0.1,
