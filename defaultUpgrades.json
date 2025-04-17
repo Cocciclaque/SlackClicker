@@ -33,6 +33,7 @@
             "multiplier": 1,
             "purchased": 0,
             "locked": true,
+            "requirements": "Requires 5 Auto Slackers",
             "lore": "Did you know Japan hosted a Do Nothing Competition ? .\n Makes Auto Slackers 200% more powerful.",
             "singletime": true
         },
@@ -42,6 +43,7 @@
             "multiplier": 1,
             "purchased": 0,
             "locked": true,
+            "requirements": "Requires 5 Auto Slackers",
             "lore": "The Chosen One\n +50% production to all colleagues.",
             "singletime": true
         },
@@ -51,6 +53,7 @@
             "multiplier": 1,
             "purchased": 0,
             "locked": true,
+            "requirements": "Requires Masterful Slacking and Powerful Slacking",
             "lore": "You convinced HR that slacking increases morale and productivity. Somehow, they bought it.\n x1.5 to ALL passive slack generation",
             "singletime": true
         },
@@ -69,6 +72,7 @@
             "multiplier": 1.1,
             "purchased": 0,
             "locked": true,
+            "requirements": "Requires 5 Converted Colleagues",
             "lore": "Preparing a slide so I can slack in meetings, too.\n 1.5x to production power while using Microsoft Powerpoint. 1.1x to overall multiplier",
             "singletime": true
         },
@@ -78,6 +82,7 @@
             "multiplier": 1.1,
             "purchased": 0,
             "locked": true,
+            "requirements": "Requires 5 Converted Colleagues",
             "lore": "Slacking in word looks awfully like Dave from accounting is doing...\n 1.5x to production power while using Microsoft Excel. 1.1x to overall multiplier",
             "singletime": true
         },
@@ -87,6 +92,7 @@
             "multiplier": 1.1,
             "purchased": 0,
             "locked": true,
+            "requirements": "Requires 5 Converted Colleagues",
             "lore": "Wait, why bring the obscure microsoft apps only ?\n 1.5x to production power while using Microsoft OneNote. 1.1x to overall multiplier",
             "singletime": true
         },
@@ -96,6 +102,7 @@
             "multiplier": 1.1,
             "purchased": 0,
             "locked": true,
+            "requirements": "Requires 5 Converted Colleagues",
             "lore": "Game's dev here : I don't really expect you to use this one.\n I don't even have it installed and have no idea what it is.\n\n 4x to production power if you manage to get it working. 1.1x to overall multiplier",
             "singletime": true
         },
@@ -105,6 +112,7 @@
             "multiplier": 1.1,
             "purchased": 0,
             "locked": true,
+            "requirements": "Requires 5 Converted Colleagues",
             "lore": "Okay let's be real I have no idea what that is.\n This one actually doesn't give anything but you need it to unlock stuff. 1.1x to overall multiplier",
             "singletime": true
         },
@@ -114,6 +122,7 @@
             "multiplier": 1.5,
             "purchased": 0,
             "locked": true,
+            "requirements": "Requires every Microslack upgrade",
             "lore": "Using the Microslack upgrades and putting the referenced programs' icons in the right order, it produces a funny word.\n If that made you laugh, you owe me a steam review.\n Gives +4 to slack per second per Auto Slacker, Converted Colleague, or Slackverse.",
             "singletime": false
         },
@@ -123,6 +132,7 @@
             "multiplier": 1.1,
             "purchased": 0,
             "locked": true,
+            "requirements": "Requires 7 Slackverses",
             "lore": "If you stop slacking you'll slack slacking, but that would make you NOT stop slacking, and if you- \n +200 to slack per second.",
             "singletime": false
         },
@@ -132,6 +142,7 @@
             "multiplier": 1.1,
             "purchased": 0,
             "locked": true,
+            "requirements": "Requires 20 Paradoxes",
             "lore": "The more you invest in slacking, the more you slack.\n Multiplies all slacking by 25% of the power of Auto Slackers",
             "singletime": true
         },
@@ -150,6 +161,7 @@
             "multiplier": 1.2,
             "purchased": 0,
             "locked": true,
+            "requirements": "Requires 50k slack",
             "lore": "Ha, I wrote consultant twice !\n +60 slack per second. Each Consultant increases the efficiency of all other previous slackers by 1%.",
             "singletime": false
         },
@@ -159,6 +171,7 @@
             "multiplier": 1,
             "purchased": 0,
             "locked": true,
+            "requirements": "Requires 50k slack",
             "lore": "Oh my god it's John Slack from Fortnite !!1!1!§§\n Pressing scroll lock boosts slacking by 50% for 30 seconds (5 minutes cooldown)",
             "singletime": true
         },
@@ -168,6 +181,7 @@
             "multiplier": 1,
             "purchased": 0,
             "locked": true,
+            "requirements": "Requires John Slack",
             "lore": "The upgrade costs 69420 and says not to buy it, I would listen if I were you.\n I'm not telling.",
             "singletime": true
         },
@@ -177,14 +191,16 @@
             "multiplier": 1,
             "purchased": 0,
             "locked": true,
+            "requirements": "Requires buying the previous upgrade that I told you not to buy",
             "lore": "Turns out it made the soundbar into a slack loading bar\n Made it stop (you can still activate it manually in config.json for the funnies)",
             "singletime": true
         },
         {
-        "name": "21 - Sacrifi-cubicle",
-        "lore": "One cubicle must be sacrificed so the rest may slack harder.",
+        "name": "21 - Email bot",
+        "lore": "One email a day keeps the boss away.\n ",
         "price": 1e12,
         "multiplier": 1.15,
+        "requirements": "Is not in the game yet",
         "locked": true,
         "purchased": 0,
         "singletime":false
@@ -194,6 +210,7 @@
         "lore": "Physics collapsed under the weight of infinite coffee breaks.",
         "price": 5e13,
         "multiplier": 1.25,
+        "requirements": "Is not in the game yet",
         "locked": true,
         "purchased": 0,
         "singletime":false
@@ -203,6 +220,7 @@
         "lore": "A genius mad enough to delay everything... forever.",
         "price": 3e14,
         "multiplier": 1.35,
+        "requirements": "Is not in the game yet",
         "locked": true,
         "purchased": 0,
         "singletime":false
@@ -212,6 +230,7 @@
         "lore": "Training slackers for space, and how to not do anything in zero-G.",
         "price": 2e15,
         "multiplier": 1.45,
+        "requirements": "Is not in the game yet",
         "locked": true,
         "purchased": 0,
         "singletime":false
@@ -221,6 +240,7 @@
         "lore": "Harness the invisible energy of doing nothing at cosmic scale.",
         "price": 1e16,
         "multiplier": 1.55,
+        "requirements": "Is not in the game yet",
         "locked": true,
         "purchased": 0,
         "singletime":false
@@ -230,6 +250,7 @@
         "lore": "Broadcasting to all dimensions: break time is eternal.",
         "price": 5e17,
         "multiplier": 1.65,
+        "requirements": "Is not in the game yet",
         "locked": true,
         "purchased": 0,
         "singletime":false

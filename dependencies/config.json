@@ -34,6 +34,7 @@
     "max_gauntlet_amount": 5,
     "base_microsoft_modifier": 1.5,
     "infopath_microsoft_modifier": 4.0,
+    "base_microsoft_constant_modifier": 1.1,
     "compound_disinterest_modifier": 0.25,
     "consultant_power": 60,
     "consultant_efficiency_modifier":0.01,
