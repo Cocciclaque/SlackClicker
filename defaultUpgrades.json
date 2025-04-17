@@ -78,7 +78,7 @@
             "multiplier": 1.1,
             "purchased": 0,
             "locked": true,
-            "lore": "Slacking in word looks awfully like Dave from accounting's screen.\n 1.5x to production power while using Microsoft Excel. 1.1x to overall multiplier",
+            "lore": "Slacking in word looks awfully like Dave from accounting is doing...\n 1.5x to production power while using Microsoft Excel. 1.1x to overall multiplier",
             "singletime": true
         },
         {
@@ -114,7 +114,7 @@
             "multiplier": 1.5,
             "purchased": 0,
             "locked": true,
-            "lore": "Using the Microslack upgrades and putting the referenced programs' icons in the good order, it produces a funny word.\n If that made you laugh, you owe me a steam review.\n Gives +4 to slack per second per Auto Slacker, Converted Colleague, or Slackverse.",
+            "lore": "Using the Microslack upgrades and putting the referenced programs' icons in the right order, it produces a funny word.\n If that made you laugh, you owe me a steam review.\n Gives +4 to slack per second per Auto Slacker, Converted Colleague, or Slackverse.",
             "singletime": false
         },
         {
