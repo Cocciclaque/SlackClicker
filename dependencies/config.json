@@ -9,7 +9,7 @@
     "slackverse_power": 20.0,
     "paradox_power": 200,
     "powerfulSlacking_modifier": 2.0,
-    "masterfulSlacking_modifier": 2.0,
+    "masterfulSlacking_modifier": 0.5,
     "speedboost_modifier": 0.1,
     "timer_base_delay": 0.10,
     "base_manual_tick_value": 0.05,

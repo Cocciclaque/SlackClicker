@@ -11,9 +11,9 @@
         },
         {
             "name": "03 - Convert Colleague",
-            "price": 114,
+            "price": 172,
             "multiplier": 1.15,
-            "purchased": 1,
+            "purchased": 4,
             "locked": false,
             "lore": "<< Come on, try it man ! I promise it's fun and totally not addictive >> - John SLACK, fired the next day.\n +1 slack per second",
             "singletime": false
@@ -40,7 +40,7 @@
             "name": "06 - Masterful Slacking I",
             "price": 700,
             "multiplier": 1,
-            "purchased": 0,
+            "purchased": 1,
             "locked": false,
             "lore": "Become the Master Slacker\n +1 to slack per second.",
             "singletime": true
