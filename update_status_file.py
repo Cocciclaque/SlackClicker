@@ -30,7 +30,7 @@ def do_desktop_thing(JSON_FILE, folder_name, file_name):
             if upgrade["purchased"] > 0:
                 status = f"[x{upgrade['purchased']}]" if not upgrade["singletime"] else "[✓]"
                 name = upgrade["name"]
-                lore_line = upgrade["lore"].split("\n")[0]  # Just the first line
+                lore_line = upgrade["lore"].split("\n")[-1]  # Just the first line
                 log_lines.append(f" • {status} {name} — {lore_line}")
 
         # Add footer flavor
