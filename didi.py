@@ -470,6 +470,7 @@ def unlock_upgrade_by_index(index):
     shutil.rmtree(HIDDEN_UNLOCKS)
     upgrades = load_upgrades()
     upgrades['items'][index]['locked'] = False
+    valuesapi.show_notification("I'll Work After This", f"You unlocked {upgrades['items'][index]['name']} !")
     save_upgrades(upgrades)
 
 def lock_upgrade_by_index(index):

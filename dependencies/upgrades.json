@@ -2,9 +2,9 @@
     "items": [
         {
             "name": "01 - Auto Slacker",
-            "price": 15,
+            "price": 36,
             "multiplier": 1.2,
-            "purchased": 0,
+            "purchased": 5,
             "locked": false,
             "lore": "Automatically does... nothing ?\n +0.1 slack per second",
             "singletime": false
@@ -32,7 +32,7 @@
             "price": 400,
             "multiplier": 1,
             "purchased": 0,
-            "locked": true,
+            "locked": false,
             "requirements": "Requires 5 Auto Slackers",
             "lore": "Did you know Japan hosted a Do Nothing Competition ? .\n Makes Auto Slackers 200% more powerful.",
             "singletime": true
@@ -42,7 +42,7 @@
             "price": 700,
             "multiplier": 1,
             "purchased": 0,
-            "locked": true,
+            "locked": false,
             "requirements": "Requires 5 Auto Slackers",
             "lore": "Title given by You, to Yourself. Be proud\u00e2\u201e\u00a2\n +50% production to all colleagues.",
             "singletime": true
@@ -231,7 +231,7 @@
             "price": 5100000000.0,
             "multiplier": 1.45,
             "requirements": "Is not in the game yet",
-            "locked": false,
+            "locked": true,
             "purchased": 0,
             "singletime": false
         },

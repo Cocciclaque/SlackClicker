@@ -27,7 +27,7 @@
     "required_colleagues_mail": 30,
     "required_email": 15,
     "required_overdose": 20,
-    "required_proc": 25,
+    "required_pro": 25,
     "required_efort": 30,
     "required_music": 35,
     "gauntlet_power": 2,
@@ -43,6 +43,5 @@
     "john_multiplier": 0.5,
     "alias_key_slack": "f7",
     "alias_key_show": "f8",
-    "do_soundbar": 0,
-    "required_pro": 0
+    "do_soundbar": 0
 }

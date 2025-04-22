@@ -1,6 +1,6 @@
 {
-    "tutorial_state": 0,
-    "slackers": 0,
+    "tutorial_state": 3,
+    "slackers": 5,
     "coffee": 0,
     "speedboost": 0,
     "convertcolleagues": 0,
@@ -26,5 +26,5 @@
     "efort": 0,
     "music": 0,
     "jojo?": 0,
-    "score": 0.0
+    "score": 8.2
 }
