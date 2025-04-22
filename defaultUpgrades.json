@@ -44,7 +44,7 @@
             "purchased": 0,
             "locked": true,
             "requirements": "Requires 5 Auto Slackers",
-            "lore": "The Chosen One\n +50% production to all colleagues.",
+            "lore": "Title given by You, to Yourself. Be proud™\n +50% production to all colleagues.",
             "singletime": true
         },
         {
@@ -60,10 +60,10 @@
         {
             "name": "08 - The Slackverse",
             "price": 1000,
-            "multiplier": 1.1,
+            "multiplier": 1.15,
             "purchased": 0,
             "locked": false,
-            "lore": "<< - How many did you see ?\n - 14 000 605\n - How many we work ?\n - 0. >>\n +7 to slack per second.",
+            "lore": "<< - How many did you see ?\n - 14 000 605\n - How many we work ?\n - 0. >> - That one colleague that sends memes at work\n +7 to slack per second.",
             "singletime": false
         },
         {
@@ -123,17 +123,17 @@
             "purchased": 0,
             "locked": true,
             "requirements": "Requires every Microslack upgrade",
-            "lore": "Using the Microslack upgrades and putting the referenced programs' icons in the right order, it produces a funny word.\n If that made you laugh, you owe me a steam review.\n Gives +4 to slack per second per Auto Slacker, Converted Colleague, or Slackverse.",
+            "lore": "Using the Microslack upgrades and putting the referenced programs' icons in the right order, it produces a funny word.\n If that made you laugh, you owe me a steam review.\n Gives +2 to slack per second per Auto Slacker, Converted Colleague, or Slackverse.",
             "singletime": false
         },
         {
             "name": "15 - Slacking Paradox",
             "price": 12000,
-            "multiplier": 1.1,
+            "multiplier": 1.15,
             "purchased": 0,
             "locked": true,
             "requirements": "Requires 7 Slackverses",
-            "lore": "If you stop slacking you'll slack slacking, but that would make you NOT stop slacking, and if you- \n +200 to slack per second.",
+            "lore": "This is becoming a full time job\n +50 to slack per second.",
             "singletime": false
         },
         {
@@ -143,7 +143,7 @@
             "purchased": 0,
             "locked": true,
             "requirements": "Requires 20 Paradoxes",
-            "lore": "The more you invest in slacking, the more you slack.\n Multiplies all slacking by 25% of the power of Auto Slackers",
+            "lore": "Retire your children early by being lazy\n Multiplies all slacking by 25% of the power of Auto Slackers",
             "singletime": true
         },
         {
@@ -152,22 +152,22 @@
             "multiplier": 5,
             "purchased": 0,
             "locked": false,
-            "lore": "And this, is to go even further BEHIND... the deadline.\n Manual Slacking and Auto Slackers are twice as powerful.",
+            "lore": "No amount of caffeine could give me enough energy to get stuff done\n Manual Slacking and Auto Slackers are twice as powerful.",
             "singletime": false
         },
         {
             "name": "17 - Slacker Consultant",
-            "price": 75000,
+            "price": 120000,
             "multiplier": 1.2,
             "purchased": 0,
             "locked": true,
             "requirements": "Requires 50k slack",
-            "lore": "Ha, I wrote consultant twice !\n +60 slack per second. Each Consultant increases the efficiency of all other previous slackers by 1%.",
+            "lore": "Ha, I wrote consultant twice !\n +180 slack per second. Each Consultant increases the efficiency of all other previous slackers by 1%.",
             "singletime": false
         },
         {
             "name": "18 - John Slack",
-            "price": 10000,
+            "price": 100000,
             "multiplier": 1,
             "purchased": 0,
             "locked": true,
@@ -198,7 +198,7 @@
         {
         "name": "21 - Email bot",
         "lore": "One email a day keeps the boss away.\n ",
-        "price": 1e12,
+        "price": 1.4e6,
         "multiplier": 1.15,
         "requirements": "Is not in the game yet",
         "locked": true,
@@ -206,9 +206,9 @@
         "singletime":false
         },
         {
-        "name": "22 - The Break Hole",
-        "lore": "Physics collapsed under the weight of infinite coffee breaks.",
-        "price": 5e13,
+        "name": "22 - Coffee Overdose",
+        "lore": "Welp, that's one way to avoid work.",
+        "price": 2e7,
         "multiplier": 1.25,
         "requirements": "Is not in the game yet",
         "locked": true,
@@ -216,9 +216,9 @@
         "singletime":false
         },
         {
-        "name": "23 - Procrastinstein's Lab",
-        "lore": "A genius mad enough to delay everything... forever.",
-        "price": 3e14,
+        "name": "23 - PRO-crastinator",
+        "lore": "Casual crastinators when PRO-crastinator walks in",
+        "price": 3.3e8,
         "multiplier": 1.35,
         "requirements": "Is not in the game yet",
         "locked": true,
@@ -226,9 +226,9 @@
         "singletime":false
         },
         {
-        "name": "24 - Astro-not Program",
-        "lore": "Training slackers for space, and how to not do anything in zero-G.",
-        "price": 2e15,
+        "name": "24 - Efort",
+        "lore": "Effort ? No, Efort, your unemployed 26 y/o brother.",
+        "price": 5.1e9,
         "multiplier": 1.45,
         "requirements": "Is not in the game yet",
         "locked": true,
@@ -236,9 +236,9 @@
         "singletime":false
         },
         {
-        "name": "25 - Dark Matter of Inaction",
-        "lore": "Harness the invisible energy of doing nothing at cosmic scale.",
-        "price": 1e16,
+        "name": "25 - Questionable Music Taste",
+        "lore": "Make your coworkers avoid you by blasting 2014 Emo music MAX VOLUME in your office.",
+        "price": 7.5e10,
         "multiplier": 1.55,
         "requirements": "Is not in the game yet",
         "locked": true,
@@ -246,8 +246,8 @@
         "singletime":false
         },
         {
-        "name": "26 - The Final Countdown Timer",
-        "lore": "Broadcasting to all dimensions: break time is eternal.",
+        "name": "26 - The Your-Boss-Gets-Smaller-As-He-Approaches-You upgrade",
+        "lore": "Is that a JoJo reference ?",
         "price": 5e17,
         "multiplier": 1.65,
         "requirements": "Is not in the game yet",

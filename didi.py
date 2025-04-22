@@ -105,12 +105,12 @@ upgrades['consultant'] = save.get('consultant')
 upgrades['john'] = save.get('john')
 upgrades['avoid'] = save.get('avoid')
 upgrades['stop'] = save.get('stop')
-upgrades["sacrificubicle"] = save.get("sacrificubicle", 0)
-upgrades["breakhole"] = save.get("breakhole", 0)
-upgrades["procrastinstein"] = save.get("procrastinstein", 0)
-upgrades["astronot"] = save.get("astronot", 0)
-upgrades["darkmatter"] = save.get("darkmatter", 0)
-upgrades["countdowntimer"] = save.get("countdowntimer", 0)
+upgrades["email"] = save.get("email", 0)
+upgrades["overdose"] = save.get("overdose", 0)
+upgrades["pro"] = save.get("pro", 0)
+upgrades["efort"] = save.get("efort", 0)
+upgrades["music"] = save.get("music", 0)
+upgrades["jojo?"] = save.get("jojo?", 0)
 
 
 # Folder where upgrades are stored (hidden folder)
@@ -195,22 +195,22 @@ def savePurchase(item):
     elif item['name'] == "20 - MAKE IT STOP":
         save.set("stop", purchased_count)
         upgrades["stop"] = purchased_count
-    elif item['name'] == "21 - Sacrifi-cubicle":
+    elif item['name'] == "21 - Email bot":
         save.set("sacrificubicle", purchased_count)
         upgrades["sacrificubicle"] = purchased_count
-    elif item['name'] == "22 - The Break Hole":
+    elif item['name'] == "22 - Coffee Overdose":
         save.set("breakhole", purchased_count)
         upgrades["breakhole"] = purchased_count
-    elif item['name'] == "23 - Procrastinstein's Lab":
+    elif item['name'] == "23 - PRO-crastinator":
         save.set("procrastinstein", purchased_count)
         upgrades["procrastinstein"] = purchased_count
-    elif item['name'] == "24 - Astro-not Program":
+    elif item['name'] == "24 - Efort":
         save.set("astronot", purchased_count)
         upgrades["astronot"] = purchased_count
-    elif item['name'] == "25 - Dark Matter of Inaction":
+    elif item['name'] == "25 - Questionable Music Taste":
         save.set("darkmatter", purchased_count)
         upgrades["darkmatter"] = purchased_count
-    elif item['name'] == "26 - The Final Countdown Timer":
+    elif item['name'] == "26 - The Your-Boss-Gets-Smaller-As-He-Approaches-You upgrade":
         save.set("countdowntimer", purchased_count)
         upgrades["countdowntimer"] = purchased_count
 
@@ -352,12 +352,12 @@ def do_unlocks():
     john = upgrade['items'][17]
     avoid = upgrade['items'][18]
     stop = upgrade['items'][19]
-    sacrificubicle = upgrade['items'][20]
-    breakhole = upgrade['items'][21]
-    procrastinstein = upgrade['items'][22]
-    astronot = upgrade['items'][23]
-    darkmatter = upgrade['items'][24]
-    countdowntimer = upgrade['items'][25]
+    email = upgrade['items'][20]
+    overdose = upgrade['items'][21]
+    pro = upgrade['items'][22]
+    efort = upgrade['items'][23]
+    music = upgrade['items'][24]
+    jojo = upgrade['items'][25]
 
     old_upgrade = upgrade.copy()
 
@@ -397,22 +397,22 @@ def do_unlocks():
     if save.get('avoid') >= 1 and stop['locked'] == True:
         unlock_upgrade_by_index(19)
         create_upgrade_file(load_upgrades()['items'][19])
-    if upgrades['convertcolleagues'] >= config.get('required_colleagues_cubicle') and sacrificubicle['locked'] == True:
+    if upgrades['convertcolleagues'] >= config.get('required_colleagues_mail') and email['locked'] == True:
         unlock_upgrade_by_index(20)
         create_upgrade_file(load_upgrades()['items'][20])
-    if upgrades['sacrificubicle'] >= config.get('required_sacrificubicle') and breakhole['locked'] == True:
+    if upgrades['email'] >= config.get('required_email') and overdose['locked'] == True:
         unlock_upgrade_by_index(21)
         create_upgrade_file(load_upgrades()['items'][21])
-    if upgrades['breakhole'] >= config.get('required_breakhole') and procrastinstein['locked'] == True:
+    if upgrades['overdose'] >= config.get('required_overdose') and pro['locked'] == True:
         unlock_upgrade_by_index(22)
         create_upgrade_file(load_upgrades()['items'][22])
-    if upgrades['procrastinstein'] >= config.get('required_procrastinstein') and astronot['locked'] == True:
+    if upgrades['pro'] >= config.get('required_pro') and efort['locked'] == True:
         unlock_upgrade_by_index(23)
         create_upgrade_file(load_upgrades()['items'][23])
-    if upgrades['astronot'] >= config.get('required_astronot') and darkmatter['locked'] == True:
+    if upgrades['efort'] >= config.get('required_efort') and music['locked'] == True:
         unlock_upgrade_by_index(24)
         create_upgrade_file(load_upgrades()['items'][24])
-    if upgrades['darkmatter'] >= config.get('required_darkmatter') and countdowntimer['locked'] == True:
+    if upgrades['music'] >= config.get('required_music') and jojo['locked'] == True:
         unlock_upgrade_by_index(25)
         create_upgrade_file(load_upgrades()['items'][25])
 

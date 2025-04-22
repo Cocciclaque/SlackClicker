@@ -19,6 +19,8 @@ class SaveManager:
             json.dump(self.save_data, f, indent=4)
 
     def get(self, key, default=None):
+        if self.has(key) == False:
+            self.set(key, 0)
         return self.save_data.get(key, default)
 
     def set(self, key, value):
