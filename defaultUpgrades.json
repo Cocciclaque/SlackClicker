@@ -149,7 +149,7 @@
         {
             "name": "02 - Coffee Break",
             "price": 100,
-            "multiplier": 5,
+            "multiplier": 10,
             "purchased": 0,
             "locked": false,
             "lore": "No amount of caffeine could give me enough energy to get stuff done\n Manual Slacking and Auto Slackers are twice as powerful.",
@@ -254,9 +254,60 @@
         "locked": true,
         "purchased": 0,
         "singletime":false
+        },
+        {
+        "name": "03.5 - <<Yo you should come with me !>>",
+        "price": 5000,
+        "multiplier": 100,
+        "purchased": 0,
+        "locked": true,
+        "lore": "I guess we bringing colleagues now\n Converted colleagues are twice as efficient.",
+        "singletime": false
+        },
+        {
+            "name": "08.5 - One More Universe",
+            "price": 24500,
+            "multiplier": 100,
+            "purchased": 0,
+            "locked": true,
+            "lore": "print(universe++);\n Slackverses are twice as efficient.",
+            "singletime": false
+        },
+        {
+            "name": "15.5 - We need more philosophers !!",
+            "price": 120000,
+            "multiplier": 100,
+            "purchased": 0,
+            "locked": true,
+            "lore": "So... much... paradoxes...... must... get... more... brainpower...\n Slack Paradoxes are twice as efficient.",
+            "singletime": false
+        },
+        {
+            "name": "17.5 - Sudden Wisdom",
+            "price": 1.2e6,
+            "multiplier": 100,
+            "purchased": 0,
+            "locked": true,
+            "lore": "Divine Intervention seems to have given consultants << common sense >>.\n Consultants are twice as efficient.",
+            "singletime": false
+        },
+        {
+            "name": "21.5 - Overclocking",
+            "price": 1.5e7,
+            "multiplier": 100,
+            "purchased": 0,
+            "locked": true,
+            "lore": "The email bot went too fast. Your PC burst into flames. It triggered the fire alarm. No more work today. Mission success - Respect+\n Email bots are twice as efficient.",
+            "singletime": false
+        },
+        {
+            "name": "21.5 - Overclocking",
+            "price": 100,
+            "multiplier": 100,
+            "purchased": 0,
+            "locked": false,
+            "lore": "Divine Intervention seems to have given consultants << common sense >>.\n Consultants are twice as efficient.",
+            "singletime": false
         }
-        
-          
-
     ]
 }
