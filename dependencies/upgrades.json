@@ -160,7 +160,7 @@
             "price": 120000,
             "multiplier": 1.2,
             "purchased": 0,
-            "locked": true,
+            "locked": false,
             "requirements": "Requires 50k slack",
             "lore": "Ha, I wrote consultant twice !\n +180 slack per second. Each Consultant increases the efficiency of all other previous slackers by 1%.",
             "singletime": false
@@ -170,7 +170,7 @@
             "price": 100000,
             "multiplier": 1,
             "purchased": 0,
-            "locked": true,
+            "locked": false,
             "requirements": "Requires 50k slack",
             "lore": "Oh my god it's John Slack from Fortnite !!1!1!\u00c2\u00a7\u00c2\u00a7\n Pressing scroll lock boosts slacking by 50% for 30 seconds (5 minutes cooldown)",
             "singletime": true
@@ -310,7 +310,7 @@
             "price": 200000000.0,
             "multiplier": 100,
             "purchased": 0,
-            "locked": false,
+            "locked": true,
             "requirements": "Have 5 Coffee Overdoses",
             "lore": "This near death made you realise life is too short to be spent working.\n Coffee Overdoses are twice as efficient.",
             "singletime": false
@@ -320,7 +320,7 @@
             "price": 3500000000.0,
             "multiplier": 100,
             "purchased": 0,
-            "locked": false,
+            "locked": true,
             "requirements": "Have 5 PRO-crasinators",
             "lore": "BREAKING NEWS : CASUAL-CRASTINATOR BEATS PRO-CRASTINATOR IN GRAND FINALS\n PRO-crastinators are twice as efficient",
             "singletime": false
@@ -330,7 +330,7 @@
             "price": 50000000000.0,
             "multiplier": 100,
             "purchased": 0,
-            "locked": false,
+            "locked": true,
             "requirements": "Have 5 Eforts",
             "lore": "Efort is kind of like the tall brother in Les Tuches\n Eforts are twice as efficient, somehow.",
             "singletime": false
@@ -340,7 +340,7 @@
             "price": 750000000000.0,
             "multiplier": 100,
             "purchased": 0,
-            "locked": false,
+            "locked": true,
             "requirements": "Have 5 Questionable Music Tastes",
             "lore": "It's not 2014 Highschool anymore, I'm sorry (joke aside, listen to whatever you love)\n Questionable Music Tastes are twice as efficient.",
             "singletime": false
@@ -350,7 +350,7 @@
             "price": 5000000000000.0,
             "multiplier": 100,
             "purchased": 0,
-            "locked": false,
+            "locked": true,
             "requirements": "Have 5 i'm-not-typing-that-thing-any-more",
             "lore": "Is that a JoJo reference ?????\n The upgrade-with-a-lot-of-unions-you-know-which-ones are twice as efficient.",
             "singletime": false

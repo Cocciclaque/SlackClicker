@@ -310,7 +310,7 @@
             "price": 2e8,
             "multiplier": 100,
             "purchased": 0,
-            "locked": false,
+            "locked": true,
             "requirements": "Have 5 Coffee Overdoses",
             "lore": "This near death made you realise life is too short to be spent working.\n Coffee Overdoses are twice as efficient.",
             "singletime": false
@@ -320,7 +320,7 @@
             "price": 3.5e9,
             "multiplier": 100,
             "purchased": 0,
-            "locked": false,
+            "locked": true,
             "requirements": "Have 5 PRO-crasinators",
             "lore": "BREAKING NEWS : CASUAL-CRASTINATOR BEATS PRO-CRASTINATOR IN GRAND FINALS\n PRO-crastinators are twice as efficient",
             "singletime": false
@@ -330,7 +330,7 @@
             "price": 5e10,
             "multiplier": 100,
             "purchased": 0,
-            "locked": false,
+            "locked": true,
             "requirements": "Have 5 Eforts",
             "lore": "Efort is kind of like the tall brother in Les Tuches\n Eforts are twice as efficient, somehow.",
             "singletime": false
@@ -340,7 +340,7 @@
             "price": 7.5e11,
             "multiplier": 100,
             "purchased": 0,
-            "locked": false,
+            "locked": true,
             "requirements": "Have 5 Questionable Music Tastes",
             "lore": "It's not 2014 Highschool anymore, I'm sorry (joke aside, listen to whatever you love)\n Questionable Music Tastes are twice as efficient.",
             "singletime": false
@@ -350,7 +350,7 @@
             "price": 5e12,
             "multiplier": 100,
             "purchased": 0,
-            "locked": false,
+            "locked": true,
             "requirements": "Have 5 i'm-not-typing-that-thing-any-more",
             "lore": "Is that a JoJo reference ?????\n The upgrade-with-a-lot-of-unions-you-know-which-ones are twice as efficient.",
             "singletime": false

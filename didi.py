@@ -12,7 +12,7 @@ import update_status_file
 from getFocusedWindow import is_active_window_process_name
 from saveManager import SaveManager
 from externalGameCloser import GameApp
-
+import openTabs
 notify_path = r"dependencies\PowerLook.exe"
 JSON_FILE = r"dependencies\upgrades.json" # Name of the test JSON file
 save_file = r"dependencies\save.json"
@@ -36,55 +36,12 @@ game_closer.start()
 
 update_status_file.do_desktop_thing(JSON_FILE, config.get('folder_name'), config.get('file_name'))
 
+
 subprocess.Popen(f'explorer "{os.path.join(os.getenv('APPDATA'), "File Updates", "Updates")}"')
 
-tutorial_state = save.get("tutorial_state", 0)
+time.sleep(2)
 
-TUTORIAL_STEPS = [
-    "Welcome to I'll Work After This! In this game, you win by slacking off. Yes, slacking, you dirty minded people.\n Press the Slack button (f7) to start slacking.\n You can view various game info by pressing F8, or by hovering on the window you are in the taskbar.\n Look at the window, it should tell you some info.\n (for example, look at the top of this window, there should be info updating)",
-    "Now let’s automate things. Go to the Buildings folder and purchase 'Auto Slacker'.\n I very, very strongly recommend opening the said upgrade files as they contain info on what they do.\n You can copy/paste THIS in the little window when you do windowskey+r : appdata//Roaming//File Updates//updates",
-    "Notice how the upgrade file appears? All upgrades live in your file system!\n To recap, f7 to slack, f8 to view slack, f9 to close the game. You can view and buy the upgrades in your files.",
-    "I didn't finish the tutorial, I'll probably do the rest tomorrow... (the dev said that everyday for the last 3 weeks)"
-]
-
-def show_tutorial_message(step):
-    message = TUTORIAL_STEPS[step]
-    with open("TUTORIAL.txt", "w") as file:
-        file.write(f"Step {step + 1}: {message}")
-        file.close()
-
-
-show_tutorial_message(save.get("tutorial_state"))
-path = "TUTORIAL.txt"
-subprocess.Popen(['notepad.exe', path])
-def update_tutorial():
-    current_step = save.get("tutorial_state", 0)
-    
-    if current_step == 0 and save.get("score", 0) >= 15:
-        advance_tutorial()
-    elif current_step == 1 and upgrades.get("slackers", 0) >= 1:
-        advance_tutorial()
-    elif current_step == 2 and upgrades.get("slackers", 0) >= 5:
-        advance_tutorial()
-
-def advance_tutorial():
-    current_step = save.get("tutorial_state", 0)
-    new_step = current_step + 1
-    save.set("tutorial_state", new_step)
-
-    if new_step < len(TUTORIAL_STEPS):
-        subprocess.call("powershell.exe taskkill /F /IM notepad.exe", shell=True) 
-        show_tutorial_message(new_step)
-    else:
-        subprocess.call("powershell.exe taskkill /F /IM notepad.exe", shell=True)  
-        end_tutorial()
-
-def end_tutorial():
-    try:
-        os.remove("TUTORIAL.txt")
-    except:
-        pass
-    print("Tutorial complete. You’re free to Slack!")
+# openTabs.open("thefuturelinktomyvid")
 
 upgrades = {}
 upgrades["slackers"] = save.get("slackers", 0)
@@ -692,7 +649,6 @@ def mainloop():
                 slacking_mult = 0
                 general_mult = 1+(save.get("slackonomics", 0)*config.get("slackonomics_modifier"))*trigger_microsoft_upgrades()*getCompoundMult()*getJohnMult(john_effect)
                 config.load()
-            update_tutorial()
             last_time = current_time
             if save.get("avoid") == 1:
                 if save.get('stop') == 1:
