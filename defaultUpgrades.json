@@ -248,7 +248,7 @@
         {
         "name": "26 - The Your-Boss-Gets-Smaller-As-He-Approaches-You upgrade",
         "lore": "Is that a JoJo reference ?",
-        "price": 5e17,
+        "price": 5e11,
         "multiplier": 1.65,
         "requirements": "Is not in the game yet",
         "locked": true,
@@ -301,12 +301,48 @@
             "singletime": false
         },
         {
-            "name": "21.5 - Overclocking",
-            "price": 100,
+            "name": "22.5 - Existential Crisis",
+            "price": 2e8,
             "multiplier": 100,
             "purchased": 0,
             "locked": false,
-            "lore": "Divine Intervention seems to have given consultants << common sense >>.\n Consultants are twice as efficient.",
+            "lore": "This near death made you realise life is too short to be spent working.\n Coffee Overdoses are twice as efficient.",
+            "singletime": false
+        },
+        {
+            "name": "23.5 - Upset Factor",
+            "price": 3.5e9,
+            "multiplier": 100,
+            "purchased": 0,
+            "locked": false,
+            "lore": "BREAKING NEWS : CASUAL-CRASTINATOR BEATS PRO-CRASTINATOR IN GRAND FINALS\n PRO-crastinators are twice as efficient",
+            "singletime": false
+        },
+        {
+            "name": "24.5 - Unemployement",
+            "price": 5e10,
+            "multiplier": 100,
+            "purchased": 0,
+            "locked": false,
+            "lore": "Efort is kind of like the tall brother in Les Tuches\n Eforts are twice as efficient, somehow.",
+            "singletime": false
+        },
+        {
+            "name": "25.5 - Grow Up",
+            "price": 7.5e11,
+            "multiplier": 100,
+            "purchased": 0,
+            "locked": false,
+            "lore": "It's not 2014 Highschool anymore, I'm sorry (joke aside, listen to whatever you love)\n Questionable Music Tastes are twice as efficient.",
+            "singletime": false
+        },
+        {
+            "name": "26.5 - Your Next line Is",
+            "price": 5e12,
+            "multiplier": 100,
+            "purchased": 0,
+            "locked": false,
+            "lore": "Is that a JoJo reference ?????\n The upgrade-with-a-lot-of-unions-you-know-which-ones are twice as efficient.",
             "singletime": false
         }
     ]
