@@ -26,7 +26,7 @@ try:
     shutil.rmtree(HIDDEN_FOLDER)
 except:
     pass
-init.initialize_game(JSON_FILE, HIDDEN_FOLDER, HIDDEN_BUILDINGS, HIDDEN_UPGRADES, HIDDEN_UNLOCKS)
+
 
 save = SaveManager(save_file)
 config = SaveManager(config_file)
@@ -37,9 +37,7 @@ game_closer.start()
 update_status_file.do_desktop_thing(JSON_FILE, config.get('folder_name'), config.get('file_name'))
 
 
-subprocess.Popen(f'explorer "{os.path.join(os.getenv('APPDATA'), "File Updates", "Updates")}"')
 
-time.sleep(2)
 
 # openTabs.open("thefuturelinktomyvid")
 
@@ -163,28 +161,28 @@ def savePurchase(item):
         save.set("stop", purchased_count)
         upgrades["stop"] = purchased_count
     elif item['name'] == "21 - Email bot":
-        save.set("sacrificubicle", purchased_count)
-        upgrades["sacrificubicle"] = purchased_count
+        save.set("email", purchased_count)
+        upgrades["email"] = purchased_count
     elif item['name'] == "22 - Coffee Overdose":
-        save.set("breakhole", purchased_count)
-        upgrades["breakhole"] = purchased_count
+        save.set("overdose", purchased_count)
+        upgrades["overdose"] = purchased_count
     elif item['name'] == "23 - PRO-crastinator":
-        save.set("procrastinstein", purchased_count)
-        upgrades["procrastinstein"] = purchased_count
+        save.set("pro", purchased_count)
+        upgrades["pro"] = purchased_count
     elif item['name'] == "24 - Efort":
-        save.set("astronot", purchased_count)
-        upgrades["astronot"] = purchased_count
+        save.set("efort", purchased_count)
+        upgrades["efort"] = purchased_count
     elif item['name'] == "25 - Questionable Music Taste":
-        save.set("darkmatter", purchased_count)
-        upgrades["darkmatter"] = purchased_count
+        save.set("music", purchased_count)
+        upgrades["music"] = purchased_count
     elif item['name'] == "26 - The Your-Boss-Gets-Smaller-As-He-Approaches-You upgrade":
-        save.set("countdowntimer", purchased_count)
-        upgrades["countdowntimer"] = purchased_count
+        save.set("jojo?", purchased_count)
+        upgrades["jojo?"] = purchased_count
 ##------------------------------------Buildings Multis------------------------------------------
     if item['name'] == "02 - Coffee Break":
         save.set("coffee", purchased_count)
         upgrades["coffee"] = purchased_count
-    elif item['name'] == "03.5 - <<Yo you should come with me !>>":
+    elif item['name'] == "03.5 - ''Yo you should come with me !''":
         save.set("should_come", purchased_count)
         upgrades["should_come"] = purchased_count
     elif item['name'] == "08.5 - One More Universe":
@@ -401,7 +399,7 @@ def do_unlocks():
         create_upgrade_file(load_upgrades()['items'][14])
     if save.get('score') >= config.get('required_score_consultant') and consultant['locked'] == True:
         unlock_upgrade_by_index(16)
-        create_upgrade_file(load_upgrades()['items'][15])
+        create_upgrade_file(load_upgrades()['items'][16])
     if save.get('score') >= config.get('required_score_john') and john['locked'] == True:
         unlock_upgrade_by_index(17)
         create_upgrade_file(load_upgrades()['items'][17])
@@ -411,54 +409,50 @@ def do_unlocks():
     if save.get('avoid') >= 1 and stop['locked'] == True:
         unlock_upgrade_by_index(19)
         create_upgrade_file(load_upgrades()['items'][19])
-    if upgrades['convertcolleagues'] >= config.get('required_colleagues_mail') and email['locked'] == True:
+    if save.get('score') >= config.get('required_money_new_tier_buildings') and email['locked'] == True:
         unlock_upgrade_by_index(20)
         create_upgrade_file(load_upgrades()['items'][20])
-    if upgrades['email'] >= config.get('required_email') and overdose['locked'] == True:
         unlock_upgrade_by_index(21)
         create_upgrade_file(load_upgrades()['items'][21])
-    if upgrades['overdose'] >= config.get('required_overdose') and pro['locked'] == True:
         unlock_upgrade_by_index(22)
         create_upgrade_file(load_upgrades()['items'][22])
-    if upgrades['pro'] >= config.get('required_pro') and efort['locked'] == True:
         unlock_upgrade_by_index(23)
         create_upgrade_file(load_upgrades()['items'][23])
-    if upgrades['efort'] >= config.get('required_efort') and music['locked'] == True:
         unlock_upgrade_by_index(24)
         create_upgrade_file(load_upgrades()['items'][24])
-    if upgrades['music'] >= config.get('required_music') and jojo['locked'] == True:
         unlock_upgrade_by_index(25)
         create_upgrade_file(load_upgrades()['items'][25])
 
+#-------------------------------------TIER UPGRADES---------------------------------
 
-    if upgrades['should_come'] >= config.get('generic_required_tier_upgrade') and coll_tier['locked'] == True:
+    if upgrades['convertcolleagues'] >= config.get('generic_required_tier_upgrade') and coll_tier['locked'] == True:
         unlock_upgrade_by_index(26)
         create_upgrade_file(load_upgrades()['items'][26])
-    if upgrades['moreuniverse'] >= config.get('generic_required_tier_upgrade') and universe_tier['locked'] == True:
+    if upgrades['slackverses'] >= config.get('generic_required_tier_upgrade') and universe_tier['locked'] == True:
         unlock_upgrade_by_index(27)
         create_upgrade_file(load_upgrades()['items'][27])
-    if upgrades["philosophers"] >= config.get('generic_required_tier_upgrade') and paradox_tier['locked'] == True:
+    if upgrades['paradoxes'] >= config.get('generic_required_tier_upgrade') and paradox_tier['locked'] == True:
         unlock_upgrade_by_index(28)
         create_upgrade_file(load_upgrades()['items'][28])
-    if upgrades["wisdom"] >= config.get('generic_required_tier_upgrade') and consultant_tier['locked'] == True:
+    if upgrades['consultant'] >= config.get('generic_required_tier_upgrade') and consultant_tier['locked'] == True:
         unlock_upgrade_by_index(29)
         create_upgrade_file(load_upgrades()['items'][29])
-    if upgrades['overclocking'] >= config.get('generic_required_tier_upgrade') and bot_tier['locked'] == True:
+    if upgrades['email'] >= config.get('generic_required_tier_upgrade') and bot_tier['locked'] == True:
         unlock_upgrade_by_index(30)
         create_upgrade_file(load_upgrades()['items'][30])
     if upgrades['overdose'] >= config.get('generic_required_tier_upgrade') and overdose_tier['locked'] == True:
         unlock_upgrade_by_index(31)
         create_upgrade_file(load_upgrades()['items'][31])
-    if upgrades['upset'] >= config.get('generic_required_tier_upgrade') and upset_tier['locked'] == True:
+    if upgrades['pro'] >= config.get('generic_required_tier_upgrade') and upset_tier['locked'] == True:
         unlock_upgrade_by_index(32)
         create_upgrade_file(load_upgrades()['items'][32])
-    if upgrades['unemployement'] >= config.get('generic_required_tier_upgrade') and efort_tier['locked'] == True:
+    if upgrades['efort'] >= config.get('generic_required_tier_upgrade') and efort_tier['locked'] == True:
         unlock_upgrade_by_index(33)
         create_upgrade_file(load_upgrades()['items'][33])
-    if upgrades['grow'] >= config.get('generic_required_tier_upgrade') and music_tier['locked'] == True:
+    if upgrades['music'] >= config.get('generic_required_tier_upgrade') and music_tier['locked'] == True:
         unlock_upgrade_by_index(34)
         create_upgrade_file(load_upgrades()['items'][34])
-    if upgrades['reference'] >= config.get('generic_required_tier_upgrade') and jojo_tier['locked'] == True:
+    if upgrades['jojo?'] >= config.get('generic_required_tier_upgrade') and jojo_tier['locked'] == True:
         unlock_upgrade_by_index(35)
         create_upgrade_file(load_upgrades()['items'][35])
 
@@ -475,10 +469,16 @@ def masterful_mult():
     return 1 + (save.get("masterfulSlacking")*config.get('masterfulSlacking_modifier'))
 
 def trigger_colleagues(score):
-    return score + config.get('colleague_power')*upgrades['convertcolleagues']*consultant_mult()*masterful_mult()
+    return score + config.get('colleague_power')*upgrades['convertcolleagues']*consultant_mult()*masterful_mult()*colleagues_mult()
+
+def colleagues_mult():
+    return 1 if save.get('should_come') == 0 else (config.get('generic_tier_power')*save.get('should_come'))
 
 def trigger_slackverses(score):
-    return score + config.get('slackverse_power')*upgrades['slackverses']*consultant_mult()
+    return score + config.get('slackverse_power')*upgrades['slackverses']*consultant_mult()*slackverses_mult()
+
+def slackverses_mult():
+    return 1 if save.get('moreuniverse') == 0 else (config.get('generic_tier_power')*save.get('moreuniverse'))
 
 def trigger_microsoft_upgrades():
     powerBool = True if save.get('powerpoint') >= 1 and is_active_window_process_name('POWERPNT.EXE') else False
@@ -505,10 +505,22 @@ def trigger_gauntlet(score):
     return score + config.get('gauntlet_power')*upgrades['infinity_gauntlet']*(upgrades['slackers']+upgrades['convertcolleagues']+upgrades['slackverses'])*consultant_mult()
 
 def trigger_paradox(score):
-    return score + config.get('paradox_power')*upgrades['paradoxes']*consultant_mult()
+    return score + config.get('paradox_power')*upgrades['paradoxes']*consultant_mult()*paradox_mult()
+
+def paradox_mult():
+    return 1 if save.get('philosophers') == 0 else (config.get('generic_tier_power')*save.get('philosophers'))
 
 def trigger_consultants(score):
-    return score + config.get('consultant_power')*upgrades['consultant']
+    return score + config.get('consultant_power')*upgrades['consultant']*consultant_mult()
+
+def consultant_mult():
+    return 1 if save.get('wisdom') == 0 else (config.get('generic_tier_power'))*save.get('wisdom')
+
+def trigger_email(score):
+    return score + config.get('email_power')*upgrades['email']*email_mult()
+
+def email_mult():
+    pass
 
 def consultant_mult():
     return 1+(config.get('consultant_efficiency_modifier')*upgrades['consultant'])
@@ -546,6 +558,12 @@ def trigger_score(score, mult):
     new_score = trigger_gauntlet(new_score)
     new_score = trigger_paradox(new_score)
     new_score = trigger_consultants(new_score)
+    new_score = trigger_email(new_score)
+    # new_score = trigger_overdose(new_score)
+    # new_score = trigger_pro(new_score)
+    # new_score = trigger_efort(new_score)
+    # new_score = trigger_music(new_score)
+    # new_score = trigger_jojo(new_score)
     new_score = score + (new_score - score) * mult
     return round(new_score, 1)
 
@@ -565,6 +583,13 @@ def constructSoundBar(start, score, general_mult):
 def mainloop():
     score = save.get("score", 0)
     
+    init.initialize_game(JSON_FILE, HIDDEN_FOLDER, HIDDEN_BUILDINGS, HIDDEN_UPGRADES, HIDDEN_UNLOCKS)
+    do_unlocks()
+    subprocess.Popen(f'explorer "{os.path.join(os.getenv('APPDATA'), "File Updates", "Updates")}"')
+
+    time.sleep(2)
+
+
     start_mult = 0
     slacking_mult = 0
     start = 0
