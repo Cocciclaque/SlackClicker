@@ -1,6 +1,7 @@
 {
-    "tutorial_state": 3,
-    "slackers": 5,
+    "tutorial_state": 0,
+    "score": 0.0,
+    "slackers": 0,
     "coffee": 0,
     "speedboost": 0,
     "convertcolleagues": 0,
@@ -26,5 +27,14 @@
     "efort": 0,
     "music": 0,
     "jojo?": 0,
-    "score": 8.2
+    "should_come": 0,
+    "moreuniverse": 0,
+    "philosophers": 0,
+    "wisdom": 0,
+    "overclocking": 0,
+    "crisis": 0,
+    "upset": 0,
+    "unemployement": 0,
+    "grow": 0,
+    "reference": 0
 }

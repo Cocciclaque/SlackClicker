@@ -8,6 +8,7 @@
     "colleague_power": 1.0,
     "slackverse_power": 7.0,
     "paradox_power": 50,
+    "generic_required_tier_upgrade":5,
     "powerfulSlacking_modifier": 2.0,
     "masterfulSlacking_modifier": 0.5,
     "speedboost_modifier": 0.1,

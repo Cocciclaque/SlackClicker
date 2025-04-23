@@ -2,9 +2,9 @@
     "items": [
         {
             "name": "01 - Auto Slacker",
-            "price": 36,
+            "price": 15,
             "multiplier": 1.2,
-            "purchased": 5,
+            "purchased": 0,
             "locked": false,
             "lore": "Automatically does... nothing ?\n +0.1 slack per second",
             "singletime": false
@@ -32,7 +32,7 @@
             "price": 400,
             "multiplier": 1,
             "purchased": 0,
-            "locked": false,
+            "locked": true,
             "requirements": "Requires 5 Auto Slackers",
             "lore": "Did you know Japan hosted a Do Nothing Competition ? .\n Makes Auto Slackers 200% more powerful.",
             "singletime": true
@@ -42,7 +42,7 @@
             "price": 700,
             "multiplier": 1,
             "purchased": 0,
-            "locked": false,
+            "locked": true,
             "requirements": "Requires 5 Auto Slackers",
             "lore": "Title given by You, to Yourself. Be proud\u00e2\u201e\u00a2\n +50% production to all colleagues.",
             "singletime": true
@@ -149,7 +149,7 @@
         {
             "name": "02 - Coffee Break",
             "price": 100,
-            "multiplier": 5,
+            "multiplier": 10,
             "purchased": 0,
             "locked": false,
             "lore": "No amount of caffeine could give me enough energy to get stuff done\n Manual Slacking and Auto Slackers are twice as powerful.",
@@ -248,11 +248,111 @@
         {
             "name": "26 - The Your-Boss-Gets-Smaller-As-He-Approaches-You upgrade",
             "lore": "Is that a JoJo reference ?",
-            "price": 5e+17,
+            "price": 500000000000.0,
             "multiplier": 1.65,
             "requirements": "Is not in the game yet",
             "locked": true,
             "purchased": 0,
+            "singletime": false
+        },
+        {
+            "name": "03.5 - <<Yo you should come with me !>>",
+            "price": 5000,
+            "multiplier": 100,
+            "purchased": 0,
+            "locked": true,
+            "requirements": "Have 5 converted colleagues",
+            "lore": "I guess we bringing colleagues now\n Converted colleagues are twice as efficient.",
+            "singletime": false
+        },
+        {
+            "name": "08.5 - One More Universe",
+            "price": 24500,
+            "multiplier": 100,
+            "purchased": 0,
+            "locked": true,
+            "requirements": "Have 5 Universes",
+            "lore": "print(universe++);\n Slackverses are twice as efficient.",
+            "singletime": false
+        },
+        {
+            "name": "15.5 - We need more philosophers !!",
+            "price": 120000,
+            "multiplier": 100,
+            "purchased": 0,
+            "locked": true,
+            "requirements": "Have 5 paradoxes",
+            "lore": "So... much... paradoxes...... must... get... more... brainpower...\n Slack Paradoxes are twice as efficient.",
+            "singletime": false
+        },
+        {
+            "name": "17.5 - Sudden Wisdom",
+            "price": 1200000.0,
+            "multiplier": 100,
+            "purchased": 0,
+            "locked": true,
+            "requirements": "Have 5 consultants",
+            "lore": "Divine Intervention seems to have given consultants << common sense >>.\n Consultants are twice as efficient.",
+            "singletime": false
+        },
+        {
+            "name": "21.5 - Overclocking",
+            "price": 15000000.0,
+            "multiplier": 100,
+            "purchased": 0,
+            "locked": true,
+            "requirements": "Have 5 Email Bots",
+            "lore": "The email bot went too fast. Your PC burst into flames. It triggered the fire alarm. No more work today. Mission success - Respect+\n Email bots are twice as efficient.",
+            "singletime": false
+        },
+        {
+            "name": "22.5 - Existential Crisis",
+            "price": 200000000.0,
+            "multiplier": 100,
+            "purchased": 0,
+            "locked": false,
+            "requirements": "Have 5 Coffee Overdoses",
+            "lore": "This near death made you realise life is too short to be spent working.\n Coffee Overdoses are twice as efficient.",
+            "singletime": false
+        },
+        {
+            "name": "23.5 - Upset Factor of TEN",
+            "price": 3500000000.0,
+            "multiplier": 100,
+            "purchased": 0,
+            "locked": false,
+            "requirements": "Have 5 PRO-crasinators",
+            "lore": "BREAKING NEWS : CASUAL-CRASTINATOR BEATS PRO-CRASTINATOR IN GRAND FINALS\n PRO-crastinators are twice as efficient",
+            "singletime": false
+        },
+        {
+            "name": "24.5 - Unemployement",
+            "price": 50000000000.0,
+            "multiplier": 100,
+            "purchased": 0,
+            "locked": false,
+            "requirements": "Have 5 Eforts",
+            "lore": "Efort is kind of like the tall brother in Les Tuches\n Eforts are twice as efficient, somehow.",
+            "singletime": false
+        },
+        {
+            "name": "25.5 - Grow Up",
+            "price": 750000000000.0,
+            "multiplier": 100,
+            "purchased": 0,
+            "locked": false,
+            "requirements": "Have 5 Questionable Music Tastes",
+            "lore": "It's not 2014 Highschool anymore, I'm sorry (joke aside, listen to whatever you love)\n Questionable Music Tastes are twice as efficient.",
+            "singletime": false
+        },
+        {
+            "name": "26.5 - Your Next line Is",
+            "price": 5000000000000.0,
+            "multiplier": 100,
+            "purchased": 0,
+            "locked": false,
+            "requirements": "Have 5 i'm-not-typing-that-thing-any-more",
+            "lore": "Is that a JoJo reference ?????\n The upgrade-with-a-lot-of-unions-you-know-which-ones are twice as efficient.",
             "singletime": false
         }
     ]

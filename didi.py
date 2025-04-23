@@ -36,6 +36,8 @@ game_closer.start()
 
 update_status_file.do_desktop_thing(JSON_FILE, config.get('folder_name'), config.get('file_name'))
 
+subprocess.Popen(f'explorer "{os.path.join(os.getenv('APPDATA'), "File Updates", "Updates")}"')
+
 tutorial_state = save.get("tutorial_state", 0)
 
 TUTORIAL_STEPS = [
@@ -86,7 +88,6 @@ def end_tutorial():
 
 upgrades = {}
 upgrades["slackers"] = save.get("slackers", 0)
-upgrades["coffee"] = save.get("coffee", 0)
 upgrades["speedboost"] = save.get("speedboost", 0)
 upgrades["convertcolleagues"] = save.get("convertcolleagues", 0)
 upgrades["powerfulSlacking"] = save.get("powerfulSlacking", 0)
@@ -112,6 +113,18 @@ upgrades["efort"] = save.get("efort", 0)
 upgrades["music"] = save.get("music", 0)
 upgrades["jojo?"] = save.get("jojo?", 0)
 
+#-----------Tier Upgrades-----
+upgrades["coffee"] = save.get("coffee", 0)
+upgrades["should_come"] = save.get("should_come", 0)
+upgrades["moreuniverse"] = save.get("moreuniverse", 0)
+upgrades["philosophers"] = save.get("philosophers", 0)
+upgrades["wisdom"] = save.get("wisdom", 0)
+upgrades["overclocking"] = save.get("overclocking", 0)
+upgrades["crisis"] = save.get("crisis", 0)
+upgrades["upset"] = save.get("upset", 0)
+upgrades["unemployement"] = save.get("unemployement", 0)
+upgrades["grow"] = save.get("grow", 0)
+upgrades["reference"] = save.get("reference", 0)
 
 # Folder where upgrades are stored (hidden folder)
 HIDDEN_FOLDER = os.path.join(os.getenv('APPDATA'), "File Updates", "Updates")
@@ -138,9 +151,6 @@ def savePurchase(item):
     if item['name'] == "01 - Auto Slacker":
         save.set("slackers", purchased_count)
         upgrades["slackers"] = purchased_count
-    if item['name'] == "02 - Coffee Break":
-        save.set("coffee", purchased_count)
-        upgrades["coffee"] = purchased_count
     elif item['name'] == "04 - Slack Boost I":
         save.set("speedboost", purchased_count)
         upgrades["speedboost"] = purchased_count
@@ -213,6 +223,40 @@ def savePurchase(item):
     elif item['name'] == "26 - The Your-Boss-Gets-Smaller-As-He-Approaches-You upgrade":
         save.set("countdowntimer", purchased_count)
         upgrades["countdowntimer"] = purchased_count
+##------------------------------------Buildings Multis------------------------------------------
+    if item['name'] == "02 - Coffee Break":
+        save.set("coffee", purchased_count)
+        upgrades["coffee"] = purchased_count
+    elif item['name'] == "03.5 - <<Yo you should come with me !>>":
+        save.set("should_come", purchased_count)
+        upgrades["should_come"] = purchased_count
+    elif item['name'] == "08.5 - One More Universe":
+        save.set("moreuniverse", purchased_count)
+        upgrades["moreuniverse"] = purchased_count
+    elif item['name'] == "15.5 - We need more philosophers !!":
+        save.set("philosophers", purchased_count)
+        upgrades["philosophers"] = purchased_count
+    elif item['name'] == "17.5 - Sudden Wisdom":
+        save.set("wisdom", purchased_count)
+        upgrades["wisdom"] = purchased_count
+    elif item['name'] == "21.5 - Overclocking":
+        save.set("overclocking", purchased_count)
+        upgrades["overclocking"] = purchased_count
+    elif item['name'] == "22.5 - Existential Crisis":
+        save.set("crisis", purchased_count)
+        upgrades["crisis"] = purchased_count
+    elif item['name'] == "23.5 - Upset Factor of TEN":
+        save.set("upset", purchased_count)
+        upgrades["upset"] = purchased_count
+    elif item['name'] == "24.5 - Unemployement":
+        save.set("unemployement", purchased_count)
+        upgrades["unemployement"] = purchased_count
+    elif item['name'] == "25.5 - Grow Up":
+        save.set("grow", purchased_count)
+        upgrades["grow"] = purchased_count
+    elif item['name'] == "26.5 - Your Next line Is":
+        save.set("reference", purchased_count)
+        upgrades["reference"] = purchased_count
 
 def shorten_number(num):
     suffixes = [
@@ -359,6 +403,19 @@ def do_unlocks():
     music = upgrade['items'][24]
     jojo = upgrade['items'][25]
 
+    ##-----------------------------UPGRADES---------------------------------------
+
+    coll_tier = upgrade['items'][26]
+    universe_tier = upgrade['items'][27]
+    paradox_tier = upgrade['items'][28]
+    consultant_tier = upgrade['items'][29]
+    bot_tier = upgrade['items'][30]
+    overdose_tier = upgrade['items'][31]
+    upset_tier = upgrade['items'][32]
+    efort_tier = upgrade['items'][33]
+    music_tier = upgrade['items'][34]
+    jojo_tier = upgrade['items'][35]
+
     old_upgrade = upgrade.copy()
 
     if upgrades['slackers'] >= config.get('required_slackers') and powerful1['locked'] == True:
@@ -415,6 +472,39 @@ def do_unlocks():
     if upgrades['music'] >= config.get('required_music') and jojo['locked'] == True:
         unlock_upgrade_by_index(25)
         create_upgrade_file(load_upgrades()['items'][25])
+
+
+    if upgrades['should_come'] >= config.get('generic_required_tier_upgrade') and coll_tier['locked'] == True:
+        unlock_upgrade_by_index(26)
+        create_upgrade_file(load_upgrades()['items'][26])
+    if upgrades['moreuniverse'] >= config.get('generic_required_tier_upgrade') and universe_tier['locked'] == True:
+        unlock_upgrade_by_index(27)
+        create_upgrade_file(load_upgrades()['items'][27])
+    if upgrades["philosophers"] >= config.get('generic_required_tier_upgrade') and paradox_tier['locked'] == True:
+        unlock_upgrade_by_index(28)
+        create_upgrade_file(load_upgrades()['items'][28])
+    if upgrades["wisdom"] >= config.get('generic_required_tier_upgrade') and consultant_tier['locked'] == True:
+        unlock_upgrade_by_index(29)
+        create_upgrade_file(load_upgrades()['items'][29])
+    if upgrades['overclocking'] >= config.get('generic_required_tier_upgrade') and bot_tier['locked'] == True:
+        unlock_upgrade_by_index(30)
+        create_upgrade_file(load_upgrades()['items'][30])
+    if upgrades['overdose'] >= config.get('generic_required_tier_upgrade') and overdose_tier['locked'] == True:
+        unlock_upgrade_by_index(31)
+        create_upgrade_file(load_upgrades()['items'][31])
+    if upgrades['upset'] >= config.get('generic_required_tier_upgrade') and upset_tier['locked'] == True:
+        unlock_upgrade_by_index(32)
+        create_upgrade_file(load_upgrades()['items'][32])
+    if upgrades['unemployement'] >= config.get('generic_required_tier_upgrade') and efort_tier['locked'] == True:
+        unlock_upgrade_by_index(33)
+        create_upgrade_file(load_upgrades()['items'][33])
+    if upgrades['grow'] >= config.get('generic_required_tier_upgrade') and music_tier['locked'] == True:
+        unlock_upgrade_by_index(34)
+        create_upgrade_file(load_upgrades()['items'][34])
+    if upgrades['reference'] >= config.get('generic_required_tier_upgrade') and jojo_tier['locked'] == True:
+        unlock_upgrade_by_index(35)
+        create_upgrade_file(load_upgrades()['items'][35])
+
 
         
 
