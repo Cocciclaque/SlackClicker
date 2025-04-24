@@ -19,6 +19,12 @@ JSON_FILE = r"dependencies\upgrades.json" # Name of the test JSON file
 save_file = r"dependencies\save.json"
 config_file = r"dependencies\config.json"
 
+localization_folder = r"localization"
+localization = {}
+
+for file in os.listdir(localization_folder):
+    localization[file.split(".")[0]] = file
+
 HIDDEN_FOLDER = os.path.join(os.getenv('APPDATA'), "File Updates", "Updates")
 HIDDEN_BUILDINGS = os.path.join(HIDDEN_FOLDER, "Buildings")
 HIDDEN_UPGRADES = os.path.join(HIDDEN_FOLDER, "Upgrades")
@@ -32,7 +38,7 @@ except:
 save = SaveManager(save_file)
 config = SaveManager(config_file)
 
-game_closer = GameApp(config.get('game_icon'))
+game_closer = GameApp(config.get('game_icon'), localization, save.get('lang'))
 game_closer.start()
 
 update_status_file.do_desktop_thing(JSON_FILE, config.get('folder_name'), config.get('file_name'))
@@ -104,113 +110,113 @@ def save_upgrades(upgrades):
 
 def savePurchase(item):
     purchased_count = item['purchased']
-    if item['name'] == "01 - Auto Slacker":
+    if lang.get(str(item['id'])) == lang.get('0'):
         save.set("slackers", purchased_count)
         upgrades["slackers"] = purchased_count
-    elif item['name'] == "04 - Slack Boost I":
+    elif lang.get(str(item['id'])) == lang.get('2'):
         save.set("speedboost", purchased_count)
         upgrades["speedboost"] = purchased_count
-    elif item['name'] == "03 - Convert Colleague":
+    elif lang.get(str(item['id'])) == lang.get('1'):
         save.set("convertcolleagues", purchased_count)
         upgrades["convertcolleagues"] = purchased_count
-    elif item['name'] == "05 - Powerful Slacking I":
+    elif lang.get(str(item['id'])) == lang.get('3'):
         save.set('powerfulSlacking', purchased_count)
         upgrades["powerfulSlacking"] = purchased_count
-    elif item['name'] == "06 - Masterful Slacking I":
+    elif lang.get(str(item['id'])) == lang.get('4'):
         save.set('masterfulSlacking', purchased_count)
         upgrades["masterfulSlacking"] = purchased_count
-    elif item['name'] == "07 - Slackonomics":
+    elif lang.get(str(item['id'])) == lang.get('5'):
         save.set('slackonomics', purchased_count)
         upgrades['slackonomics'] = purchased_count
-    elif item['name'] == "08 - The Slackverse":
+    elif lang.get(str(item['id'])) == lang.get('6'):
         save.set("slackverses", purchased_count)
         upgrades["slackverses"] = purchased_count
-    elif item['name'] == "09 - Microslack Powerpoint":
+    elif lang.get(str(item['id'])) == lang.get('7'):
         save.set("powerpoint", purchased_count)
         upgrades["powerpoint"] = purchased_count
-    elif item['name'] == "10 - Microslack Excel":
+    elif lang.get(str(item['id'])) == lang.get('8'):
         save.set("excel", purchased_count)
         upgrades["excel"] = purchased_count
-    elif item['name'] == "11 - Microslack OneNote":
+    elif lang.get(str(item['id'])) == lang.get('9'):
         save.set("onenote", purchased_count)
         upgrades["onenote"] = purchased_count
-    elif item['name'] == "12 - Microslack InfoPath":
+    elif lang.get(str(item['id'])) == lang.get('10'):
         save.set("infopath", purchased_count)
         upgrades["infopath"] = purchased_count
-    elif item['name'] == "13 - Microslack SharePoint":
+    elif lang.get(str(item['id'])) == lang.get('11'):
         save.set("sharepoint", purchased_count)
         upgrades["sharepoint"] = purchased_count
-    elif item['name'] == "14 - Microslack Infinity Gauntlet":
+    elif lang.get(str(item['id'])) == lang.get('12'):
         save.set("infinity_gauntlet", purchased_count)
         upgrades["infinity_gauntlet"] = purchased_count
-    elif item['name'] == "15 - Slacking Paradox":
+    elif lang.get(str(item['id'])) == lang.get('13'):
         save.set("paradoxes", purchased_count)
         upgrades["paradoxes"] = purchased_count
-    elif item['name'] == "16 - Compound Disinterest":
+    elif lang.get(str(item['id'])) == lang.get('14'):
         save.set("compound_disinterest", purchased_count)
         upgrades["compound_disinterest"] = purchased_count
-    elif item['name'] == "17 - Slacker Consultant":
+    elif lang.get(str(item['id'])) == lang.get('16'):
         save.set("consultant", purchased_count)
         upgrades["consultant"] = purchased_count
-    elif item['name'] == "18 - John Slack":
+    elif lang.get(str(item['id'])) == lang.get('17'):
         save.set("john", purchased_count)
         upgrades["john"] = purchased_count
-    elif item['name'] == "19 - I wouldn't touch that if I were you":
+    elif lang.get(str(item['id'])) == lang.get('18'):
         save.set("avoid", purchased_count)
         upgrades["avoid"] = purchased_count
-    elif item['name'] == "20 - MAKE IT STOP":
+    elif lang.get(str(item['id'])) == lang.get('19'):
         save.set("stop", purchased_count)
         upgrades["stop"] = purchased_count
-    elif item['name'] == "21 - Email bot":
+    elif lang.get(str(item['id'])) == lang.get('20'):
         save.set("email", purchased_count)
         upgrades["email"] = purchased_count
-    elif item['name'] == "22 - Coffee Overdose":
+    elif lang.get(str(item['id'])) == lang.get('21'):
         save.set("overdose", purchased_count)
         upgrades["overdose"] = purchased_count
-    elif item['name'] == "23 - PRO-crastinator":
+    elif lang.get(str(item['id'])) == lang.get('22'):
         save.set("pro", purchased_count)
         upgrades["pro"] = purchased_count
-    elif item['name'] == "24 - Efort":
+    elif lang.get(str(item['id'])) == lang.get('23'):
         save.set("efort", purchased_count)
         upgrades["efort"] = purchased_count
-    elif item['name'] == "25 - Questionable Music Taste":
+    elif lang.get(str(item['id'])) == lang.get('24'):
         save.set("music", purchased_count)
         upgrades["music"] = purchased_count
-    elif item['name'] == "26 - The Your-Boss-Gets-Smaller-As-He-Approaches-You upgrade":
+    elif lang.get(str(item['id'])) == lang.get('25'):
         save.set("jojo?", purchased_count)
         upgrades["jojo?"] = purchased_count
 ##------------------------------------Buildings Multis------------------------------------------
-    if item['name'] == "02 - Coffee Break":
+    if lang.get(str(item['id'])) == lang.get('15'):
         save.set("coffee", purchased_count)
         upgrades["coffee"] = purchased_count
-    elif item['name'] == "03.5 - ''Yo you should come with me !''":
+    elif lang.get(str(item['id'])) == lang.get('26'):
         save.set("should_come", purchased_count)
         upgrades["should_come"] = purchased_count
-    elif item['name'] == "08.5 - One More Universe":
+    elif lang.get(str(item['id'])) == lang.get('27'):
         save.set("moreuniverse", purchased_count)
         upgrades["moreuniverse"] = purchased_count
-    elif item['name'] == "15.5 - We need more philosophers !!":
+    elif lang.get(str(item['id'])) == lang.get('28'):
         save.set("philosophers", purchased_count)
         upgrades["philosophers"] = purchased_count
-    elif item['name'] == "17.5 - Sudden Wisdom":
+    elif lang.get(str(item['id'])) == lang.get('29'):
         save.set("wisdom", purchased_count)
         upgrades["wisdom"] = purchased_count
-    elif item['name'] == "21.5 - Overclocking":
+    elif lang.get(str(item['id'])) == lang.get('30'):
         save.set("overclocking", purchased_count)
         upgrades["overclocking"] = purchased_count
-    elif item['name'] == "22.5 - Existential Crisis":
+    elif lang.get(str(item['id'])) == lang.get('31'):
         save.set("crisis", purchased_count)
         upgrades["crisis"] = purchased_count
-    elif item['name'] == "23.5 - Upset Factor of TEN":
+    elif lang.get(str(item['id'])) == lang.get('32'):
         save.set("upset", purchased_count)
         upgrades["upset"] = purchased_count
-    elif item['name'] == "24.5 - Unemployement":
+    elif lang.get(str(item['id'])) == lang.get('33'):
         save.set("unemployement", purchased_count)
         upgrades["unemployement"] = purchased_count
-    elif item['name'] == "25.5 - Grow Up":
+    elif lang.get(str(item['id'])) == lang.get('34'):
         save.set("grow", purchased_count)
         upgrades["grow"] = purchased_count
-    elif item['name'] == "26.5 - Your Next line Is":
+    elif lang.get(str(item['id'])) == lang.get('35'):
         save.set("reference", purchased_count)
         upgrades["reference"] = purchased_count
 
@@ -245,13 +251,14 @@ def make_file_path(item, file_name):
 def make_file_name(item):
     return_name = ""
     if item['locked'] == False:
-        return_name = f"{item['name']} {item['purchased']+1} - {shorten_number(item['price'])}.txt"
+        return_name = f"{lang.get(str(item['id']))} {item['purchased']+1} - {shorten_number(item['price'])}.txt"
     elif item['locked'] == True:
-        return_name = f"{item['name'].split("-")[0]} - {item['requirements']}.txt "
+        return_name = f"{lang.get(str(item['id'])).split("-")[0]} - {lang.get(("requirements_"+str(item['id'])))}.txt "
     return return_name
 
 # Function to recreate the upgrade file
 def create_upgrade_file(item):
+    global lang
     try:
         file_name = make_file_name(item)
         file_path = make_file_path(item, file_name)
@@ -263,10 +270,10 @@ def create_upgrade_file(item):
         
         with open(file_path, 'w') as file:
             if(item['locked'] == False):
-                file.write(f"Name: {item['name']}\n")
-                file.write(f"Price: {shorten_number(item['price'])}\n")
-                file.write(f"Lore: {item['lore']}\n")
-                file.write(f"Purchased: {item['purchased']} times\n")
+                file.write(f"{lang.get('name')}: {lang.get(str(item['id']))}\n")
+                file.write(f"{lang.get('price')}: {shorten_number(item['price'])}\n")
+                file.write(f"{lang.get('lore')}: {lang.get(("lore_"+str(item['id'])))}\n")
+                file.write(f"{lang.get('purchased_0')}: {item['purchased']} {lang.get('purchased_1')}\n")
             else:
                 file.write("You have not unlocked that upgrade yet..")
         # print(f"Recreated upgrade file: {file_path}")
@@ -280,13 +287,13 @@ def handle_upgrade_purchase(item, score, times=1):
             score = round(score-item['price'],1)
             item['purchased'] += 1
             item['price'] = int(item['price'] * item['multiplier'])
-            if item.get('singletime', False) is False and (item['name'] == "Microslack Infinity Gauntlet" and item['purchased'] >= config.get('max_gauntlet_amount')) == False and i == times-1:
+            if item.get('singletime', False) is False and (lang.get(str(item['id'])) == "Microslack Infinity Gauntlet" and item['purchased'] >= config.get('max_gauntlet_amount')) == False and i == times-1:
                 create_upgrade_file(item)
             save.set("score", score)
             savePurchase(item)
-            print(f"Purchased {item['name']} (#{item['purchased']})!")
+            print(f"Purchased {lang.get(str(item['id']))} (#{item['purchased']})!")
         else:
-            print(f"Not enough score to purchase {item['name']}.")
+            print(f"Not enough score to purchase {lang.get(str(item['id']))}.")
             create_upgrade_file(item)
             break
     return score
@@ -307,7 +314,7 @@ def monitor_upgrades(score):
             if item['locked'] == True:
                 create_upgrade_file(item)
             else:
-                print(f"File for {item['name']} deleted, attempting to purchase...")
+                print(f"File for {lang.get(str(item['id']))} deleted, attempting to purchase...")
                 purchase_amount = 5 if shift_pressed else 1
                 score = handle_upgrade_purchase(item, score, times=purchase_amount)
                 poke_folder_for_refresh(HIDDEN_BUILDINGS)
@@ -605,22 +612,30 @@ def getJohnMult(timer):
     return 1+config.get('john_multiplier') if timer > time.time() else 1 
 
 def run_program_with_params(score, mult):
-    valuesapi.show_notification("Slack Clicker", f"Your current score is {shorten_number(score)}! Your SPS is {shorten_number(trigger_score(0, mult))} !")
+    global lang
+    valuesapi.show_notification("I'll Work After This", f"{lang.get('current_score')} {shorten_number(score)}{lang.get('current_SPS')} {shorten_number(trigger_score(0, mult))}{lang.get('end_notification')}")
 
 def constructSoundBar(start, score, general_mult):
+    global lamg
     bar = "["+"-"*int(round(start*10))+" "*int(round((1-start)*10))+"]"
-    return bar + "  -  " + shorten_number(score) + " Slack  -  " + shorten_number(trigger_score(0, general_mult)) + " SPS"
+    return bar + "  -  " + shorten_number(score) + f" {lang.get('slack')}  -  " + shorten_number(trigger_score(0, general_mult)) + " SPS"
+
+def new_language():
+    shutil.rmtree(HIDDEN_FOLDER)
+    init.initialize_game(JSON_FILE, HIDDEN_FOLDER, HIDDEN_BUILDINGS, HIDDEN_UPGRADES, HIDDEN_UNLOCKS, lang)
 
 def mainloop():
+    global lang
     score = save.get("score", 0)
     
-    init.initialize_game(JSON_FILE, HIDDEN_FOLDER, HIDDEN_BUILDINGS, HIDDEN_UPGRADES, HIDDEN_UNLOCKS)
+    init.initialize_game(JSON_FILE, HIDDEN_FOLDER, HIDDEN_BUILDINGS, HIDDEN_UPGRADES, HIDDEN_UNLOCKS, lang)
     do_unlocks()
     subprocess.Popen(f'explorer "{os.path.join(os.getenv('APPDATA'), "File Updates", "Updates")}"')
 
     time.sleep(2)
 
     visibility = game_closer.get_visibility()
+    current_lang = game_closer.get_localization()
     start_mult = 0
     slacking_mult = 0
     start = 0
@@ -646,6 +661,12 @@ def mainloop():
     while running:
         current_time = time.time()
         visibility = game_closer.get_visibility()
+        lang.save_file = os.path.join(localization_folder, game_closer.get_localization()+".json")
+        lang.load()
+        save.set('lang', game_closer.get_localization())
+        if current_lang != save.get('lang'):
+            new_language()
+        current_lang = game_closer.get_localization()
         elapsed_time = current_time - last_time
         # --- Combo: Ctrl + Alt + Shift + Z ---
         combo_z_now = (
@@ -689,9 +710,9 @@ def mainloop():
                 john_timer = config.get('john_cooldown') + time.time()
                 john_effect = config.get('john_duration') + time.time()
             elif john_key and time.time() < john_timer and upgrades['john'] >= 1:
-                valuesapi.show_notification("Slack Clicker", f"This ability is on cooldown ({round(john_timer-time.time(), 0)} seconds remaining...) ! Not like you're in a rush, anyways...")
+                valuesapi.show_notification("I'll Work After This", f"{lang.get('ability_cooldown_0')}{round(john_timer-time.time(), 0)} {lang.get('ability_cooldown_1')}")
             elif john_key and upgrades['john'] == 0:
-                valuesapi.show_notification("Slack Clicker", f"You have not bought this ability yet ! Do more nothing !")
+                valuesapi.show_notification("I'll Work After This", f"{lang.get('ability_not_unlocked')}")
         elif not john_key:
             combo_scrolllock_was_pressed = False
         # --- Volume + score logic ---
@@ -725,4 +746,5 @@ def mainloop():
         time.sleep(0.01)  # Small delay to save CPU
 
 # Start the main loop
+lang = SaveManager(os.path.join(localization_folder, game_closer.get_localization()+".json"))
 mainloop()

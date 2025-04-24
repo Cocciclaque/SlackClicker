@@ -1,7 +1,7 @@
 import json
 import os
 import subprocess
-
+import saveManager
 # Path where you want to create the hidden folder (in a hidden location)
 
 
@@ -70,18 +70,18 @@ def make_file_path(item, file_name, HIDDEN_BUILDINGS, HIDDEN_UPGRADES, HIDDEN_UN
         return_path = os.path.join(HIDDEN_UNLOCKS, file_name)
     return return_path
 
-def make_file_name(item):
+def make_file_name(item, lang:saveManager.SaveManager):
     return_name = ""
     if item['locked'] == False:
-        return_name = f"{item['name']} {item['purchased']+1} - {shorten_number(item['price'])}.txt"
+        return_name = f"{lang.get(str(item['id']))} {item['purchased']+1} - {shorten_number(item['price'])}.txt"
     elif item['locked'] == True:
-        return_name = f"{item['name'].split("-")[0]} - {item['requirements']}.txt "
+        return_name = f"{lang.get(str(item['id'])).split("-")[0]} - {lang.get(("requirements_"+str(item['id'])))}.txt "
     return return_name
 
 # Function to recreate the upgrade file
-def create_upgrade_files(item, HIDDEN_FOLDER, HIDDEN_BUILDINGS, HIDDEN_UPGRADES, HIDDEN_UNLOCKS):
+def create_upgrade_files(item, HIDDEN_FOLDER, HIDDEN_BUILDINGS, HIDDEN_UPGRADES, HIDDEN_UNLOCKS, lang:saveManager.SaveManager):
     try:
-        file_name = make_file_name(item)
+        file_name = make_file_name(item, lang)
         file_path = make_file_path(item, file_name, HIDDEN_BUILDINGS, HIDDEN_UPGRADES, HIDDEN_UNLOCKS)
 
         # Ensure the directory exists
@@ -91,21 +91,21 @@ def create_upgrade_files(item, HIDDEN_FOLDER, HIDDEN_BUILDINGS, HIDDEN_UPGRADES,
         os.makedirs(HIDDEN_UNLOCKS, exist_ok=True)
         if(item['locked'] == False and (item['singletime'] == True and item['purchased'] >= 1 ) == False):
             with open(file_path, 'w') as file:
-                file.write(f"Name: {item['name']}\n")
-                file.write(f"Price: {shorten_number(item['price'])}\n")
-                file.write(f"Lore: {item['lore']}\n")
-                file.write(f"Purchased: {item['purchased']} times\n")
+                file.write(f"{lang.get('name')}: {lang.get(str(item['id']))}\n")
+                file.write(f"{lang.get('price')}: {shorten_number(item['price'])}\n")
+                file.write(f"{lang.get('lore')}: {lang.get(("lore_"+str(item['id'])))}\n")
+                file.write(f"{lang.get('purchased_0')}: {item['purchased']} {lang.get('purchased_1')}\n")
             print(f"Recreated upgrade file: {file_path}")
     except Exception as e:
         print(f"Error creating the upgrade file: {e}")
 
 # Initialize the game: create folder, load json, create upgrade files
-def initialize_game(JSON_FILE, HIDDEN_FOLDER, HIDDEN_BUILDINGS, HIDDEN_UPGRADES, HIDDEN_UNLOCKS):
+def initialize_game(JSON_FILE, HIDDEN_FOLDER, HIDDEN_BUILDINGS, HIDDEN_UPGRADES, HIDDEN_UNLOCKS, lang):
     try:
         create_hidden_folder(HIDDEN_FOLDER)  # Ensure hidden folder is created
         upgrades = load_upgrades_from_json(JSON_FILE)  # Load upgrade data from JSON
         for item in upgrades.get("items", []):
-            create_upgrade_files(item, HIDDEN_FOLDER, HIDDEN_BUILDINGS, HIDDEN_UPGRADES, HIDDEN_UNLOCKS)  # Create the upgrade files based on the data
+            create_upgrade_files(item, HIDDEN_FOLDER, HIDDEN_BUILDINGS, HIDDEN_UPGRADES, HIDDEN_UNLOCKS, lang)  # Create the upgrade files based on the data
     except Exception as e:
         print(f"Error initializing game: {e}")
 
