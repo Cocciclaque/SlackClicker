@@ -197,7 +197,7 @@
         },
         {
         "name": "21 - Email bot",
-        "lore": "One email a day keeps the boss away.\n ",
+        "lore": "One email a day keeps the boss away.\n +1.3k Slack per second",
         "price": 1.4e6,
         "multiplier": 1.15,
         "requirements": "Requires 400k slack",
@@ -207,7 +207,7 @@
         },
         {
         "name": "22 - Coffee Overdose",
-        "lore": "Welp, that's one way to avoid work.",
+        "lore": "Welp, that's one way to avoid work.\n +7.5k Slack per second.",
         "price": 2e7,
         "multiplier": 1.25,
         "requirements": "Requires 400k slack",
@@ -217,7 +217,7 @@
         },
         {
         "name": "23 - PRO-crastinator",
-        "lore": "Casual crastinators when PRO-crastinator walks in",
+        "lore": "Casual crastinators when PRO-crastinator walks in\n +43k Slack per second",
         "price": 3.3e8,
         "multiplier": 1.35,
         "requirements": "Requires 400k slack",
@@ -227,7 +227,7 @@
         },
         {
         "name": "24 - Efort",
-        "lore": "Effort ? No, Efort, your unemployed 26 y/o brother.",
+        "lore": "Effort ? No, Efort, your unemployed 26 y/o brother.\n Somehow gives you +250k Slack per second",
         "price": 5.1e9,
         "multiplier": 1.45,
         "requirements": "Requires 400k slack",
@@ -237,7 +237,7 @@
         },
         {
         "name": "25 - Questionable Music Taste",
-        "lore": "Make your coworkers avoid you by blasting 2014 Emo music MAX VOLUME in your office.",
+        "lore": "Make your coworkers avoid you by blasting 2014 Emo music MAX VOLUME in your office.\n +1.6m Slack per second",
         "price": 7.5e10,
         "multiplier": 1.55,
         "requirements": "Requires 400k slack",
@@ -247,7 +247,7 @@
         },
         {
         "name": "26 - The Your-Boss-Gets-Smaller-As-He-Approaches-You upgrade",
-        "lore": "Is that a JoJo reference ?",
+        "lore": "Is that a JoJo reference ?\n +10m Slack per second",
         "price": 5e11,
         "multiplier": 1.65,
         "requirements": "Requires 400k slack",

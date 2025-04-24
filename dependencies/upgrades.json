@@ -2,18 +2,18 @@
     "items": [
         {
             "name": "01 - Auto Slacker",
-            "price": 1868,
+            "price": 15,
             "multiplier": 1.2,
-            "purchased": 27,
+            "purchased": 0,
             "locked": false,
             "lore": "Automatically does... nothing ?\n +0.1 slack per second",
             "singletime": false
         },
         {
             "name": "03 - Convert Colleague",
-            "price": 2082,
+            "price": 100,
             "multiplier": 1.15,
-            "purchased": 22,
+            "purchased": 0,
             "locked": false,
             "lore": "<< Come on, try it man ! I promise it's fun and totally not addictive >> - John SLACK, fired the next day.\n +1 slack per second",
             "singletime": false
@@ -22,7 +22,7 @@
             "name": "04 - Slack Boost I",
             "price": 200,
             "multiplier": 1,
-            "purchased": 1,
+            "purchased": 0,
             "locked": false,
             "lore": "Doing something makes you do nothing... faster ? Whoever designed this game is probably a Steve main..\n Manually slacking accelerates production",
             "singletime": true
@@ -31,8 +31,8 @@
             "name": "05 - Powerful Slacking I",
             "price": 400,
             "multiplier": 1,
-            "purchased": 1,
-            "locked": false,
+            "purchased": 0,
+            "locked": true,
             "requirements": "Requires 5 Auto Slackers",
             "lore": "Did you know Japan hosted a Do Nothing Competition ? .\n Makes Auto Slackers 200% more powerful.",
             "singletime": true
@@ -41,8 +41,8 @@
             "name": "06 - Masterful Slacking I",
             "price": 700,
             "multiplier": 1,
-            "purchased": 1,
-            "locked": false,
+            "purchased": 0,
+            "locked": true,
             "requirements": "Requires 5 Auto Slackers",
             "lore": "Title given by You, to Yourself. Be proud\u00e2\u201e\u00a2\n +50% production to all colleagues.",
             "singletime": true
@@ -51,77 +51,77 @@
             "name": "07 - Slackonomics",
             "price": 1000,
             "multiplier": 1,
-            "purchased": 1,
-            "locked": false,
+            "purchased": 0,
+            "locked": true,
             "requirements": "Requires Masterful Slacking and Powerful Slacking",
             "lore": "You convinced HR that slacking increases morale and productivity. Somehow, they bought it.\n x1.5 to ALL passive slack generation",
             "singletime": true
         },
         {
             "name": "08 - The Slackverse",
-            "price": 2009,
+            "price": 1000,
             "multiplier": 1.15,
-            "purchased": 5,
+            "purchased": 0,
             "locked": false,
             "lore": "<< - How many did you see ?\n - 14 000 605\n - How many we work ?\n - 0. >> - That one colleague that sends memes at work\n +7 to slack per second.",
             "singletime": false
         },
         {
             "name": "09 - Microslack Powerpoint",
-            "price": 1650,
+            "price": 1500,
             "multiplier": 1.1,
-            "purchased": 1,
-            "locked": false,
+            "purchased": 0,
+            "locked": true,
             "requirements": "Requires 5 Converted Colleagues",
             "lore": "Preparing a slide so I can slack in meetings, too.\n 1.5x to production power while using Microsoft Powerpoint. 1.1x to overall multiplier",
             "singletime": true
         },
         {
             "name": "10 - Microslack Excel",
-            "price": 1650,
+            "price": 1500,
             "multiplier": 1.1,
-            "purchased": 1,
-            "locked": false,
+            "purchased": 0,
+            "locked": true,
             "requirements": "Requires 5 Converted Colleagues",
             "lore": "Slacking in word looks awfully like Dave from accounting is doing...\n 1.5x to production power while using Microsoft Excel. 1.1x to overall multiplier",
             "singletime": true
         },
         {
             "name": "11 - Microslack OneNote",
-            "price": 1650,
+            "price": 1500,
             "multiplier": 1.1,
-            "purchased": 1,
-            "locked": false,
+            "purchased": 0,
+            "locked": true,
             "requirements": "Requires 5 Converted Colleagues",
             "lore": "Wait, why bring the obscure microsoft apps only ?\n 1.5x to production power while using Microsoft OneNote. 1.1x to overall multiplier",
             "singletime": true
         },
         {
             "name": "12 - Microslack InfoPath",
-            "price": 1650,
+            "price": 1500,
             "multiplier": 1.1,
-            "purchased": 1,
-            "locked": false,
+            "purchased": 0,
+            "locked": true,
             "requirements": "Requires 5 Converted Colleagues",
             "lore": "Game's dev here : I don't really expect you to use this one.\n I don't even have it installed and have no idea what it is.\n\n 4x to production power if you manage to get it working. 1.1x to overall multiplier",
             "singletime": true
         },
         {
             "name": "13 - Microslack SharePoint",
-            "price": 1650,
+            "price": 1500,
             "multiplier": 1.1,
-            "purchased": 1,
-            "locked": false,
+            "purchased": 0,
+            "locked": true,
             "requirements": "Requires 5 Converted Colleagues",
             "lore": "Okay let's be real I have no idea what that is.\n This one actually doesn't give anything but you need it to unlock stuff. 1.1x to overall multiplier",
             "singletime": true
         },
         {
             "name": "14 - Microslack Infinity Gauntlet",
-            "price": 11250,
+            "price": 7500,
             "multiplier": 1.5,
-            "purchased": 1,
-            "locked": false,
+            "purchased": 0,
+            "locked": true,
             "requirements": "Requires every Microslack upgrade",
             "lore": "Using the Microslack upgrades and putting the referenced programs' icons in the right order, it produces a funny word.\n If that made you laugh, you owe me a steam review.\n Gives +2 to slack per second per Auto Slacker, Converted Colleague, or Slackverse.",
             "singletime": false
@@ -148,9 +148,9 @@
         },
         {
             "name": "02 - Coffee Break",
-            "price": 10000,
+            "price": 100,
             "multiplier": 10,
-            "purchased": 2,
+            "purchased": 0,
             "locked": false,
             "lore": "No amount of caffeine could give me enough energy to get stuff done\n Manual Slacking and Auto Slackers are twice as powerful.",
             "singletime": false
@@ -197,7 +197,7 @@
         },
         {
             "name": "21 - Email bot",
-            "lore": "One email a day keeps the boss away.\n ",
+            "lore": "One email a day keeps the boss away.\n +1.3k Slack per second",
             "price": 1400000.0,
             "multiplier": 1.15,
             "requirements": "Requires 400k slack",
@@ -207,7 +207,7 @@
         },
         {
             "name": "22 - Coffee Overdose",
-            "lore": "Welp, that's one way to avoid work.",
+            "lore": "Welp, that's one way to avoid work.\n +7.5k Slack per second.",
             "price": 20000000.0,
             "multiplier": 1.25,
             "requirements": "Requires 400k slack",
@@ -217,7 +217,7 @@
         },
         {
             "name": "23 - PRO-crastinator",
-            "lore": "Casual crastinators when PRO-crastinator walks in",
+            "lore": "Casual crastinators when PRO-crastinator walks in\n +43k Slack per second",
             "price": 330000000.0,
             "multiplier": 1.35,
             "requirements": "Requires 400k slack",
@@ -227,7 +227,7 @@
         },
         {
             "name": "24 - Efort",
-            "lore": "Effort ? No, Efort, your unemployed 26 y/o brother.",
+            "lore": "Effort ? No, Efort, your unemployed 26 y/o brother.\n Somehow gives you +250k Slack per second",
             "price": 5100000000.0,
             "multiplier": 1.45,
             "requirements": "Requires 400k slack",
@@ -237,7 +237,7 @@
         },
         {
             "name": "25 - Questionable Music Taste",
-            "lore": "Make your coworkers avoid you by blasting 2014 Emo music MAX VOLUME in your office.",
+            "lore": "Make your coworkers avoid you by blasting 2014 Emo music MAX VOLUME in your office.\n +1.6m Slack per second",
             "price": 75000000000.0,
             "multiplier": 1.55,
             "requirements": "Requires 400k slack",
@@ -247,7 +247,7 @@
         },
         {
             "name": "26 - The Your-Boss-Gets-Smaller-As-He-Approaches-You upgrade",
-            "lore": "Is that a JoJo reference ?",
+            "lore": "Is that a JoJo reference ?\n +10m Slack per second",
             "price": 500000000000.0,
             "multiplier": 1.65,
             "requirements": "Requires 400k slack",
@@ -256,21 +256,21 @@
             "singletime": false
         },
         {
-            "name": "''03.5 - ''Yo you should come with me !''",
-            "price": 500000,
+            "name": "03.5 - ''Yo you should come with me !''",
+            "price": 5000,
             "multiplier": 100,
-            "purchased": 1,
-            "locked": false,
+            "purchased": 0,
+            "locked": true,
             "requirements": "Have 5 converted colleagues",
             "lore": "I guess we bringing colleagues now\n Converted colleagues are twice as efficient.",
             "singletime": false
         },
         {
             "name": "08.5 - One More Universe",
-            "price": 2450000,
+            "price": 24500,
             "multiplier": 100,
-            "purchased": 1,
-            "locked": false,
+            "purchased": 0,
+            "locked": true,
             "requirements": "Have 5 Universes",
             "lore": "print(universe++);\n Slackverses are twice as efficient.",
             "singletime": false

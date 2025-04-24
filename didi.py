@@ -12,6 +12,7 @@ import update_status_file
 from getFocusedWindow import is_active_window_process_name
 from saveManager import SaveManager
 from externalGameCloser import GameApp
+import pygame
 import openTabs
 notify_path = r"dependencies\PowerLook.exe"
 JSON_FILE = r"dependencies\upgrades.json" # Name of the test JSON file
@@ -460,7 +461,7 @@ def do_unlocks():
         
 
 def do_coffee():
-    return 1 if save.get('coffee') == 0 else (config.get('coffee_power')*save.get('coffee'))
+    return 2**save.get('coffee')
 
 def trigger_slackers(score):
     return score + (config.get('slacker_power')*do_coffee())*upgrades['slackers']*(1+(upgrades['powerfulSlacking']*config.get('powerfulSlacking_modifier')))*consultant_mult()
@@ -472,13 +473,13 @@ def trigger_colleagues(score):
     return score + config.get('colleague_power')*upgrades['convertcolleagues']*consultant_mult()*masterful_mult()*colleagues_mult()
 
 def colleagues_mult():
-    return 1 if save.get('should_come') == 0 else (config.get('generic_tier_power')*save.get('should_come'))
+    return 2**save.get('should_come')
 
 def trigger_slackverses(score):
     return score + config.get('slackverse_power')*upgrades['slackverses']*consultant_mult()*slackverses_mult()
 
 def slackverses_mult():
-    return 1 if save.get('moreuniverse') == 0 else (config.get('generic_tier_power')*save.get('moreuniverse'))
+    return 2**save.get('moreuniverse')
 
 def trigger_microsoft_upgrades():
     powerBool = True if save.get('powerpoint') >= 1 and is_active_window_process_name('POWERPNT.EXE') else False
@@ -508,23 +509,53 @@ def trigger_paradox(score):
     return score + config.get('paradox_power')*upgrades['paradoxes']*consultant_mult()*paradox_mult()
 
 def paradox_mult():
-    return 1 if save.get('philosophers') == 0 else (config.get('generic_tier_power')*save.get('philosophers'))
+    return 2**save.get('philosophers')
 
 def trigger_consultants(score):
-    return score + config.get('consultant_power')*upgrades['consultant']*consultant_mult()
+    return score + config.get('consultant_power')*upgrades['consultant']*consultant_mult()*consultants_mult()
 
-def consultant_mult():
-    return 1 if save.get('wisdom') == 0 else (config.get('generic_tier_power'))*save.get('wisdom')
-
-def trigger_email(score):
-    return score + config.get('email_power')*upgrades['email']*email_mult()
-
-def email_mult():
-    pass
+def consultants_mult():
+    return 2**save.get('wisdom')
 
 def consultant_mult():
     return 1+(config.get('consultant_efficiency_modifier')*upgrades['consultant'])
 
+def trigger_email(score):
+    return score + config.get('email_power')*upgrades['email']*email_mult()*consultant_mult()
+
+def email_mult():
+    return 2**save.get('overclocking')
+
+def trigger_overdose(score):
+    return score + config.get('overdose_power')*upgrades['overdose']*overdose_mult()*consultant_mult()
+
+def overdose_mult():
+    return 2**save.get('crisis')
+    
+def trigger_pro(score):
+    return score + config.get('pro_power')*upgrades['pro']*pro_mult()*consultant_mult()
+
+def pro_mult():
+    return 2**save.get('upset')
+    
+def trigger_efort(score):
+    return score + config.get('efort_power')*upgrades['efort']*efort_mult()*consultant_mult()
+
+def efort_mult():
+    return 2**save.get('unemployement')
+
+def trigger_music(score):
+    return score + config.get('music_power')*upgrades['music']*music_mult()*consultant_mult()
+
+def music_mult():
+    return 2**save.get('grow')
+    
+def trigger_jojo(score):
+    return score + config.get('jojo_power')*upgrades['jojo?']*jojo_mult()*consultant_mult()
+
+def jojo_mult():
+    return 2**save.get('reference')
+    
 def unlock_upgrade_by_index(index):
     shutil.rmtree(HIDDEN_UNLOCKS)
     upgrades = load_upgrades()
@@ -559,11 +590,11 @@ def trigger_score(score, mult):
     new_score = trigger_paradox(new_score)
     new_score = trigger_consultants(new_score)
     new_score = trigger_email(new_score)
-    # new_score = trigger_overdose(new_score)
-    # new_score = trigger_pro(new_score)
-    # new_score = trigger_efort(new_score)
-    # new_score = trigger_music(new_score)
-    # new_score = trigger_jojo(new_score)
+    new_score = trigger_overdose(new_score)
+    new_score = trigger_pro(new_score)
+    new_score = trigger_efort(new_score)
+    new_score = trigger_music(new_score)
+    new_score = trigger_jojo(new_score)
     new_score = score + (new_score - score) * mult
     return round(new_score, 1)
 
@@ -589,7 +620,7 @@ def mainloop():
 
     time.sleep(2)
 
-
+    visibility = game_closer.get_visibility()
     start_mult = 0
     slacking_mult = 0
     start = 0
@@ -614,6 +645,7 @@ def mainloop():
 
     while running:
         current_time = time.time()
+        visibility = game_closer.get_visibility()
         elapsed_time = current_time - last_time
         # --- Combo: Ctrl + Alt + Shift + Z ---
         combo_z_now = (

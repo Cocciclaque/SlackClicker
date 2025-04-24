@@ -40,5 +40,11 @@
     "alias_key_slack": "f7",
     "alias_key_show": "f8",
     "generic_tier_power": 2.0,
+    "email_power":1300,
+    "overdose_power":7500,
+    "pro_power":43000,
+    "efort_power":250000,
+    "music_power":1600000,
+    "jojo_power":10000000,
     "do_soundbar": 0
 }
