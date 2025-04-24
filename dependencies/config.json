@@ -2,7 +2,7 @@
     "closing_key": "F9",
     "folder_name": "_sys_watchdog",
     "file_name": "watchdog_eventlog.txt",
-    "game_icon": "icon.png",
+    "game_icon": "dependencies/icon.png",
     "slacker_power": 0.1,
     "coffee_power": 2,
     "colleague_power": 1.0,

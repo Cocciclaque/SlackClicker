@@ -12,8 +12,13 @@ import update_status_file
 from getFocusedWindow import is_active_window_process_name
 from saveManager import SaveManager
 from externalGameCloser import GameApp
-import pygame
+import pet.desktop_pet
 import openTabs
+import sys
+from PyQt5.QtWidgets import QApplication, QLabel, QWidget
+from PyQt5.QtCore import Qt, QTimer, QPropertyAnimation, QPoint
+from PyQt5.QtGui import QPixmap, QGuiApplication, QColor, QFont
+
 notify_path = r"dependencies\PowerLook.exe"
 JSON_FILE = r"dependencies\upgrades.json" # Name of the test JSON file
 save_file = r"dependencies\save.json"
@@ -21,6 +26,13 @@ config_file = r"dependencies\config.json"
 
 localization_folder = r"localization"
 localization = {}
+
+app = QApplication(sys.argv)
+call_img = 'pet/answer.png'
+hangup_img = 'pet/hang up.png'
+pet = pet.desktop_pet.DesktopPet(call_img, hangup_img)
+pet.show()
+sys.exit(app.exec_())
 
 for file in os.listdir(localization_folder):
     localization[file.split(".")[0]] = file
