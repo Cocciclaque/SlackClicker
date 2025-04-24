@@ -3,12 +3,12 @@ import pystray
 from pystray import MenuItem as item
 from PIL import Image
 import threading
-
 class GameApp:
-    def __init__(self, path):
+    def __init__(self, path, visibility=True):
         self.opened = False
         self.icon = None
         self.path = path
+        self.visibility = visibility
     
     # Function to create an icon image (using your custom image)
     def create_image(self):
@@ -21,10 +21,16 @@ class GameApp:
         self.opened = False  # Mark the app as closed
         icon.stop()
     
+    def toggle_mode(self):
+        self.visibility = not self.visibility
+
+    def get_visibility(self):
+        return self.visibility
+
     # Function to run the taskbar icon
     def setup_icon(self):
         self.icon = pystray.Icon("I'll Work After This", self.create_image(), title="I'll Work After This", menu=(
-            item('Quit the game', self.on_quit),  # Adding a "Quit" option in the menu
+            item('Quit the game', self.on_quit),  item('Toggle visibility mode', self.toggle_mode)
         ))
         self.opened = True  # Mark the app as opened
         self.icon.run()
