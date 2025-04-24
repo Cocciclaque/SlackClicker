@@ -1,14 +1,18 @@
 import valuesapi
 import pystray
+from pystray import Menu
 from pystray import MenuItem as item
 from PIL import Image
 import threading
+from functools import partial
 class GameApp:
-    def __init__(self, path, visibility=True):
+    def __init__(self, path, localization, start="en", visibility=True ):
         self.opened = False
         self.icon = None
         self.path = path
         self.visibility = visibility
+        self.localization = localization
+        self.selected_lang = start
     
     # Function to create an icon image (using your custom image)
     def create_image(self):
@@ -27,11 +31,26 @@ class GameApp:
     def get_visibility(self):
         return self.visibility
 
+    def set_localization(self, lang, icon=0, menu_item=0):
+        self.selected_lang = lang
+
+    def get_localization(self):
+        return self.selected_lang
+
     # Function to run the taskbar icon
     def setup_icon(self):
+
+        submenu_items = [
+            item(lang,
+                 partial(self.set_localization, lang))
+            for lang in self.localization
+        ]
+
         self.icon = pystray.Icon("I'll Work After This", self.create_image(), title="I'll Work After This", menu=(
-            item('Quit the game', self.on_quit),  item('Toggle visibility mode', self.toggle_mode)
-        ))
+            item('Quit the game', self.on_quit),  
+            item('Toggle visibility mode', self.toggle_mode),
+            item('Select Language', Menu(*submenu_items)
+        )))
         self.opened = True  # Mark the app as opened
         self.icon.run()
     
