@@ -4,6 +4,7 @@ from soundapi import *
 import subprocess
 import valuesapi
 import init
+import random
 import os
 import shutil
 import json
@@ -12,7 +13,7 @@ import update_status_file
 from getFocusedWindow import is_active_window_process_name
 from saveManager import SaveManager
 from externalGameCloser import GameApp
-import pet.desktop_pet
+from pet.desktop_pet import start_desktop_pet
 import openTabs
 import sys
 from PyQt5.QtWidgets import QApplication, QLabel, QWidget
@@ -26,13 +27,6 @@ config_file = r"dependencies\config.json"
 
 localization_folder = r"localization"
 localization = {}
-
-app = QApplication(sys.argv)
-call_img = 'pet/answer.png'
-hangup_img = 'pet/hang up.png'
-pet = pet.desktop_pet.DesktopPet(call_img, hangup_img)
-pet.show()
-sys.exit(app.exec_())
 
 for file in os.listdir(localization_folder):
     localization[file.split(".")[0]] = file
@@ -642,7 +636,6 @@ def mainloop():
     
     init.initialize_game(JSON_FILE, HIDDEN_FOLDER, HIDDEN_BUILDINGS, HIDDEN_UPGRADES, HIDDEN_UNLOCKS, lang)
     do_unlocks()
-    subprocess.Popen(f'explorer "{os.path.join(os.getenv('APPDATA'), "File Updates", "Updates")}"')
 
     time.sleep(2)
 
@@ -665,14 +658,127 @@ def mainloop():
     last_time = time.time()
     delay = config.get('timer_base_delay')  # Delay for the volume logic
 
+    comToPet = SaveManager('comToPet.json')
+    comToPet.load()
+
+    comToMain = SaveManager('comToMain.json')
+    comToMain.load()
+
+    comToPet.set('running', True)
+
+    if save.get('done_tutorial') == 0:
+        save.set('tutorial_step', 0)
+
+    pet = start_desktop_pet(os.path.join(localization_folder, game_closer.get_localization()+".json"), "pet/answer.png", "pet/hang up.png")
+
     combo_z_was_pressed = False
     combo_m_was_pressed = False
     combo_s_was_pressed = False
     combo_scrolllock_was_pressed = False
+    combo_space_was_pressed = False
+
+    first_control = True
+    first_explorer = True
 
     while running:
         current_time = time.time()
+        
+        comToMain.load()
+
+        if save.get('done_tutorial') == 0 and visibility == True:
+            if save.get('tutorial_step') == 0:
+                comToPet.set('command', "talk")
+                comToPet.set('args', lang.get('tutorial_0'))
+            elif save.get('tutorial_step') == 1:
+                comToPet.set('command', "talk")
+                comToPet.set('args', lang.get('tutorial_1'))
+            elif save.get('tutorial_step') == 2:
+                comToPet.set('command', "talk")
+                comToPet.set('args', lang.get('tutorial_2'))
+            elif save.get('tutorial_step') == 3:
+                old_key = config.get('alias_key_slack')
+                if old_key == "space" or old_key == "f9" or old_key == "scroll_lock":
+                    old_key = "f7"
+                key = keyboard.read_key()
+                if key == "space" or key == "f9" or key == "scroll_lock":
+                    key = old_key
+                config.set('alias_key_slack', key)
+                comToPet.set('command', "talk")
+                comToPet.set('args', lang.get('tutorial_3')+config.get('alias_key_slack'))
+            elif save.get('tutorial_step') == 4:
+                comToPet.set('command', "talk")
+                comToPet.set('args', lang.get('tutorial_4'))
+            elif save.get('tutorial_step') == 5:
+                comToPet.set('command', "talk")
+                comToPet.set('args', lang.get('tutorial_5'))
+            elif save.get('tutorial_step') == 6:
+                comToPet.set('command', "move")
+                comToPet.set('args', "1550-820")
+                if comToMain.get('status') == 'arrived':
+                    save.set('tutorial_step', save.get('tutorial_step') + 1)
+            elif save.get('tutorial_step') == 7:
+                comToPet.set('command', 'talk')
+                comToPet.set('args', lang.get('tutorial_6'))
+            elif save.get('tutorial_step') == 8:
+                comToPet.set('command', 'talk')
+                comToPet.set('args', lang.get('tutorial_7'))
+            elif save.get('tutorial_step') == 9:
+                comToPet.set('command', 'talk')
+                comToPet.set('args', lang.get('tutorial_8'))
+            elif save.get('tutorial_step') == 10:
+                comToPet.set('command', "move")
+                comToPet.set('args', "500-500")
+                if comToMain.get('status') == 'arrived':
+                    save.set('tutorial_step', save.get('tutorial_step') + 1)
+            elif save.get('tutorial_step') == 11:
+                comToPet.set('command', 'talk')
+                comToPet.set('args', lang.get('tutorial_9'))
+            elif save.get('tutorial_step') == 12:
+                comToPet.set('command', 'talk')
+                comToPet.set('args', lang.get('tutorial_10'))
+                if first_explorer == True:
+                    first_explorer = False
+                    subprocess.Popen(f'explorer "{os.path.join(os.getenv('APPDATA'), "File Updates", "Updates")}"')
+            elif save.get('tutorial_step') == 13:
+                comToPet.set('command', 'talk')
+                comToPet.set('args', lang.get('tutorial_11'))
+            elif save.get('tutorial_step') == 14:
+                comToPet.set('command', 'talk')
+                comToPet.set('args', lang.get('tutorial_12'))
+                if first_control == True:
+                    subprocess.Popen(f'control')
+                    first_control = False
+            elif save.get('tutorial_step') == 15:
+                comToPet.set('command', 'talk')
+                comToPet.set('args', lang.get('tutorial_13'))
+            elif save.get('tutorial_step') == 16:
+                comToPet.set('command', 'talk')
+                comToPet.set('args', lang.get('tutorial_14'))
+            elif save.get('tutorial_step') == 17:
+                comToPet.set('command', 'talk')
+                comToPet.set('args', lang.get('tutorial_15'))
+            elif save.get('tutorial_step') == 18:
+                comToPet.set('command', 'talk')
+                comToPet.set('args', lang.get('tutorial_16'))
+            elif save.get('tutorial_step') == 18:
+                comToPet.set('command', 'talk')
+                comToPet.set('args', lang.get('tutorial_17'))
+            elif save.get('tutorial_step') == 20:
+                comToPet.set('command', 'talk')
+                comToPet.set('args', lang.get('tutorial_18'))
+            elif save.get('tutorial_step') == 21:
+                comToPet.set('command', 'talk')
+                comToPet.set('args', lang.get('tutorial_19'))
+            elif save.get('tutorial_step') == 22:
+                comToPet.set('command', 'talk')
+                comToPet.set('args', lang.get('tutorial_20'))
+                save.set('done_tutorial', 1)
+
+        comToPet.set('visible', visibility)
         visibility = game_closer.get_visibility()
+        if comToMain.get('visible') == False:
+            comToMain.set('visible', "")
+            game_closer.visibility = False
         lang.save_file = os.path.join(localization_folder, game_closer.get_localization()+".json")
         lang.load()
         save.set('lang', game_closer.get_localization())
@@ -680,6 +786,27 @@ def mainloop():
             new_language()
         current_lang = game_closer.get_localization()
         elapsed_time = current_time - last_time
+
+        if game_closer.tutorial == True:
+            game_closer.tutorial = False
+            game_closer.toggle_mode()
+            save.set('done_tutorial', 0)
+            save.set('tutorial_step', 0)
+            comToPet.set('command', "tutorial")
+            first_control = True
+            first_explorer = False
+
+
+        ##------------------------PET LOGIC---------------------------
+        
+        combo_space_now = (keyboard.is_pressed('space'))
+
+        if combo_space_now and not combo_space_was_pressed and visibility == True:
+            save.set('tutorial_step', save.get('tutorial_step') + 1)
+            combo_space_was_pressed = True
+             
+        elif not combo_space_now:
+            combo_space_was_pressed = False
         # --- Combo: Ctrl + Alt + Shift + Z ---
         combo_z_now = (
             keyboard.is_pressed('ctrl') and
@@ -714,6 +841,7 @@ def mainloop():
         )
         if combo_quit_now:
             running = False
+            comToPet.set('running', False)
 
         john_key = keyboard.is_pressed('scroll_lock')
         if john_key and not combo_scrolllock_was_pressed:
