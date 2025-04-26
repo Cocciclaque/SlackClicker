@@ -342,12 +342,14 @@ def do_locks():
         lock_upgrade_by_index(12)
 
 def poke_folder_for_refresh(path):
-    dummy_path = os.path.join(path, "~refresh.tmp")
-    with open(dummy_path, 'w') as f:
-        f.write("refresh")
-    time.sleep(0.01)
-    os.remove(dummy_path)
-
+    try:
+        dummy_path = os.path.join(path, "~refresh.tmp")
+        with open(dummy_path, 'w') as f:
+            f.write("refresh")
+        time.sleep(0.01)
+        os.remove(dummy_path)
+    except:
+        pass
 def do_unlocks():
     upgrade = load_upgrades()
     powerful1 = upgrade['items'][3]

@@ -37,7 +37,7 @@
     "john_cooldown": 300,
     "john_duration": 30,
     "john_multiplier": 0.5,
-    "alias_key_slack": "f7",
+    "alias_key_slack": "alt",
     "alias_key_show": "f8",
     "generic_tier_power": 2.0,
     "email_power": 1300,
