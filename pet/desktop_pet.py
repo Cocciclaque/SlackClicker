@@ -25,10 +25,12 @@ class DesktopPet(QWidget):
         self.send.set('status', "")
 
         self.lang = saveManager.SaveManager(lang)
+        print("test")
         self.lang.load()
 
         # Load sprites
         if not os.path.exists(image_path) or not os.path.exists(hangup_path):
+            print(image_path, hangup_path)
             raise FileNotFoundError("Error: Image files not found!")
         self.call_pixmap = QPixmap(image_path)
         self.hangup_pixmap = QPixmap(hangup_path)
@@ -262,19 +264,34 @@ class DesktopPet(QWidget):
 
     def random_action(self):
         pass
-
-
-def start_desktop_pet(lang="../localization/en.json", image='call.png', hangup='hang_up.png'):
+def start_pet_process(image, hangup, lang):
     """
-    Launches the desktop pet in a separate process, returns the subprocess.Popen handle.
+    In parent-mode: fire off the child process with a --pet flag, then return.
     """
-    script = os.path.abspath(__file__)
-    return subprocess.Popen([sys.executable, script, image, hangup, lang])
+    if getattr(sys, "frozen", False):
+        # we’re already in didi.exe
+        cmd = [sys.executable, "--pet", image, hangup, lang]
+    else:
+        # running under plain Python
+        script = os.path.abspath(__file__)
+        cmd = [sys.executable, script, "--pet", image, hangup, lang]
+    return subprocess.Popen(cmd)
 
-if __name__ == '__main__':
+def launch_pet(image, hangup, lang):
+    """
+    In child-mode (the actual Qt loop).
+    """
     app = QApplication(sys.argv)
-    pet = DesktopPet(sys.argv[1] if len(sys.argv)>1 else 'call.png',
-                     sys.argv[2] if len(sys.argv)>2 else 'hang_up.png',
-                     sys.argv[3])
+    pet = DesktopPet(image, hangup, lang)
     pet.show()
     sys.exit(app.exec_())
+
+if __name__ == "__main__":
+    args = sys.argv[1:]
+    if args and args[0] == "--pet":
+        # strip the flag off
+        _, image, hangup, lang = args
+        launch_pet(image, hangup, lang)
+    else:
+        # parent: fire-and-forget, then bail out
+        start_pet_process("call.png", "hang_up.png", "../localization/en.json")

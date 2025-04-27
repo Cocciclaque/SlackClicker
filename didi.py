@@ -13,19 +13,28 @@ import update_status_file
 from getFocusedWindow import is_active_window_process_name
 from saveManager import SaveManager
 from externalGameCloser import GameApp
-from pet.desktop_pet import start_desktop_pet
+from pet.desktop_pet import start_pet_process
 import openTabs
 import sys
 from PyQt5.QtWidgets import QApplication, QLabel, QWidget
 from PyQt5.QtCore import Qt, QTimer, QPropertyAnimation, QPoint
 from PyQt5.QtGui import QPixmap, QGuiApplication, QColor, QFont
 
-notify_path = r"dependencies\PowerLook.exe"
-JSON_FILE = r"dependencies\upgrades.json" # Name of the test JSON file
-save_file = r"dependencies\save.json"
-config_file = r"dependencies\config.json"
+def resource_path(relative_path):
+    if getattr(sys, 'frozen', False):
+        base_path = sys._MEIPASS
+    else:
+        base_path = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(base_path, relative_path)
 
-localization_folder = r"localization"
+notify_path = resource_path(r"dependencies\PowerLook.exe")
+JSON_FILE = resource_path(r"dependencies\upgrades.json") # Name of the test JSON file
+save_file = resource_path(r"dependencies\save.json")
+config_file = resource_path(r"dependencies\config.json")
+
+print(notify_path, JSON_FILE, save_file, config_file)
+
+localization_folder = resource_path(r"localization")
 localization = {}
 
 for file in os.listdir(localization_folder):
@@ -44,7 +53,7 @@ except:
 save = SaveManager(save_file)
 config = SaveManager(config_file)
 
-game_closer = GameApp(config.get('game_icon'), localization, save.get('lang'))
+game_closer = GameApp(resource_path(config.get('game_icon')), localization, save.get('lang'))
 game_closer.start()
 
 update_status_file.do_desktop_thing(JSON_FILE, config.get('folder_name'), config.get('file_name'))
@@ -660,10 +669,10 @@ def mainloop():
     last_time = time.time()
     delay = config.get('timer_base_delay')  # Delay for the volume logic
 
-    comToPet = SaveManager('comToPet.json')
+    comToPet = SaveManager(resource_path('comToPet.json'))
     comToPet.load()
 
-    comToMain = SaveManager('comToMain.json')
+    comToMain = SaveManager(resource_path('comToMain.json'))
     comToMain.load()
 
     comToPet.set('running', True)
@@ -671,7 +680,11 @@ def mainloop():
     if save.get('done_tutorial') == 0:
         save.set('tutorial_step', 0)
 
-    pet = start_desktop_pet(os.path.join(localization_folder, game_closer.get_localization()+".json"), "pet/answer.png", "pet/hang up.png")
+    pet_proc = start_pet_process(
+    image=resource_path('pet/answer.png'),
+    hangup=resource_path('pet/hang up.png'),
+    lang=resource_path('localization/en.json')
+)
 
     combo_z_was_pressed = False
     combo_m_was_pressed = False
@@ -683,6 +696,7 @@ def mainloop():
     first_explorer = True
 
     while running:
+        
         current_time = time.time()
         
         comToMain.load()
@@ -838,9 +852,8 @@ def mainloop():
             combo_m_was_pressed = False
 
         combo_quit_now = (
-            keyboard.is_pressed(config.get('closing_key')) or
-            game_closer.opened is False
-        )
+            keyboard.is_pressed(config.get('closing_key'))
+        ) or game_closer.opened is False
         if combo_quit_now:
             running = False
             comToPet.set('running', False)
