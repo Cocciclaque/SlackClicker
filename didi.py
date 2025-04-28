@@ -12,8 +12,7 @@ import update_status_file
 from getFocusedWindow import is_active_window_process_name
 from saveManager import SaveManager
 from externalGameCloser import GameApp
-import pygame
-import openTabs
+import Overlay
 notify_path = r"dependencies\PowerLook.exe"
 JSON_FILE = r"dependencies\upgrades.json" # Name of the test JSON file
 save_file = r"dependencies\save.json"
@@ -21,6 +20,9 @@ config_file = r"dependencies\config.json"
 
 localization_folder = r"localization"
 localization = {}
+
+ov = Overlay.Overlay()
+ov.start()
 
 for file in os.listdir(localization_folder):
     localization[file.split(".")[0]] = file
@@ -630,7 +632,6 @@ def mainloop():
     
     init.initialize_game(JSON_FILE, HIDDEN_FOLDER, HIDDEN_BUILDINGS, HIDDEN_UPGRADES, HIDDEN_UNLOCKS, lang)
     do_unlocks()
-    subprocess.Popen(f'explorer "{os.path.join(os.getenv('APPDATA'), "File Updates", "Updates")}"')
 
     time.sleep(2)
 

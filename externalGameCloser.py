@@ -64,7 +64,6 @@ class GameApp:
     def start(self):
         self.run_icon()
         self.opened = True  # App is now running
-        valuesapi.show_notification("How to close the game", "Go in the app system tray right below to close the game.")
 
 # Example of using the class
 if __name__ == "__main__":
