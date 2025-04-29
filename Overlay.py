@@ -158,6 +158,12 @@ void main() {
 }
 """
 
+NAN_FRAG = """
+#version 330 core
+void main(){
+}
+"""
+
 
 
 POSTIT_FRAG = """
@@ -220,7 +226,7 @@ class Overlay:
     def __init__(self):
         self._thread=None
         self._stop=threading.Event()
-        self._shader_name='none'
+        self._shader_name='balatro'
         self._start_time=time()
 
     def start(self):
@@ -232,67 +238,68 @@ class Overlay:
         if self._thread: self._thread.join(timeout)
 
     def switch_shader(self,name):
-        if name in('balatro','crt','shop','postit','none'): self._shader_name=name
+        if name in('balatro','crt','shop','postit','nan'): self._shader_name=name
 
     def _run(self):
-        if self._shader_name != "none":
-            if not glfw.init(): return
-            for h,v in[(glfw.DECORATED,False),(glfw.FLOATING,True),(glfw.TRANSPARENT_FRAMEBUFFER,True),(glfw.RESIZABLE,False)]: glfw.window_hint(h,v)
-            win=glfw.create_window(100,100,'',None,None)
-            hwnd=glfw.get_win32_window(win)
-            style=ctypes.windll.user32.GetWindowLongW(hwnd,-20)
-            ctypes.windll.user32.SetWindowLongW(hwnd,-20,style|0x80000|0x20)
-            glfw.make_context_current(win)
-            ctx=moderngl.create_context(); ctx.enable(moderngl.BLEND); ctx.blend_func=(moderngl.SRC_ALPHA,moderngl.ONE_MINUS_SRC_ALPHA)
+    
+        if not glfw.init(): return
+        for h,v in[(glfw.DECORATED,False),(glfw.FLOATING,True),(glfw.TRANSPARENT_FRAMEBUFFER,True),(glfw.RESIZABLE,False)]: glfw.window_hint(h,v)
+        win=glfw.create_window(100,100,'',None,None)
+        hwnd=glfw.get_win32_window(win)
+        style=ctypes.windll.user32.GetWindowLongW(hwnd,-20)
+        ctypes.windll.user32.SetWindowLongW(hwnd,-20,style|0x80000|0x20)
+        glfw.make_context_current(win)
+        ctx=moderngl.create_context(); ctx.enable(moderngl.BLEND); ctx.blend_func=(moderngl.SRC_ALPHA,moderngl.ONE_MINUS_SRC_ALPHA)
 
-            sources={'balatro':(VERT_SRC,BALATRO_FRAG),'crt':(VERT_SRC,CRT_FRAG),'shop':(VERT_SRC,SHOP_FRAG),'postit':(VERT_SRC,POSTIT_FRAG)}
+        sources={'balatro':(VERT_SRC,BALATRO_FRAG),'crt':(VERT_SRC,CRT_FRAG),'shop':(VERT_SRC,SHOP_FRAG),'postit':(VERT_SRC,POSTIT_FRAG)}
+        if self._shader_name != 'nan':
             progs={k:ctx.program(vertex_shader=vs,fragment_shader=fs) for k,(vs,fs) in sources.items()}
 
-            # texts for each note
-            TEXTS=["Shop","Upgrades","Lunch\n@1","Report\ndue","Gym\n6pm","Dentist\n3pm","Read\nbook","Plan\ntrip"]
-            HALF=75; size=(HALF*2,HALF*2)
-            # prepare fonts
-            try: font=ImageFont.truetype("segoescb.ttf",int(HALF*0.5))
-            except: font=ImageFont.load_default()
-            postit=progs['postit']
-            for idx,text in enumerate(TEXTS):
-                img=Image.new("RGBA",size,(0,0,0,0)); draw=ImageDraw.Draw(img)
-                bb=draw.textbbox((0,0),text,font=font)
-                w,h=bb[2]-bb[0],bb[3]-bb[1]
-                draw.text(((size[0]-w)/2,(size[1]-h)/2),text,font=font,fill=(0,0,0,255))
-                tex=ctx.texture(size,4,img.tobytes()); tex.build_mipmaps(); tex.use(location=idx)
-            # bind array of texture units for textSamplers
-            postit['textTexs'].value = tuple(range(len(TEXTS)))
-            postit['stickySize']=(HALF,HALF)
+        # texts for each note
+        TEXTS=["Shop","Buy","Lunch\n@1","Boost","Read","Slack","Sleep","Zzz..."]
+        HALF=75; size=(HALF*2,HALF*2)
+        # prepare fonts
+        try: font=ImageFont.truetype("segoescb.ttf",int(HALF*0.5))
+        except: font=ImageFont.load_default()
+        postit=progs['postit']
+        for idx,text in enumerate(TEXTS):
+            img=Image.new("RGBA",size,(0,0,0,0)); draw=ImageDraw.Draw(img)
+            bb=draw.textbbox((0,0),text,font=font)
+            w,h=bb[2]-bb[0],bb[3]-bb[1]
+            draw.text(((size[0]-w)/2,(size[1]-h)/2),text,font=font,fill=(0,0,0,255))
+            tex=ctx.texture(size,4,img.tobytes()); tex.build_mipmaps(); tex.use(location=idx)
+        # bind array of texture units for textSamplers
+        postit['textTexs'].value = tuple(range(len(TEXTS)))
+        postit['stickySize']=(HALF,HALF)
 
-            vbo=ctx.buffer(reserve=4*6*2*4)
-            vaos={k:ctx.simple_vertex_array(p,vbo,'in_pos') for k,p in progs.items()}
+        vbo=ctx.buffer(reserve=4*6*2*4)
+        vaos={k:ctx.simple_vertex_array(p,vbo,'in_pos') for k,p in progs.items()}
 
-            while not glfw.window_should_close(win) and not self._stop.is_set():
-                fg=get_foreground_window()
-                if fg:
-                    fx,fy,fw,fh=get_window_shadow_rect(fg)
-                    wx,wy,ww,wh=get_work_area(fg)
-                    glfw.set_window_pos(win,wx,wy);glfw.set_window_size(win,ww,wh);ctx.viewport=(0,0,ww,wh)
-                    verts=build_outer_vertices((fx-wx)/ww*2-1,((fx+fw)-wx)/ww*2-1,1-(fy-wy)/wh*2,1-((fy+fh)-wy)/wh*2)
-                    vbo.orphan();vbo.write(verts.tobytes())
-                    prog=progs[self._shader_name]; vao=vaos[self._shader_name]
-                    t=time()-self._start_time
-                    if self._shader_name=='postit':
-                        prog['time'].value=t
-                        cx,cy=fx+fw*0.5-wx,fy+fh*0.5-wy
-                        prog['holeCenter'].value=(cx,wh-cy);prog['holeSize'].value=(fw,fh);prog['opacity'].value=0.85
-                    elif self._shader_name=='shop':
-                        prog['time'].value=t;prog['resolution'].value=(ww,wh);prog['fillLevel'].value=0.75;prog['opacity'].value=0.75
-                    elif self._shader_name=='crt': prog['resolution'].value=(ww,wh)
-                    elif self._shader_name=='balatro':
-                        prog['time'].value=t;prog['resolution'].value=(ww,wh)
-                    ctx.clear(0,0,0,0);vao.render(moderngl.TRIANGLES)
-                glfw.swap_buffers(win);glfw.poll_events();sleep(0.01)
-            glfw.terminate()
+        while not glfw.window_should_close(win) and not self._stop.is_set():
+            fg=get_foreground_window()
+            if fg and self._shader_name != "nan":
+                fx,fy,fw,fh=get_window_shadow_rect(fg)
+                wx,wy,ww,wh=get_work_area(fg)
+                glfw.set_window_pos(win,wx,wy);glfw.set_window_size(win,ww,wh);ctx.viewport=(0,0,ww,wh)
+                verts=build_outer_vertices((fx-wx)/ww*2-1,((fx+fw)-wx)/ww*2-1,1-(fy-wy)/wh*2,1-((fy+fh)-wy)/wh*2)
+                vbo.orphan();vbo.write(verts.tobytes())
+                prog=progs[self._shader_name]; vao=vaos[self._shader_name]
+                t=time()-self._start_time
+                if self._shader_name=='postit':
+                    prog['time'].value=t
+                    cx,cy=fx+fw*0.5-wx,fy+fh*0.5-wy
+                    prog['holeCenter'].value=(cx,wh-cy);prog['holeSize'].value=(fw,fh);prog['opacity'].value=0.85
+                elif self._shader_name=='shop':
+                    prog['time'].value=t;prog['resolution'].value=(ww,wh);prog['fillLevel'].value=0.75;prog['opacity'].value=0.75
+                elif self._shader_name=='crt': prog['resolution'].value=(ww,wh)
+                elif self._shader_name=='balatro':
+                    prog['time'].value=t;prog['resolution'].value=(ww,wh)
+                ctx.clear(0,0,0,0);vao.render(moderngl.TRIANGLES)
+            glfw.swap_buffers(win);glfw.poll_events();sleep(0.01)
+        glfw.terminate()
 
 if __name__=='__main__':
-    ov=Overlay(); ov.start(); sleep(2)
+    ov=Overlay(); ov.start(); sleep(2); ov.switch_shader('postit')
     try: 
         while True: sleep(1)
     except KeyboardInterrupt: ov.stop()

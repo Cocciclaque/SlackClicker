@@ -10,19 +10,17 @@ import shutil
 import json
 import changeWindowName
 import update_status_file
-from getFocusedWindow import is_active_window_process_name
+from getFocusedWindow import is_active_window_process_name, get_active_explorer_folder
 from saveManager import SaveManager
 from externalGameCloser import GameApp
 import Overlay
+import warp
 notify_path = r"dependencies\PowerLook.exe"
 JSON_FILE = r"dependencies\upgrades.json" # Name of the test JSON file
 save_file = r"dependencies\save.json"
 config_file = r"dependencies\config.json"
 import sys
-from PyQt5.QtWidgets import QApplication, QLabel, QWidget
-from PyQt5.QtCore import Qt, QTimer, QPropertyAnimation, QPoint
-from PyQt5.QtGui import QPixmap, QGuiApplication, QColor, QFont
-
+from pygamemenu import FullscreenMenu
 def resource_path(relative_path):
     if getattr(sys, 'frozen', False):
         base_path = sys._MEIPASS
@@ -42,6 +40,7 @@ localization = {}
 
 ov = Overlay.Overlay()
 ov.start()
+ov.switch_shader('balatro')
 
 for file in os.listdir(localization_folder):
     localization[file.split(".")[0]] = file
@@ -64,10 +63,20 @@ game_closer.start()
 
 update_status_file.do_desktop_thing(JSON_FILE, config.get('folder_name'), config.get('file_name'))
 
+#-----------------------------------------DO INTRO-----------------------------------------------
 
+# warper = warp.WarpOverlay(max_intensity=5.0, duration=3.0, fps=60)
+# try:
+#     warper.start()
+# except KeyboardInterrupt:
+#     pass
 
+time.sleep(3)
 
-# openTabs.open("thefuturelinktomyvid")
+menu = FullscreenMenu('background.mp4')
+choice = menu.main_menu()
+
+print(choice)
 
 upgrades = {}
 upgrades["slackers"] = save.get("slackers", 0)
@@ -647,6 +656,14 @@ def new_language():
     shutil.rmtree(HIDDEN_FOLDER)
     init.initialize_game(JSON_FILE, HIDDEN_FOLDER, HIDDEN_BUILDINGS, HIDDEN_UPGRADES, HIDDEN_UNLOCKS, lang)
 
+def check_for_shop():
+    folder = get_active_explorer_folder()
+    if folder:
+        if HIDDEN_FOLDER in folder:
+            return True
+        else:
+            return False
+
 def mainloop():
     global lang
     score = save.get("score", 0)
@@ -682,6 +699,12 @@ def mainloop():
     combo_space_was_pressed = False
 
     while running:
+
+        if check_for_shop():
+            ov.start()
+            ov.switch_shader('postit')
+        else:
+            ov.stop()
         
         current_time = time.time()
     
