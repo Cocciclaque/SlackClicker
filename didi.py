@@ -4,6 +4,7 @@ from soundapi import *
 import subprocess
 import valuesapi
 import init
+import random
 import os
 import shutil
 import json
@@ -17,8 +18,26 @@ notify_path = r"dependencies\PowerLook.exe"
 JSON_FILE = r"dependencies\upgrades.json" # Name of the test JSON file
 save_file = r"dependencies\save.json"
 config_file = r"dependencies\config.json"
+import sys
+from PyQt5.QtWidgets import QApplication, QLabel, QWidget
+from PyQt5.QtCore import Qt, QTimer, QPropertyAnimation, QPoint
+from PyQt5.QtGui import QPixmap, QGuiApplication, QColor, QFont
 
-localization_folder = r"localization"
+def resource_path(relative_path):
+    if getattr(sys, 'frozen', False):
+        base_path = sys._MEIPASS
+    else:
+        base_path = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(base_path, relative_path)
+
+notify_path = resource_path(r"dependencies\PowerLook.exe")
+JSON_FILE = resource_path(r"dependencies\upgrades.json") # Name of the test JSON file
+save_file = resource_path(r"dependencies\save.json")
+config_file = resource_path(r"dependencies\config.json")
+
+print(notify_path, JSON_FILE, save_file, config_file)
+
+localization_folder = resource_path(r"localization")
 localization = {}
 
 ov = Overlay.Overlay()
@@ -40,7 +59,7 @@ except:
 save = SaveManager(save_file)
 config = SaveManager(config_file)
 
-game_closer = GameApp(config.get('game_icon'), localization, save.get('lang'))
+game_closer = GameApp(resource_path(config.get('game_icon')), localization, save.get('lang'))
 game_closer.start()
 
 update_status_file.do_desktop_thing(JSON_FILE, config.get('folder_name'), config.get('file_name'))
@@ -338,12 +357,14 @@ def do_locks():
         lock_upgrade_by_index(12)
 
 def poke_folder_for_refresh(path):
-    dummy_path = os.path.join(path, "~refresh.tmp")
-    with open(dummy_path, 'w') as f:
-        f.write("refresh")
-    time.sleep(0.01)
-    os.remove(dummy_path)
-
+    try:
+        dummy_path = os.path.join(path, "~refresh.tmp")
+        with open(dummy_path, 'w') as f:
+            f.write("refresh")
+        time.sleep(0.01)
+        os.remove(dummy_path)
+    except:
+        pass
 def do_unlocks():
     upgrade = load_upgrades()
     powerful1 = upgrade['items'][3]
@@ -658,10 +679,12 @@ def mainloop():
     combo_m_was_pressed = False
     combo_s_was_pressed = False
     combo_scrolllock_was_pressed = False
+    combo_space_was_pressed = False
 
     while running:
+        
         current_time = time.time()
-        visibility = game_closer.get_visibility()
+    
         lang.save_file = os.path.join(localization_folder, game_closer.get_localization()+".json")
         lang.load()
         save.set('lang', game_closer.get_localization())
@@ -669,6 +692,21 @@ def mainloop():
             new_language()
         current_lang = game_closer.get_localization()
         elapsed_time = current_time - last_time
+
+        if game_closer.tutorial == True:
+            game_closer.tutorial = False
+            game_closer.toggle_mode()
+
+
+        ##------------------------PET LOGIC---------------------------
+        
+        combo_space_now = (keyboard.is_pressed('space'))
+
+        if combo_space_now and not combo_space_was_pressed and visibility == True:
+            combo_space_was_pressed = True
+             
+        elif not combo_space_now:
+            combo_space_was_pressed = False
         # --- Combo: Ctrl + Alt + Shift + Z ---
         combo_z_now = (
             keyboard.is_pressed('ctrl') and
@@ -698,12 +736,10 @@ def mainloop():
             combo_m_was_pressed = False
 
         combo_quit_now = (
-            keyboard.is_pressed(config.get('closing_key')) or
-            game_closer.opened is False
-        )
+            keyboard.is_pressed(config.get('closing_key'))
+        ) or game_closer.opened is False
         if combo_quit_now:
             running = False
-
         john_key = keyboard.is_pressed('scroll_lock')
         if john_key and not combo_scrolllock_was_pressed:
             combo_scrolllock_was_pressed = True
