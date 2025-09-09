@@ -1,6 +1,6 @@
 {
-    "tutorial_state": 0,
-    "score": 0.0,
+    "done_tutorial": 0,
+    "score": 13.0,
     "slackers": 0,
     "coffee": 0,
     "speedboost": 0,
@@ -37,5 +37,6 @@
     "upset": 0,
     "unemployement": 0,
     "grow": 0,
-    "reference": 0
+    "reference": 0,
+    "tutorial_step": 0
 }

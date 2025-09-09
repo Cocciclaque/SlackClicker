@@ -13,6 +13,7 @@ class GameApp:
         self.visibility = visibility
         self.localization = localization
         self.selected_lang = start
+        self.tutorial = False
     
     # Function to create an icon image (using your custom image)
     def create_image(self):
@@ -37,6 +38,9 @@ class GameApp:
     def get_localization(self):
         return self.selected_lang
 
+    def do_tutorial(self):
+        self.tutorial = True
+
     # Function to run the taskbar icon
     def setup_icon(self):
 
@@ -49,8 +53,9 @@ class GameApp:
         self.icon = pystray.Icon("I'll Work After This", self.create_image(), title="I'll Work After This", menu=(
             item('Quit the game', self.on_quit),  
             item('Toggle visibility mode', self.toggle_mode),
-            item('Select Language', Menu(*submenu_items)
-        )))
+            item('Select Language', Menu(*submenu_items)),
+            item('Re-do Tutorial', self.do_tutorial)
+            ))
         self.opened = True  # Mark the app as opened
         self.icon.run()
     
@@ -64,7 +69,6 @@ class GameApp:
     def start(self):
         self.run_icon()
         self.opened = True  # App is now running
-        valuesapi.show_notification("How to close the game", "Go in the app system tray right below to close the game.")
 
 # Example of using the class
 if __name__ == "__main__":
