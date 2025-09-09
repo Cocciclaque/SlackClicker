@@ -71,12 +71,10 @@ update_status_file.do_desktop_thing(JSON_FILE, config.get('folder_name'), config
 # except KeyboardInterrupt:
 #     pass
 
-time.sleep(3)
+# menu = FullscreenMenu('background.mp4')
+# choice = menu.main_menu()
 
-menu = FullscreenMenu('background.mp4')
-choice = menu.main_menu()
-
-print(choice)
+# print(choice)
 
 upgrades = {}
 upgrades["slackers"] = save.get("slackers", 0)
@@ -699,10 +697,13 @@ def mainloop():
     combo_space_was_pressed = False
 
     while running:
-
-        if check_for_shop():
-            ov.start()
-            ov.switch_shader('postit')
+        visibility = game_closer.get_visibility()
+        if visibility == True:
+            if check_for_shop():
+                ov.start()
+                ov.switch_shader('postit')
+            else:
+                ov.stop()
         else:
             ov.stop()
         
