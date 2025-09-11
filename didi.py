@@ -697,7 +697,10 @@ def mainloop():
     combo_scrolllock_was_pressed = False
     combo_space_was_pressed = False
 
+    clipboard = True
+
     while running:
+        clipboard = game_closer.get_clipboard()
         visibility = game_closer.get_visibility()
         if visibility == True:
             if check_for_shop():
@@ -779,7 +782,8 @@ def mainloop():
             combo_scrolllock_was_pressed = False
         # --- Volume + score logic ---
         if elapsed_time >= delay:
-            pyperclip.copy(score)
+            if clipboard == True:
+                pyperclip.copy(score)
             start += config.get('base_auto_tick_value')+start_mult
             if start >= 1:
                 start = 0
