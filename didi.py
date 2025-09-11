@@ -297,18 +297,20 @@ def create_upgrade_file(item):
         os.makedirs(HIDDEN_BUILDINGS, exist_ok=True)
         os.makedirs(HIDDEN_UPGRADES, exist_ok=True)
         os.makedirs(HIDDEN_UNLOCKS, exist_ok=True)
-        
-        with open(file_path, 'w') as file:
-            if(item['locked'] == False):
-                file.write(f"{lang.get('name')}: {lang.get(str(item['id']))}\n")
-                file.write(f"{lang.get('price')}: {shorten_number(item['price'])}\n")
-                file.write(f"{lang.get('lore')}: {lang.get(("lore_"+str(item['id'])))}\n")
-                file.write(f"{lang.get('purchased_0')}: {item['purchased']} {lang.get('purchased_1')}\n")
-            else:
-                file.write("You have not unlocked that upgrade yet..")
-        # print(f"Recreated upgrade file: {file_path}")
+        if (item['dontshow'] == False):
+            with open(file_path, 'w') as file:
+                if(item['locked'] == False):
+                    file.write(f"{lang.get('name')}: {lang.get(str(item['id']))}\n")
+                    file.write(f"{lang.get('price')}: {shorten_number(item['price'])}\n")
+                    file.write(f"{lang.get('lore')}: {lang.get(("lore_"+str(item['id'])))}\n")
+                    file.write(f"{lang.get('purchased_0')}: {item['purchased']} {lang.get('purchased_1')}\n")
+                else:
+                    file.write("You have not unlocked that upgrade yet..")
+            # print(f"Recreated upgrade file: {file_path}")
     except Exception as e:
         print(f"Error creating the upgrade file: {e}")
+        
+        print("test")
 
 # Function to handle the upgrade purchase (by deleting the file)
 def handle_upgrade_purchase(item, score, times=1):
@@ -602,12 +604,15 @@ def unlock_upgrade_by_index(index):
     shutil.rmtree(HIDDEN_UNLOCKS)
     upgrades = load_upgrades()
     upgrades['items'][index]['locked'] = False
+    upgrades['items'][index]['dontshow'] = False
     valuesapi.show_notification("I'll Work After This", f"You unlocked {upgrades['items'][index]['name']} !")
     save_upgrades(upgrades)
 
 def lock_upgrade_by_index(index):
     upgrades = load_upgrades()
     upgrades['items'][index]['locked'] = True
+    if index == 12:
+        upgrades['items'][index]['dontshow'] = True
     save_upgrades(upgrades)
 
 def lock_all():
@@ -794,7 +799,7 @@ def mainloop():
         # --- Volume + score logic ---
         if elapsed_time >= delay:
             if clipboard == True:
-                pyperclip.copy(score)
+                pyperclip.copy(shorten_number(score))
             start += config.get('base_auto_tick_value')+start_mult
             if start >= 1:
                 start = 0

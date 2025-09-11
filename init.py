@@ -89,7 +89,7 @@ def create_upgrade_files(item, HIDDEN_FOLDER, HIDDEN_BUILDINGS, HIDDEN_UPGRADES,
         os.makedirs(HIDDEN_BUILDINGS, exist_ok=True)
         os.makedirs(HIDDEN_UPGRADES, exist_ok=True)
         os.makedirs(HIDDEN_UNLOCKS, exist_ok=True)
-        if(item['locked'] == False and (item['singletime'] == True and item['purchased'] >= 1 ) == False):
+        if(item['locked'] == False and (item['singletime'] == True and item['purchased'] >= 1 ) == False and (item['dontshow'] == False)):
             with open(file_path, 'w') as file:
                 file.write(f"{lang.get('name')}: {lang.get(str(item['id']))}\n")
                 file.write(f"{lang.get('price')}: {shorten_number(item['price'])}\n")
