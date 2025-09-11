@@ -9,6 +9,7 @@ import random
 import os
 import shutil
 import json
+import ctypes
 import changeWindowName
 import update_status_file
 from getFocusedWindow import is_active_window_process_name, get_active_explorer_folder
@@ -349,6 +350,9 @@ def monitor_upgrades(score):
                 poke_folder_for_refresh(HIDDEN_BUILDINGS)
                 poke_folder_for_refresh(HIDDEN_BUILDINGS)
                 poke_folder_for_refresh(HIDDEN_BUILDINGS)
+                time.sleep(0.2)
+                ctypes.windll.user32.keybd_event(0x74, 0, 0, 0)   # 0x74 = virtual keycode for F5
+                ctypes.windll.user32.keybd_event(0x74, 0, 2, 0)   # release
             
 
     save_upgrades(upgrades)
@@ -700,6 +704,10 @@ def mainloop():
     clipboard = True
 
     while running:
+        shop_please = game_closer.get_shop()
+        if shop_please:
+            subprocess.Popen(f'explorer "{HIDDEN_FOLDER}"')
+            game_closer.reset_shop()
         clipboard = game_closer.get_clipboard()
         visibility = game_closer.get_visibility()
         if visibility == True:
