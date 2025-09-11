@@ -345,7 +345,7 @@ def monitor_upgrades(score):
                 create_upgrade_file(item)
             else:
                 print(f"File for {lang.get(str(item['id']))} deleted, attempting to purchase...")
-                purchase_amount = 5 if shift_pressed else 1
+                purchase_amount = 5 if space_pressed else 1
                 score = handle_upgrade_purchase(item, score, times=purchase_amount)
                 poke_folder_for_refresh(HIDDEN_BUILDINGS)
                 poke_folder_for_refresh(HIDDEN_BUILDINGS)

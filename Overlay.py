@@ -247,7 +247,7 @@ class Overlay:
         win=glfw.create_window(100,100,'',None,None)
         hwnd=glfw.get_win32_window(win)
         style=ctypes.windll.user32.GetWindowLongW(hwnd,-20)
-        ctypes.windll.user32.SetWindowLongW(hwnd,-20,style|0x80000|0x20)
+        ctypes.windll.user32.SetWindowLongW(hwnd,-20,style|0x80000|0x20|0x08000000)
         glfw.make_context_current(win)
         ctx=moderngl.create_context(); ctx.enable(moderngl.BLEND); ctx.blend_func=(moderngl.SRC_ALPHA,moderngl.ONE_MINUS_SRC_ALPHA)
 
