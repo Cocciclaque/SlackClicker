@@ -12,6 +12,7 @@ class GameApp:
         self.path = path
         self.visibility = visibility
         self.localization = localization
+        self.clipboard = True
         self.selected_lang = start
         self.tutorial = False
     
@@ -29,6 +30,9 @@ class GameApp:
     def toggle_mode(self):
         self.visibility = not self.visibility
 
+    def toggle_clipboard(self):
+        self.clipboard = not self.clipboard
+
     def get_visibility(self):
         return self.visibility
 
@@ -37,6 +41,9 @@ class GameApp:
 
     def get_localization(self):
         return self.selected_lang
+
+    def get_clipboard(self):
+        return self.clipboard
 
     def do_tutorial(self):
         self.tutorial = True
@@ -53,6 +60,7 @@ class GameApp:
         self.icon = pystray.Icon("I'll Work After This", self.create_image(), title="I'll Work After This", menu=(
             item('Quit the game', self.on_quit),  
             item('Toggle visibility mode', self.toggle_mode),
+            item('Toggle Clipboard SPS', self.toggle_clipboard),
             item('Select Language', Menu(*submenu_items)),
             item('Re-do Tutorial', self.do_tutorial)
             ))
