@@ -332,7 +332,7 @@ def handle_upgrade_purchase(item, score, times=1):
 # Monitor the upgrades folder for file deletions
 def monitor_upgrades(score):
     upgrades = load_upgrades()
-    shift_pressed = keyboard.is_pressed('shift')
+    space_pressed = keyboard.is_pressed('space')
 
     for item in upgrades.get("items", []):
         file_name = make_file_name(item)
