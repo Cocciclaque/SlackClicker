@@ -713,6 +713,7 @@ def mainloop():
         if visibility == True:
             if check_for_shop():
                 ov.start()
+                time.sleep(0.2)
                 ov.switch_shader('postit')
             else:
                 ov.stop()
@@ -776,12 +777,14 @@ def mainloop():
         ) or game_closer.opened is False
         if combo_quit_now:
             running = False
-        john_key = keyboard.is_pressed('scroll_lock')
+        john_key = keyboard.is_pressed('²')
+        
         if john_key and not combo_scrolllock_was_pressed:
             combo_scrolllock_was_pressed = True
             if john_key and time.time() >= john_timer and upgrades['john'] >= 1:
                 john_timer = config.get('john_cooldown') + time.time()
                 john_effect = config.get('john_duration') + time.time()
+                print(john_key)
             elif john_key and time.time() < john_timer and upgrades['john'] >= 1:
                 valuesapi.show_notification("I'll Work After This", f"{lang.get('ability_cooldown_0')}{round(john_timer-time.time(), 0)} {lang.get('ability_cooldown_1')}")
             elif john_key and upgrades['john'] == 0:
@@ -800,7 +803,7 @@ def mainloop():
                 save.set("score", score)
                 start_mult = 0
                 slacking_mult = 0
-                general_mult = 1+(save.get("slackonomics", 0)*config.get("slackonomics_modifier"))*trigger_microsoft_upgrades()*getCompoundMult()*getJohnMult(john_effect)
+                general_mult = (1+(save.get("slackonomics", 0)*config.get("slackonomics_modifier"))*trigger_microsoft_upgrades()*getCompoundMult())*getJohnMult(john_effect)
                 config.load()
             last_time = current_time
             if save.get("avoid") == 1:
