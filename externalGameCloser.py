@@ -15,6 +15,7 @@ class GameApp:
         self.clipboard = True
         self.selected_lang = start
         self.tutorial = False
+        self.open_shop_please = False
     
     # Function to create an icon image (using your custom image)
     def create_image(self):
@@ -26,6 +27,15 @@ class GameApp:
     def on_quit(self, icon):
         self.opened = False  # Mark the app as closed
         icon.stop()
+
+    def open_shop(self):
+        self.open_shop_please = True
+
+    def reset_shop(self):
+        self.open_shop_please = False
+
+    def get_shop(self):
+        return self.open_shop_please
     
     def toggle_mode(self):
         self.visibility = not self.visibility
@@ -62,6 +72,7 @@ class GameApp:
             item('Toggle visibility mode', self.toggle_mode),
             item('Toggle Clipboard SPS', self.toggle_clipboard),
             item('Select Language', Menu(*submenu_items)),
+            item('Open Shop', self.open_shop),
             item('Re-do Tutorial', self.do_tutorial)
             ))
         self.opened = True  # Mark the app as opened
