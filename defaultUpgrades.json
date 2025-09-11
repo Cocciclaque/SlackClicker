@@ -157,7 +157,7 @@
       "purchased": 0,
       "locked": true,
       "requirements": "Requires 20 Paradoxes",
-      "lore": "Retire your children early by being lazy\n Multiplies all slacking by 25% of the power of Auto Slackers",
+      "lore": "Retire your children early by being lazy, just pray for them not doing the same.\n Multiplies all slacking by 25% of the power of Auto Slackers",
       "singletime": true,
       "id": 14
     },
@@ -189,7 +189,7 @@
       "purchased": 0,
       "locked": true,
       "requirements": "Requires 50k slack",
-      "lore": "Oh my god it's John Slack from Fortnite !!1!1!§§\n Pressing scroll lock boosts slacking by 50% for 30 seconds (5 minutes cooldown)",
+      "lore": "Oh my god it's John Slack from [REDACTED BATTLE ROYALE GAME KNOWN FOR UNLIKELY GUEST CHARACTERS]!!1!1!§§\n Pressing scroll lock boosts slacking by 50% for 30 seconds (5 minutes cooldown)",
       "singletime": true,
       "id": 17
     },
@@ -244,7 +244,7 @@
       "purchased": 0,
       "locked": true,
       "requirements": "Requires 400k slack",
-      "lore": "Casual crastinators when PRO-crastinator walks in\n +43k Slack per second",
+      "lore": "Casual crastinators when PRO-crastinators walks in\n +43k Slack per second",
       "singletime": false,
       "id": 22
     },
@@ -255,7 +255,7 @@
       "purchased": 0,
       "locked": true,
       "requirements": "Requires 400k slack",
-      "lore": "Effort ? No, Efort, your unemployed 26 y/o brother.\n Somehow gives you +250k Slack per second",
+      "lore": "Effort ? No; Efort, your unemployed 26 y/o brother.\n Somehow gives you +250k Slack per second",
       "singletime": false,
       "id": 23
     },
@@ -310,7 +310,7 @@
       "purchased": 0,
       "locked": true,
       "requirements": "Have 5 paradoxes",
-      "lore": "So... much... paradoxes...... must... get... more... brainpower...\n Slack Paradoxes are twice as efficient.",
+      "lore": "The art of being paid just to think (or not to think, that is the question).\n Slack Paradoxes are twice as efficient.",
       "singletime": false,
       "id": 28
     },

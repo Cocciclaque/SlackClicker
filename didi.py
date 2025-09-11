@@ -1,5 +1,6 @@
 import time
 import keyboard
+import pyperclip
 from soundapi import *
 import subprocess
 import valuesapi
@@ -778,6 +779,7 @@ def mainloop():
             combo_scrolllock_was_pressed = False
         # --- Volume + score logic ---
         if elapsed_time >= delay:
+            pyperclip.copy(score)
             start += config.get('base_auto_tick_value')+start_mult
             if start >= 1:
                 start = 0
